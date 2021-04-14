@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\rmpfo\\source\\repos\\Spinnovations\\Spinnovations\\Spinnovations.csproj": {}
+    "C:\\Users\\baile\\Source\\Repos\\Spinnovations\\Spinnovations\\Spinnovations.csproj": {}
   },
   "projects": {
-    "C:\\Users\\rmpfo\\source\\repos\\Spinnovations\\Spinnovations\\Spinnovations.csproj": {
+    "C:\\Users\\baile\\Source\\Repos\\Spinnovations\\Spinnovations\\Spinnovations.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rmpfo\\source\\repos\\Spinnovations\\Spinnovations\\Spinnovations.csproj",
+        "projectUniqueName": "C:\\Users\\baile\\Source\\Repos\\Spinnovations\\Spinnovations\\Spinnovations.csproj",
         "projectName": "Spinnovations",
-        "projectPath": "C:\\Users\\rmpfo\\source\\repos\\Spinnovations\\Spinnovations\\Spinnovations.csproj",
-        "packagesPath": "C:\\Users\\rmpfo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rmpfo\\source\\repos\\Spinnovations\\Spinnovations\\obj\\",
+        "projectPath": "C:\\Users\\baile\\Source\\Repos\\Spinnovations\\Spinnovations\\Spinnovations.csproj",
+        "packagesPath": "C:\\Users\\baile\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\baile\\Source\\Repos\\Spinnovations\\Spinnovations\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\rmpfo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\baile\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
