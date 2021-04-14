@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "UQGKsyic7wdoczbDNQT7Wj3YghYSSEHQVLOB2vZngGUv8MM1v7J+/qIvJC1HH17+7YbsOO1Uy1xa+f+hfS8NGQ==",
+  "dgSpecHash": "HRfJVyqcsGkvwDJrBOm++E0LhpffWwl5yR0QPDOmefBzFGEtPlLVJ+GaC2vYT+gZdjeVwu3mqVz2L6qq32iD1A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\baile\\Source\\Repos\\Spinnovations\\Spinnovations\\Spinnovations.csproj",
+  "projectFilePath": "C:\\Users\\baile\\source\\repos\\Spinnovations\\Spinnovations\\Spinnovations.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\baile\\.nuget\\packages\\dapper\\2.0.78\\dapper.2.0.78.nupkg.sha512",
     "C:\\Users\\baile\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

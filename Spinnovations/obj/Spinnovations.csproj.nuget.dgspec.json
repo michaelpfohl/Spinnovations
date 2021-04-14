@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\baile\\Source\\Repos\\Spinnovations\\Spinnovations\\Spinnovations.csproj": {}
+    "C:\\Users\\baile\\source\\repos\\Spinnovations\\Spinnovations\\Spinnovations.csproj": {}
   },
   "projects": {
-    "C:\\Users\\baile\\Source\\Repos\\Spinnovations\\Spinnovations\\Spinnovations.csproj": {
+    "C:\\Users\\baile\\source\\repos\\Spinnovations\\Spinnovations\\Spinnovations.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\baile\\Source\\Repos\\Spinnovations\\Spinnovations\\Spinnovations.csproj",
+        "projectUniqueName": "C:\\Users\\baile\\source\\repos\\Spinnovations\\Spinnovations\\Spinnovations.csproj",
         "projectName": "Spinnovations",
-        "projectPath": "C:\\Users\\baile\\Source\\Repos\\Spinnovations\\Spinnovations\\Spinnovations.csproj",
+        "projectPath": "C:\\Users\\baile\\source\\repos\\Spinnovations\\Spinnovations\\Spinnovations.csproj",
         "packagesPath": "C:\\Users\\baile\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\baile\\Source\\Repos\\Spinnovations\\Spinnovations\\obj\\",
+        "outputPath": "C:\\Users\\baile\\source\\repos\\Spinnovations\\Spinnovations\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\baile\\AppData\\Roaming\\NuGet\\NuGet.Config",
