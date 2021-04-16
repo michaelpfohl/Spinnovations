@@ -38,5 +38,17 @@ namespace Spinnovations.Controllers
             _repo.Add(orderDetails);
             return Created($"/api/order_details/{orderDetails.Id}", orderDetails);
         }
+        [HttpDelete("{id}")]
+        public IActionResult DeleteOrder_Details(int id)
+        {
+            _repo.Delete(id);
+            return Ok();
+        }
+        [HttpPut("{id}")]
+        public IActionResult UpdateOrder_Details(Order_Details orderDetails)
+        {
+            _repo.Update(orderDetails);
+            return Ok();
+        }
     }
 }

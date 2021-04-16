@@ -45,5 +45,23 @@ namespace Spinnovations.Data
             var id = db.ExecuteScalar<int>(sql, orderDetails);
             orderDetails.Id = id;
         }
+        public void Delete(int id)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = $@"DELETE from Order_Details
+                        WHERE Id = @id";
+            db.Execute(sql, new { id });
+        }
+        public void Update(Order_Details orderDetails)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = $@"UPDATE [dbo].[Order_Details]
+                        SET [Order_Id] = @Order_Id
+                            ,[Product_Id] = @Product_Id
+                            ,[Unit_Price] = @Unit_Price
+                            ,[Quantity] = @Quantity
+                        WHERE Id = @id";
+            db.Execute(sql, orderDetails);
+        }
     }
 }
