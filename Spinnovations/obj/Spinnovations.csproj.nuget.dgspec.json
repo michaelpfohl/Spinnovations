@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\smudi\\Source\\Repos\\Spinnovations\\Spinnovations\\Spinnovations.csproj": {}
+    "C:\\Users\\smudi\\source\\repos\\Spinnovations\\Spinnovations\\Spinnovations.csproj": {}
   },
   "projects": {
-    "C:\\Users\\smudi\\Source\\Repos\\Spinnovations\\Spinnovations\\Spinnovations.csproj": {
+    "C:\\Users\\smudi\\source\\repos\\Spinnovations\\Spinnovations\\Spinnovations.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\smudi\\Source\\Repos\\Spinnovations\\Spinnovations\\Spinnovations.csproj",
+        "projectUniqueName": "C:\\Users\\smudi\\source\\repos\\Spinnovations\\Spinnovations\\Spinnovations.csproj",
         "projectName": "Spinnovations",
-        "projectPath": "C:\\Users\\smudi\\Source\\Repos\\Spinnovations\\Spinnovations\\Spinnovations.csproj",
+        "projectPath": "C:\\Users\\smudi\\source\\repos\\Spinnovations\\Spinnovations\\Spinnovations.csproj",
         "packagesPath": "C:\\Users\\smudi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\smudi\\Source\\Repos\\Spinnovations\\Spinnovations\\obj\\",
+        "outputPath": "C:\\Users\\smudi\\source\\repos\\Spinnovations\\Spinnovations\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\smudi\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -59,6 +59,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[3.1.13, 3.1.13]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"

@@ -22,5 +22,28 @@ namespace Spinnovations.Data
             var sql = "SELECT * FROM Order_Details";
             return db.Query<Order_Details>(sql).ToList();
         }
+        public Order_Details GetIndividual(int id)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = $@"SELECT * FROM Order_Details 
+                            WHERE Id = @id";
+            return db.QueryFirstOrDefault<Order_Details>(sql, new { id = id });
+        }
+        public void Add(Order_Details orderDetails)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = $@"INSERT INTO [dbo].[Order_Details]
+                        ([Order_Id]
+                        ,[Product_Id]
+                        ,[Unit_Price]
+                        ,[Quantity])
+                    VALUES
+                        (@Order_Id
+                        ,@Product_Id
+                        ,@Unit_Price
+                        ,@Quantity)";
+            var id = db.ExecuteScalar<int>(sql, orderDetails);
+            orderDetails.Id = id;
+        }
     }
 }

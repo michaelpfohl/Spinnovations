@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8VwWIzv2YtoroRsLlb2qAVSe63O5C+p8mgSeuXAGquU8KGsj6UwmeuYmNFF5QbniX2ttPGAbQFW99AQbsOqFOg==",
+  "dgSpecHash": "cjvcF1qiv6DQGelx/x2+Tzg+Ni3tGqZmh5Dv0hoXD/Qts/m+L6I4fgPg9RA6Fr4QTuDJUlNIPW1T/qhHAEqBYg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\smudi\\Source\\Repos\\Spinnovations\\Spinnovations\\Spinnovations.csproj",
+  "projectFilePath": "C:\\Users\\smudi\\source\\repos\\Spinnovations\\Spinnovations\\Spinnovations.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\smudi\\.nuget\\packages\\dapper\\2.0.78\\dapper.2.0.78.nupkg.sha512",
     "C:\\Users\\smudi\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
@@ -29,7 +29,8 @@
     "C:\\Users\\smudi\\.nuget\\packages\\system.security.permissions\\4.7.0\\system.security.permissions.4.7.0.nupkg.sha512",
     "C:\\Users\\smudi\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512",
     "C:\\Users\\smudi\\.nuget\\packages\\system.text.encoding.codepages\\4.7.0\\system.text.encoding.codepages.4.7.0.nupkg.sha512",
-    "C:\\Users\\smudi\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512"
+    "C:\\Users\\smudi\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512",
+    "C:\\Users\\smudi\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.13\\microsoft.netcore.app.host.win-x64.3.1.13.nupkg.sha512"
   ],
   "logs": []
 }
