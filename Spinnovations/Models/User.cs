@@ -18,5 +18,6 @@ namespace Spinnovations.Models
         public string Display_Name { get; set; }
         public string Profile_Picture { get; set; }
         public DateTime User_Created_Date { get; set; }
+        public string State { get; set; }
     }
 }

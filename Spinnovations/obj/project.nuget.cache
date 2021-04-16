@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "cBC3EjMhdD9JqEiTxiWMEyyrUITszdaupDN7jz1Y7ScBkaN5uV/DRfxh2BBWKG+7eL//+qbhMjT5J8H6ccfBvA==",
+  "dgSpecHash": "ZvgqItuMMItVKUP6jjbaYQfqeOU4LzS/pCxETEAe9mpcrIxDbBeEtxdf/CotG6ZlPxHgM3lZp2Mln1vRmzQ/LQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\kaitl\\Source\\Repos\\Spinnovations\\Spinnovations\\Spinnovations.csproj",
+  "projectFilePath": "C:\\Users\\kaitl\\source\\repos\\Spinnovations\\Spinnovations\\Spinnovations.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kaitl\\.nuget\\packages\\dapper\\2.0.78\\dapper.2.0.78.nupkg.sha512",
     "C:\\Users\\kaitl\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
@@ -29,7 +29,8 @@
     "C:\\Users\\kaitl\\.nuget\\packages\\system.security.permissions\\4.7.0\\system.security.permissions.4.7.0.nupkg.sha512",
     "C:\\Users\\kaitl\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512",
     "C:\\Users\\kaitl\\.nuget\\packages\\system.text.encoding.codepages\\4.7.0\\system.text.encoding.codepages.4.7.0.nupkg.sha512",
-    "C:\\Users\\kaitl\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512"
+    "C:\\Users\\kaitl\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512",
+    "C:\\Users\\kaitl\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.13\\microsoft.netcore.app.host.win-x64.3.1.13.nupkg.sha512"
   ],
   "logs": []
 }
