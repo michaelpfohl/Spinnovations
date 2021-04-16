@@ -31,6 +31,7 @@ namespace Spinnovations
             services.AddTransient<Order_DetailsRepository>();
             services.AddSingleton(Configuration);
             services.AddTransient<ProductRepository>();
+            services.AddTransient<UserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline .
