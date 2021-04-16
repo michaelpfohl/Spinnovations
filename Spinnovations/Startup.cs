@@ -29,6 +29,7 @@ namespace Spinnovations
             services.AddControllers();
             services.AddSingleton(Configuration);
             services.AddTransient<ProductRepository>();
+            services.AddTransient<UserRepository>();
             services.AddTransient<PaymentInformationRepository>();
         }
 
