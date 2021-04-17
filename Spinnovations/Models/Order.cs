@@ -8,8 +8,7 @@ namespace Spinnovations.Models
     public class Order
     {
         public int Id { get; set; }
-        public int Order_Id { get; set; }
-        public int Product_Id { get; set; }
+        public int Customer_Id { get; set; }
         public DateTime Order_Date { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
