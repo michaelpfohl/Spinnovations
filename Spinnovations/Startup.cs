@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Spinnovations.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,9 +28,16 @@ namespace Spinnovations
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddTransient<Order_DetailsRepository>();
             services.AddSingleton(Configuration);
             services.AddTransient<ProductRepository>();
+<<<<<<< HEAD
             services.AddTransient<ProductCategoryRepository>();
+=======
+            services.AddTransient<UserRepository>();
+            services.AddTransient<PaymentInformationRepository>();
+            services.AddTransient<OrderRepository>();
+>>>>>>> main
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline .
