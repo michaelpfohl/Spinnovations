@@ -28,12 +28,13 @@ namespace Spinnovations
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddTransient<Order_DetailsRepository>();
             services.AddSingleton(Configuration);
             services.AddTransient<ProductRepository>();
+            services.AddTransient<ProductCategoryRepository>();
             services.AddTransient<UserRepository>();
             services.AddTransient<PaymentInformationRepository>();
             services.AddTransient<OrderRepository>();
+            services.AddTransient<Order_DetailsRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline .
@@ -42,6 +43,7 @@ namespace Spinnovations
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseCors(c => c.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
             }
 
             app.UseHttpsRedirection();

@@ -33,6 +33,16 @@ namespace Spinnovations.Data
             return product;
         }
 
+        public List<Product> GetProductsInCategory(int id)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = @"SELECT * 
+                        FROM Products AS p
+                        JOIN Product_Category AS pc ON p.Category_Id = pc.Id
+                        WHERE p.Category_Id = @id;";
+            return db.Query<Product>(sql, new { id = id}).ToList();
+        }
+
         public void Add(Product product)
         {
             using var db = new SqlConnection(ConnectionString);
