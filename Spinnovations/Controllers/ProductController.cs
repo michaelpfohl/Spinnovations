@@ -37,6 +37,12 @@ namespace Spinnovations.Controllers
             return Ok(product);
         }
 
+        [HttpGet("category/{id}")]
+        public IActionResult GetProductsInCategory(int id)
+        {
+            return Ok(_repo.GetProductsInCategory(id));
+        }
+
         [HttpPost]
         public IActionResult AddNewProduct(Product product)
         {
