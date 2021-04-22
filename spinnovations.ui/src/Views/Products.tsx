@@ -8,7 +8,7 @@ class Products extends Component {
     };
 
     componentDidMount(): void {
-        productData.getProducts().then((response : Product[]) => {
+        productData.getProducts().then((response: Product[]) => {
             this.setState({
                 products: response
             })
