@@ -4,6 +4,7 @@ import './App.scss';
 import Routes from '../Helpers/routes';
 
 import Products from '../Views/Products';
+import Orders from '../Views/Orders';
 
 const App: React.FC = (): ReactElement => {
   return (
@@ -13,6 +14,7 @@ const App: React.FC = (): ReactElement => {
         <h2>INSIDE APP COMPONENT</h2>
         <button className="btn btn-info">I am a button</button>
         <Products />
+        <Orders />
       </Router>
     </div>
   );

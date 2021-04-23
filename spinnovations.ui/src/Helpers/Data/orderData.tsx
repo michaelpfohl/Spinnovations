@@ -1,23 +1,27 @@
 import axios from 'axios';
-import { rejects } from 'node:assert';
 import {BaseURL} from '../config.json';
 
-const ordersUrl = `${BaseURL}/orders`;
+const ordersUrl = `${BaseURL}/order`;
 
-interface Order {
+export interface Order {
     id: number;
-    Customer_Id: number;
-    Order_Date: Date;
-    Address: string;
-    City: string;
-    Country: String;
-    Postal_Code: String;
+    customer_Id: number;
+    order_Date: Date;
+    address: string;
+    city: string;
+    country: string;
+    postal_Code: string;
 }
 
-const GetAllOrders: Promise<[Order]> = () => new Promise((resolve, reject) =>
-    axios
-        .get(ordersUrl).then(response => resolve(response.data))
+const getAllOrders = (): Promise<Order[]> => new Promise((resolve, reject) => {
+    axios.get(`${ordersUrl}`).then((response) => {
+        console.log(ordersUrl);
+        resolve(response.data)
+    }).catch((error) => reject(error));
+});
 
-    ).catch((error => rejects(error))
+const orderData = {
+    getAllOrders
+}
 
-export default GetAllOrders;
+export default orderData;
