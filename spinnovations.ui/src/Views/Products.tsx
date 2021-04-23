@@ -24,7 +24,6 @@ class Products extends Component {
             )
         }
 
-        console.log("products", products)
         const cards = products.map(productCard)
         return (
             <div>

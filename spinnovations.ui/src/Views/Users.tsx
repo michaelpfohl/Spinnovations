@@ -24,9 +24,7 @@ class Users extends React.Component {
                 </div>
             )
         }
-        console.log("users", users)
         const cards = users.map(userCard);
-        console.log("users", users)
 
         return (
             <>
