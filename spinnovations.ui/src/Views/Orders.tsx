@@ -23,8 +23,6 @@ class Orders extends Component {
                 </div>
             )
         }
-
-        console.log("Orders", orders)
         const cards = orders.map(orderCard)
         return (
             <div>

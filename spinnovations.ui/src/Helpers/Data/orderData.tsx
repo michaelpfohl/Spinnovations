@@ -15,7 +15,6 @@ export interface Order {
 
 const getAllOrders = (): Promise<Order[]> => new Promise((resolve, reject) => {
     axios.get(`${ordersUrl}`).then((response) => {
-        console.log(ordersUrl);
         resolve(response.data)
     }).catch((error) => reject(error));
 });
