@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-import productData, { Product } from '../Helpers/Data/ProductData';
+import productData from '../Helpers/Data/ProductData';
+import { Product } from '../Helpers/Interfaces/ProductInterface';
 import { ProductCard } from '../Components/Cards/ProductCard';
 
 class Products extends Component {
