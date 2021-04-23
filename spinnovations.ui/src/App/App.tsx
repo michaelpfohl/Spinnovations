@@ -5,6 +5,7 @@ import Routes from '../Helpers/routes';
 
 import Products from '../Views/Products';
 import Orders from '../Views/Orders';
+import Users from '../Views/Users';
 
 const App: React.FC = (): ReactElement => {
   return (
@@ -15,6 +16,7 @@ const App: React.FC = (): ReactElement => {
         <button className="btn btn-info">I am a button</button>
         <Products />
         <Orders />
+        <Users />
       </Router>
     </div>
   );
