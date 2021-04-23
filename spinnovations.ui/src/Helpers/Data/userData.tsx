@@ -11,7 +11,6 @@ export interface User {
     city: string;
     country: string;
     postal_code: string;
-    payment_Info_Id: number;
     display_Name: string;
     profile_Picture: string;
     user_Created_Date: Date;
