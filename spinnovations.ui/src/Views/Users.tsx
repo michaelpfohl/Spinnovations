@@ -1,27 +1,32 @@
 import React from 'react';
-import userData from '../Helpers/Data/userData';
+import userData, { User } from '../Helpers/Data/userData';
 
 class Users extends React.Component {
     state = {
-        users: [Users]
+        users: []
     };
 
-    componentDidMount() {
-        userData.GetAllUsers().then((data : User[]) => this.setState({ users:data }));
+    componentDidMount(): void {
+        userData.getAllUsers().then((response : User[]) => {
+            this.setState({ 
+                users: response 
+            })
+        });
     }
 
-    render() {
-        let {users} = this.state;
+    render() : JSX.Element {
+        const { users } = this.state;
 
-        const userCard = (user) => {
+        const userCard = (user: User) => {
             return (
-                <div>
-                    {user.first_name}
+                <div key={user.id}>
+                    <h1>{user.first_Name}</h1>
                 </div>
             )
-        };
-
-        let cards = users.map(userCard);
+        }
+        console.log("users", users)
+        const cards = users.map(userCard);
+        console.log("users", users)
 
         return (
             <>
