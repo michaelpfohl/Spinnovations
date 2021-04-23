@@ -3,7 +3,7 @@ import { BaseURL } from '../config.json';
 
 const productsURL = `${BaseURL}/Products`;
 
-export interface Product {
+export type Product = {
     id: number;
     name: string;
     imageUrl: string;

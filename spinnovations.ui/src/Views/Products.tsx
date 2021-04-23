@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import productData, { Product } from '../Helpers/Data/ProductData';
+import { ProductCard } from '../Components/Cards/ProductCard';
 
 class Products extends Component {
     state = {
@@ -16,11 +17,18 @@ class Products extends Component {
     }
     render() : JSX.Element {
         const { products } = this.state
-        const productCard = (product: Product) => {
+        const productCard = (product: Product): JSX.Element => {
             return (
-                <div key={product.id}>
-                    <h1>{product.name}</h1>
-                </div>
+                <ProductCard 
+                    id={product.id} 
+                    name={product.name} 
+                    description={product.description}
+                    imageUrl={product.imageUrl}
+                    creator_Id={product.creator_Id}
+                    category_Id={product.category_Id}
+                    price={product.price}
+                    quantity_In_Stock={product.quantity_In_Stock}
+                />
             )
         }
 
