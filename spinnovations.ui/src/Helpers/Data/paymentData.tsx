@@ -1,22 +1,25 @@
 import axios from 'axios';
-import {BaseURL} from '../config.json';
+import { BaseURL } from '../config.json';
 
-const paymentsURL = `${BaseURL}/payments`;
+const paymentsURL = `${BaseURL}/PaymentInformation`;
 
-interface Payment{
-    Id: number;
-    Card_Number: string;
-    Expiration_Month: number;
-    Expiration_Year: number;
-    CVV: number;
-    Customer_Id: number;
-    Card_Company: string;
+export interface Payment {
+    id: number;
+    card_Number: string;
+    expiration_Month: number;
+    expiration_Year: number;
+    cvv: number;
+    customer_Id: number;
+    card_Company: string;
 }
 
-const GetAllPayments = (): Promise<Payment> => {
-    return new Promise((resolve, reject) =>
-        axios.get(paymentsURL).then(response => resolve(response.data))
-        );
-}
+const getPayments = (): Promise<Payment[]> => new Promise((resolve, reject) => {
+    axios.get(`${paymentsURL}`).then((response) => {
+        resolve(response.data)
+    }).catch((error) => reject(error));
+});
 
-export default { GetAllPayments }
+const paymentData = {
+    getPayments
+}
+export default paymentData;
