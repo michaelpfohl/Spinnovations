@@ -19,6 +19,7 @@ const getPayments = (): Promise<Payment[]> => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
+//comment for git commit to fix an error
 const paymentData = {
     getPayments
 }
