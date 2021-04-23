@@ -1,4 +1,3 @@
-import React from 'react';
 import { Product } from '../../Helpers/Interfaces/ProductInterface';
 
 export const ProductCard = ({ id, name, imageUrl, description, price, quantity_In_Stock }: Product): JSX.Element => 
