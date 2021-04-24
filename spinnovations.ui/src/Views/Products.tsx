@@ -59,7 +59,9 @@ class Products extends React.Component<ProductsState> {
         return (
             <div>
                 <ProductCategoryBar categories={categories} filter={this.filterByCategory}/>
-                {cards}
+                <div className="container d-flex justify-content-around">
+                  {cards}
+                </div>
             </div>
         )
     }
