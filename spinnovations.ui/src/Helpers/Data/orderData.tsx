@@ -19,8 +19,17 @@ const getAllOrders = (): Promise<Order[]> => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
+const getOrderById = (orderId: number): Promise<Order> => new Promise((resolve, reject) => {
+    axios.get(`${ordersUrl}/${orderId}`).then((response) => {
+        resolve(response.data)
+    }).catch((error) => reject(error));
+});
+
+const getOrderDetailsByOrderId = (orderDetailsId: number): Promise<Order
+
 const orderData = {
-    getAllOrders
+    getAllOrders,
+    getOrderById
 }
 
 export default orderData;
