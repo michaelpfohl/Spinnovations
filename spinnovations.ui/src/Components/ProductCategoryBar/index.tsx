@@ -8,7 +8,7 @@ export const ProductCategoryBar = ({
 }: ProductCategoryProps): JSX.Element => {
   const categoryCircle = (category: ProductCategory): JSX.Element => {
     return (
-      <div key={category.id} className="product-category-circle">
+      <div key={category.id} id={category.id} className="product-category-circle">
         <p className="product-category-circle-text">{category.category_Name}</p>
       </div>
     );

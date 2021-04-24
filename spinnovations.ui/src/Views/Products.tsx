@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import productData from '../Helpers/Data/ProductData';
 import productCategoryData from '../Helpers/Data/ProductCategoryData';
@@ -7,9 +7,17 @@ import { ProductCard } from '../Components/Cards/ProductCard';
 import { ProductCategory } from '../Helpers/Interfaces/ProductCategoryInterfaces';
 import { ProductCategoryBar } from '../Components/ProductCategoryBar';
 
-class Products extends Component {
-    state = {
+type ProductsState = {
+    products?: Product[],
+    filteredProducts?: Product[],
+    categories?: ProductCategory[]
+}
+
+class Products extends React.Component<ProductsState> {
+
+    state: ProductsState = {
         products: [],
+        filteredProducts: [],
         categories: []
     };
 
@@ -25,13 +33,21 @@ class Products extends Component {
             })
         });
     }
+
+    filterByCategory = (e: React.ChangeEvent<HTMLInputElement>): void => {
+        const category = e.target.id;
+        const { products } = this.state;
+        const filteredProducts = products?.filter((product) => product.category_Id == category);
+        this.setState({ filteredProducts });
+    }
+
     render() : JSX.Element {
         const { products, categories } = this.state
         console.log(this.state);
         const productCard = (product: Product): JSX.Element => {
             return (<ProductCard product={product}/>)
         }
-        const cards = products.map(productCard)
+        const cards = products?.map(productCard)
         
         return (
             <div>
