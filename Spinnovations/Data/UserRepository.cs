@@ -38,6 +38,8 @@ namespace Spinnovations.Data
         public void AddUser(User user)
         {
             using var db = new SqlConnection(ConnectionString);
+            var user_created_date = DateTime.Now;
+            user.User_Created_Date = user_created_date;
             var sql = @"INSERT INTO [Users]
 	                        ([First_Name],
 	                        [Last_Name],
@@ -45,7 +47,6 @@ namespace Spinnovations.Data
 	                        [City],
 	                        [Country],
 	                        [Postal_Code],
-	                        [Payment_Info_Id],
 	                        [Display_Name],
 	                        [Profile_Picture],
 	                        [User_Created_Date],
@@ -57,7 +58,6 @@ namespace Spinnovations.Data
 	                        @City, 
 	                        @Country, 
 	                        @Postal_Code, 
-	                        @Payment_Info_Id,
 	                        @Display_Name,
 	                        @Profile_Picture,
 	                        @User_Created_Date,
@@ -76,7 +76,6 @@ namespace Spinnovations.Data
                             City = @City,
                             Country = @Country,
                             Postal_Code = @Postal_Code,
-                            Payment_Info_Id = @Payment_Info_Id,
                             Display_Name = @Display_Name,
                             Profile_Picture = @Profile_Picture,
                             User_Created_Date = @User_Created_Date,

@@ -1,18 +1,8 @@
 import axios from 'axios';
 import { BaseURL } from '../config.json';
+import { Product } from '../Interfaces/ProductInterfaces';
 
 const productsURL = `${BaseURL}/Products`;
-
-export interface Product {
-    id: number;
-    name: string;
-    imageUrl: string;
-    description: string;
-    category_Id: number;
-    price: number;
-    creator_Id: number;
-    quantity_In_Stock: number;
-}
 
 const getProducts = (): Promise<Product[]> => new Promise((resolve, reject) => {
     axios.get(`${productsURL}`).then((response) => {
