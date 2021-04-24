@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { BaseURL } from '../config.json';
-import { Product } from '../Interfaces/ProductInterface';
+import { Product } from '../Interfaces/ProductInterfaces';
 
 const productsURL = `${BaseURL}/Products`;
 
