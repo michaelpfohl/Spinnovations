@@ -3,14 +3,13 @@ import {
   ProductCategoryProps,
 } from "../../Helpers/Interfaces/ProductCategoryInterfaces";
 
-export const ProductCategoryBar = ({
-  categories,
-}: ProductCategoryProps): JSX.Element => {
+export const ProductCategoryBar = ({categories, filter}: ProductCategoryProps): JSX.Element => {
   const categoryCircle = (category: ProductCategory): JSX.Element => {
     return (
-      <div key={category.id} id={category.id} className="product-category-circle">
-        <p className="product-category-circle-text">{category.category_Name}</p>
-      </div>
+      <button key={category.id} id={category.id} className="product-category-circle" 
+      onClick={filter}>
+        <p className="product-category-circle-text"id={category.id} onClick={filter}>{category.category_Name}</p>
+      </button>
     );
   };
   const circles = categories.map(categoryCircle);

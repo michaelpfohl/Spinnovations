@@ -29,7 +29,8 @@ class Products extends React.Component<ProductsState> {
         });
         productData.getProducts().then((response: Product[]) => {
             this.setState({
-                products: response
+                products: response,
+                filteredProducts: response,
             })
         });
     }
@@ -42,16 +43,22 @@ class Products extends React.Component<ProductsState> {
     }
 
     render() : JSX.Element {
-        const { products, categories } = this.state
+        const { products, filteredProducts, categories } = this.state
         console.log(this.state);
         const productCard = (product: Product): JSX.Element => {
             return (<ProductCard product={product}/>)
         }
-        const cards = products?.map(productCard)
-        
+        let cards = products?.map(productCard)
+
+        if (filteredProducts !== products){
+            cards = filteredProducts?.map(productCard);
+        } else {
+            cards = products?.map(productCard);
+        }
+
         return (
             <div>
-                <ProductCategoryBar categories={categories}/>
+                <ProductCategoryBar categories={categories} filter={this.filterByCategory}/>
                 {cards}
             </div>
         )
