@@ -1,17 +1,9 @@
 import axios from 'axios';
 import {BaseURL} from '../config.json';
+import {Order, OrderDetails} from '../Interfaces/OrderInterfaces'
 
 const ordersUrl = `${BaseURL}/order`;
-
-export interface Order {
-    id: number;
-    customer_Id: number;
-    order_Date: Date;
-    address: string;
-    city: string;
-    country: string;
-    postal_Code: string;
-}
+const orderDetailsUrl = `${BaseURL}/Order_Details`;
 
 const getAllOrders = (): Promise<Order[]> => new Promise((resolve, reject) => {
     axios.get(`${ordersUrl}`).then((response) => {
@@ -25,11 +17,23 @@ const getOrderById = (orderId: number): Promise<Order> => new Promise((resolve, 
     }).catch((error) => reject(error));
 });
 
-const getOrderDetailsByOrderId = (orderDetailsId: number): Promise<Order
+const getOrderDetailsById = (orderDetailsId: number): Promise<OrderDetails> => new Promise((resolve, reject) => {
+    axios.get(`${orderDetailsUrl}/${orderDetailsId}`).then((response) => {
+        resolve(response.data)
+    }).catch((error) => reject(error));
+});
+
+const getAllUserOrders = (customerId: number): Promise<Order> => new Promise((resolve, reject) => {
+    axios.get(`${ordersUrl}/user/${customerId}`).then((response) => {
+        resolve(response.data)
+    }).catch((error) => reject(error));
+});
 
 const orderData = {
     getAllOrders,
-    getOrderById
+    getOrderById,
+    getOrderDetailsById,
+    getAllUserOrders
 }
 
 export default orderData;

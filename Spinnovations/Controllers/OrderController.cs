@@ -32,6 +32,11 @@ namespace Spinnovations.Controllers
             }
             return Ok(Order);
         }
+        [HttpGet("user/{customerId}")]
+        public IActionResult GetOrderByUser(int customerId)
+        {
+            return Ok(_repo.GetByUser(customerId));
+        }
         [HttpPost]
         public IActionResult AddOrder_Details(Order order)
         {

@@ -8,9 +8,19 @@ declare module 'OrderTypes' {
         country: string;
         postal_Code: string;
     }
+    interface OrderDetails {
+        id: number;
+        order_Id: number;
+        product_Id: number;
+        unit_Price: number;
+        quantity: number;
+    }
     interface OrderProps {
         order: Order
     }
+    interface OrderDetailsProps{
+        orderDetailsProps: OrderDetailsProps
+    }
 }
 
-export { Order, OrderProps }
+export { Order, OrderProps, OrderDetails, OrderDetailsProps }

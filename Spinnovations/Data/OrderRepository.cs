@@ -29,6 +29,16 @@ namespace Spinnovations.Data
                             WHERE Id = @id";
             return db.QueryFirstOrDefault<Order>(sql, new { id = id });
         }
+
+        public List<Order> GetByUser(int customerId)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = $@"SELECT * from orders o
+                            JOIN Order_Details od
+                            ON od.Order_Id = o.Id
+                            WHERE o.Customer_Id = @customerId";
+            return db.Query<Order>(sql, new { customerId = customerId }).ToList();
+        }
         public void Add(Order order)
         {
             using var db = new SqlConnection(ConnectionString);
