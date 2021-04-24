@@ -27,11 +27,12 @@ class Products extends Component {
     }
     render() : JSX.Element {
         const { products, categories } = this.state
+        console.log(this.state);
         const productCard = (product: Product): JSX.Element => {
             return (<ProductCard product={product}/>)
         }
         const cards = products.map(productCard)
-        console.log("state", categories);
+        
         return (
             <div>
                 <ProductCategoryBar categories={categories}/>
