@@ -5,7 +5,8 @@ declare module 'ProductCategoryTypes' {
 
     interface ProductCategoryProps {
         productCategory: ProductCategory;
-        filter: any;
+        filter: () => void;
+        all: () => void;
     }
 }
 

@@ -3,7 +3,7 @@ import {
   ProductCategoryProps,
 } from "../../Helpers/Interfaces/ProductCategoryInterfaces";
 
-export const ProductCategoryBar = ({categories, filter}: ProductCategoryProps): JSX.Element => {
+export const ProductCategoryBar = ({categories, filter, all}: ProductCategoryProps): JSX.Element => {
   const categoryCircle = (category: ProductCategory): JSX.Element => {
     return (
       <button key={category.id} id={category.id} className="product-category-circle" 
@@ -16,7 +16,13 @@ export const ProductCategoryBar = ({categories, filter}: ProductCategoryProps): 
   return (
     <div className="product-category-bar d-flex justify-content-center">
       <div className="col-10">
-        <div className="d-flex justify-content-around">{circles}</div>
+        <div className="d-flex justify-content-around">
+          <button key="all-products" id="all-products" className="product-category-circle" 
+          onClick={all}>
+            <p className="product-category-circle-text" id="all-products" onClick={all}>All Products</p>
+          </button>
+          {circles}
+        </div>
       </div>
     </div>
   );

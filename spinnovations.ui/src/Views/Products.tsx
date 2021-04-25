@@ -42,9 +42,17 @@ class Products extends React.Component<ProductsState> {
         this.setState({ filteredProducts });
     }
 
+    filterAll = (e: React.ChangeEvent<HTMLInputElement>): void => {
+        let { filteredProducts } = this.state;
+        const { products } = this.state;
+        if (e.target.id === "all-products"){
+            filteredProducts = products;
+            this.setState({ filteredProducts });
+        }
+    }
+
     render() : JSX.Element {
         const { products, filteredProducts, categories } = this.state
-        console.log(this.state);
         const productCard = (product: Product): JSX.Element => {
             return (<ProductCard product={product}/>)
         }
@@ -58,7 +66,7 @@ class Products extends React.Component<ProductsState> {
 
         return (
             <div>
-                <ProductCategoryBar categories={categories} filter={this.filterByCategory}/>
+                <ProductCategoryBar categories={categories} filter={this.filterByCategory} all={this.filterAll}/>
                 <div className="container d-flex justify-content-around">
                   {cards}
                 </div>
