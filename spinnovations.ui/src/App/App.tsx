@@ -8,9 +8,8 @@ const App: React.FC = (): ReactElement => {
   return (
     <div className="App">
       <Router>
-        <Navigation>
-          <Routes />
-        </Navigation>
+        <Navigation />
+        <Routes />
       </Router>
     </div>
   );
