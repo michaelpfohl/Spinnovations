@@ -3,7 +3,6 @@ import HomeCarousel from '../Components/Carousel/HomeCarousel';
 
 class Home extends Component {
   render() : JSX.Element {
-    console.log("home is logging");
       return (
           <div>
               <HomeCarousel />

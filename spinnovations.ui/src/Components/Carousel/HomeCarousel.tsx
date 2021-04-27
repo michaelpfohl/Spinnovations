@@ -25,7 +25,7 @@ const items = [
     }
   ];
   
-  const HomeCarousel = () => {
+  const HomeCarousel = (): JSX.Element => {
     const [activeIndex, setActiveIndex] = useState(0);
     const [animating, setAnimating] = useState(false);
   
