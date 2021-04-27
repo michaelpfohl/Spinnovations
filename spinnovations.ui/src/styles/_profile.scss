@@ -1,0 +1,64 @@
+@import 'variables';
+
+#profilePage {
+  background-color: $BackgroundLight;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  .profileCard {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-left: 25rem;
+    margin-right: 25rem;
+    background-color: white;
+    align-items: center;
+    width: 75%;
+    box-shadow: 12px 12px black;
+    .profilePhoto {
+      padding-top: 1rem;
+      border-radius: 50%;
+      width: 10rem;
+      height: auto;
+    }
+    .userName {
+      padding-top: 2rem;
+    }
+    .buttonGroup {
+      width: 98%;
+      display: flex;
+      justify-content: space-evenly;
+      margin-top: 5rem;
+      text-decoration: none;
+      a {
+        color: black;
+      }
+      a:hover {
+        text-decoration: none;
+        color: $SchemeOrange;
+    
+    }
+
+    }
+    .buttonGroupTwo {
+        width: 98%;
+        display: flex;
+        justify-content: space-around;
+        margin-top: 1rem;
+        text-decoration: none;
+        a {
+          color: black;
+        }
+        a:hover {
+          color: #F9C74F;
+          text-decoration: none;
+        }
+      }
+    .tailInfo{
+        position: sticky;
+        margin-top: 5rem;
+        h5{
+            font-size: 10px;
+        }
+    }
+  }
+}

@@ -5,6 +5,7 @@ import Products from '../Views/Products';
 import Payments from '../Views/Payments';
 import Users from '../Views/Users';
 import Orders from '../Views/Orders';
+import Profile from '../Views/Profile'
 import NotFound from '../Views/NotFound';
 
 export default function Routes(): JSX.Element {
@@ -15,6 +16,7 @@ export default function Routes(): JSX.Element {
         <Route exact path="/Products" component={() => <Products/>} />
         <Route exact path="/Orders" component={() => <Orders/>} />
         <Route exact path="/Users" component={() => <Users/>} />
+        <Route exact path="/Profile" component={() => <Profile/>} />
         <Route component={NotFound} />
       </Switch>
   );
