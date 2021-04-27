@@ -5,6 +5,18 @@
   height: 100vh;
   display: flex;
   justify-content: center;
+  .editBtn {
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+    display: flex;
+    flex-direction: row-reverse;
+    a {
+      color: $BackgroundDark;
+    }
+    a:hover{
+        color: $SchemeOrange-Red;
+    }
+  }
   .profileCard {
     margin-top: 2rem;
     margin-bottom: 2rem;
@@ -22,6 +34,8 @@
     }
     .userName {
       padding-top: 2rem;
+      font-family: $MainFont;
+      font-weight: 600;
     }
     .buttonGroup {
       width: 98%;
@@ -31,34 +45,34 @@
       text-decoration: none;
       a {
         color: black;
+        font-family: $StyleFont;
       }
       a:hover {
         text-decoration: none;
         color: $SchemeOrange;
-    
-    }
-
+      }
     }
     .buttonGroupTwo {
-        width: 98%;
-        display: flex;
-        justify-content: space-around;
-        margin-top: 1rem;
-        text-decoration: none;
-        a {
-          color: black;
-        }
-        a:hover {
-          color: #F9C74F;
-          text-decoration: none;
-        }
+      width: 98%;
+      display: flex;
+      justify-content: space-around;
+      margin-top: 1rem;
+      text-decoration: none;
+      a {
+        color: black;
+        font-family: $StyleFont;
       }
-    .tailInfo{
-        position: sticky;
-        margin-top: 5rem;
-        h5{
-            font-size: 10px;
-        }
+      a:hover {
+        color: #f9c74f;
+        text-decoration: none;
+      }
+    }
+    .tailInfo {
+      position: sticky;
+      margin-top: 4rem;
+      h5 {
+        font-size: 10px;
+      }
     }
   }
 }
