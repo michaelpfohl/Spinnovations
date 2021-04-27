@@ -1,10 +1,19 @@
 import { ProductProps } from '../../Helpers/Interfaces/ProductInterfaces';
+import {
+    Card, CardImg, CardText, CardBody,
+    CardTitle, CardSubtitle, Button
+  } from 'reactstrap';
 
 export const ProductCard = ({ product }: ProductProps): JSX.Element => 
-    <div className="product-card" key={product.id}>
-        <img src={product.imageUrl}/>
-        <h1>{product.name}</h1>
-        <p>{product.description}</p>
-        <h3>${product.price}</h3>
-        <h3>Quantity In Stock: {product.quantity_In_Stock}</h3>
-    </div>
+    <div className="col-lg-3" key={product.id}>
+    <Card className="product-card">
+      <CardImg top width="100%" src={product.imageUrl} alt="product image" />
+      <CardBody>
+        <CardTitle tag="h5">{product.name}</CardTitle>
+        <CardSubtitle tag="h6" className="mb-2 text-muted">Quantity in Stock: {product.quantity_In_Stock}</CardSubtitle>
+        <CardText className="product-description">{`${product.description.substring(0,100)}...`}</CardText>
+        <CardSubtitle>{`$${product.price}`}</CardSubtitle>
+        <Button>Add To Cart</Button>
+      </CardBody>
+    </Card>
+  </div>
