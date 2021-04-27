@@ -1,7 +1,7 @@
 import firebase from 'firebase';
 import 'firebase/auth';
 
-const getUid = (): string => firebase.auth().currentUser?.uid;
+const getUid = (): string | undefined => firebase.auth().currentUser?.uid;
 
 const authData = { getUid };
 
