@@ -11,8 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace Spinnovations
 {
@@ -33,14 +33,14 @@ namespace Spinnovations
                 .AddJwtBearer(options =>
                 {
                     options.IncludeErrorDetails = true;
-                    options.Authority = "https://securetoken.google.com/fish-store-a71e6";
+                    options.Authority = "https://securetoken.google.com/spinnovations-1db9d";
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateLifetime = true,
                         ValidateAudience = true,
                         ValidateIssuer = true,
-                        ValidAudience = "fish-store-a71e6",
-                        ValidIssuer = "https://securetoken.google.com/fish-store-a71e6"
+                        ValidAudience = "spinnovations-1db9d",
+                        ValidIssuer = "https://securetoken.google.com/spinnovations-1db9d"
                     };
                 });
 

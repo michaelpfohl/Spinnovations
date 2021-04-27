@@ -6,8 +6,9 @@ import 'firebase/auth';
 class Auth extends Component {
   state = {};
 
-  loginClickEvent = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  loginClickEvent = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
     e.preventDefault();
+    console.log("clicked");
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider);
   };
@@ -18,7 +19,7 @@ class Auth extends Component {
         <div className="auth-container">
           <h1 className="auth-header">Hello and welcome to Spinnovations!</h1>
           <h3 className="auth-subheader">Please sign in in order to use the app.</h3>
-          <button className="btn btn-secondary google-logo" onClick={() => this.loginClickEvent}>
+          <button className="btn btn-secondary google-logo" onClick={this.loginClickEvent}>
             {/* <img src={googleLogo} alt="Google Sign In Button"></img> */}
             Sign In Button
           </button>
