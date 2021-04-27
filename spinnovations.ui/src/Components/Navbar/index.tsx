@@ -8,12 +8,6 @@ import {
     NavItem,
     NavLink
   } from 'reactstrap';
-import { Link } from 'react-router-dom';
-  
-
-// type NavProps = {
-//     children: JSX.Element;
-// }
 
 const Navigation = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -27,14 +21,17 @@ const Navigation = () => {
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>
-              {/* <NavItem>
-                <NavLink href="/Products">Products</NavLink>
-              </NavItem> */}
               <NavItem>
-                <Link className='nav-link' to='/products'>Products</Link>
+                <NavLink href="/">Spin</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/Orders">Orders</NavLink>
+                <NavLink href="/Products">Browse</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/">Cart</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/Profile">Profile</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
