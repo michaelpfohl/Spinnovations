@@ -37,7 +37,12 @@ namespace Spinnovations.Data
                             JOIN Order_Details od
                             ON od.Order_Id = o.Id
                             WHERE o.Customer_Id = @customerId";
-            return db.Query<Order>(sql, new { customerId = customerId }).ToList();
+            var userOrders = db.Query<Order, Order_Details>(sql, (order, order_details) =>
+            {
+                order.Order_Details = order_details;
+                return order;
+            });
+            return userOrders.toList();
         }
         public void Add(Order order)
         {
