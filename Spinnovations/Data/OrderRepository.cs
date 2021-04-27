@@ -30,19 +30,22 @@ namespace Spinnovations.Data
             return db.QueryFirstOrDefault<Order>(sql, new { id = id });
         }
 
-        public List<Order> GetByUser(int customerId)
+        public IEnumerable<Order> GetAllOrdersByUser(int customerId)
         {
             using var db = new SqlConnection(ConnectionString);
             var sql = $@"SELECT * from orders o
                             JOIN Order_Details od
-                            ON od.Order_Id = o.Id
-                            WHERE o.Customer_Id = @customerId";
-            var userOrders = db.Query<Order, Order_Details>(sql, (order, order_details) =>
+                                ON od.Order_Id = o.Id
+                            JOIN Products p 
+                                On p.id = od.Product_Id
+                          WHERE o.Customer_Id = @customerId";
+            var userOrders = db.Query<Order, List<Order_Details>, List<Product>, Order>(sql, (order, order_details, product) =>
             {
                 order.Order_Details = order_details;
+                order.Products = product;
                 return order;
-            });
-            return userOrders.toList();
+            }, new { customerId = customerId }, splitOn:"Id");
+            return userOrders;
         }
         public void Add(Order order)
         {

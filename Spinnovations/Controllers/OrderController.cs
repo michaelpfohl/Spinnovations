@@ -35,7 +35,7 @@ namespace Spinnovations.Controllers
         [HttpGet("user/{customerId}")]
         public IActionResult GetOrderByUser(int customerId)
         {
-            return Ok(_repo.GetByUser(customerId));
+            return Ok(_repo.GetAllOrdersByUser(customerId)) ;
         }
         [HttpPost]
         public IActionResult AddOrder_Details(Order order)
