@@ -27,7 +27,7 @@ class Home extends Component {
     const productCard = (product: Product): JSX.Element => {
       return (<ProductCard product={product} />)
     };
-    let cards = products?.map(productCard);
+    const cards = products?.map(productCard);
       return (
           <div>
               <HomeCarousel />
