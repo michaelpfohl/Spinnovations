@@ -10,6 +10,6 @@ const getProductCategories = (): Promise<ProductCategory[]> => new Promise((reso
     }).catch((error) => reject(error));
 });
 
-export default {
-    getProductCategories
-}
+const productCategoryData = { getProductCategories };
+
+export default productCategoryData;
