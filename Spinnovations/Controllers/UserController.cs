@@ -11,7 +11,7 @@ namespace Spinnovations.Controllers
 {
     [ApiController]
     [Route("api/Users")]
-    public class UserController : ControllerBase
+    public class UserController : FirebaseEnabledController
     {
         UserRepository _repo;
 

@@ -11,7 +11,7 @@ namespace Spinnovations.Controllers
 {
     [ApiController]
     [Route("api/PaymentInformation")]
-    public class PaymentInformationController : ControllerBase
+    public class PaymentInformationController : FirebaseEnabledController
     {
         PaymentInformationRepository _repo;
 
