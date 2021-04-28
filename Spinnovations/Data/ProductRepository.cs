@@ -33,6 +33,15 @@ namespace Spinnovations.Data
             return product;
         }
 
+        public List<Product> GetLast20()
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = @"SELECT TOP 20 *
+                        FROM Products
+                        ORDER BY Id DESC";
+            return db.Query<Product>(sql).ToList();
+        }
+
         public List<Product> GetProductsInCategory(int id)
         {
             using var db = new SqlConnection(ConnectionString);
