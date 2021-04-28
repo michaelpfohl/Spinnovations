@@ -37,6 +37,17 @@ namespace Spinnovations.Controllers
             return Ok(product);
         }
 
+        [HttpGet("last20")]
+        public IActionResult GetLast20()
+        {
+            var products = _repo.GetLast20();
+            if (products == null)
+            {
+                return NotFound("There are no new products.");
+            }
+            return Ok(products);
+        }
+
         [HttpGet("category/{id}")]
         public IActionResult GetProductsInCategory(int id)
         {
