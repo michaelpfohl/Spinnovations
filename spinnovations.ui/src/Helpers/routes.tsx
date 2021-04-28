@@ -7,14 +7,18 @@ import Users from '../Views/Users';
 import Orders from '../Views/Orders';
 import NotFound from '../Views/NotFound';
 
-export default function Routes(): JSX.Element {
+type RouteProps = {
+  user: any | null
+}
+
+export default function Routes({ user}: RouteProps): JSX.Element {
   return (
       <Switch>
         <Route exact path="/" component={() => <Home/>} />
         <Route exact path="/Payments" component={() => <Payments/>} />
         <Route exact path="/Products" component={() => <Products/>} />
         <Route exact path="/Orders" component={() => <Orders/>} />
-        <Route exact path="/Users" component={() => <Users/>} />
+        <Route exact path="/Users" component={() => <Users user={user}/>} />
         <Route component={NotFound} />
       </Switch>
   );

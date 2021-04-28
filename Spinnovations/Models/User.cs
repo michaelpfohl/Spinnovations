@@ -18,5 +18,6 @@ namespace Spinnovations.Models
         public string Profile_Picture { get; set; }
         public DateTime User_Created_Date { get; set; }
         public string State { get; set; }
+        public string Firebase_Uid { get; set; }
     }
 }

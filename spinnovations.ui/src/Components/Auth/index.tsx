@@ -8,7 +8,6 @@ class Auth extends Component {
 
   loginClickEvent = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
     e.preventDefault();
-    console.log("clicked");
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider);
   };

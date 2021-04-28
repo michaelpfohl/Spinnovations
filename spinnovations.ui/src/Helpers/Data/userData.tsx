@@ -16,6 +16,7 @@ export interface User {
     profile_Picture: string;
     user_Created_Date: Date;
     state: string;
+    firebase_Uid: string;
   }
 
 const getAllUsers = (): Promise<User[]> => new Promise((resolve, reject) => {
@@ -24,8 +25,15 @@ const getAllUsers = (): Promise<User[]> => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
+const getUserByFirebaseUid = (firebase_Uid: string): Promise<User> => new Promise((resolve, reject) => {
+    axios.get(`${usersUrl}/firebase/${firebase_Uid}`).then((response) => {
+        resolve(response.data);
+    }).catch((error) => reject(error));
+});
+
 const userData = {
-    getAllUsers
+    getAllUsers,
+    getUserByFirebaseUid
 }
 
 export default userData;

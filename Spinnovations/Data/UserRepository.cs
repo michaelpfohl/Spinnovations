@@ -35,6 +35,16 @@ namespace Spinnovations.Data
             return user;
         }
 
+        public User GetUserByFirebaseUid(string firebase_Uid)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = @"SELECT * 
+                        FROM Users 
+                        WHERE Firebase_Uid = @firebase_Uid";
+            var user = db.QueryFirstOrDefault<User>(sql, new { firebase_Uid = firebase_Uid });
+            return user;
+        }
+
         public void AddUser(User user)
         {
             using var db = new SqlConnection(ConnectionString);
@@ -50,7 +60,8 @@ namespace Spinnovations.Data
 	                        [Display_Name],
 	                        [Profile_Picture],
 	                        [User_Created_Date],
-	                        [State])
+	                        [State],
+                            [Firebase_Uid])
                         VALUES 
 	                        (@First_Name, 
 	                        @Last_Name, 
@@ -61,7 +72,8 @@ namespace Spinnovations.Data
 	                        @Display_Name,
 	                        @Profile_Picture,
 	                        @User_Created_Date,
-	                        @State)";
+	                        @State,
+                            @Firebase_Uid)";
             var id = db.ExecuteScalar<int>(sql, user);
             user.Id = id;
         }
@@ -79,7 +91,8 @@ namespace Spinnovations.Data
                             Display_Name = @Display_Name,
                             Profile_Picture = @Profile_Picture,
                             User_Created_Date = @User_Created_Date,
-                            [State] = @State
+                            [State] = @State,
+                            Firebase_Uid = @Firebase_Uid
                         WHERE Id = @id";
             db.Execute(sql, user);
         }

@@ -37,6 +37,17 @@ namespace Spinnovations.Controllers
             return Ok(user);
         }
 
+        [HttpGet("firebase/{firebase_Uid}")]
+        public IActionResult GetUserByFirebaseUid(string firebase_Uid)
+        {
+            var user = _repo.GetUserByFirebaseUid(firebase_Uid);
+            if (user == null)
+            {
+                return NotFound("This user does not exist.");
+            }
+            return Ok(user);
+        }
+
         [HttpPost]
         public IActionResult AddNewUser(User user)
         {
