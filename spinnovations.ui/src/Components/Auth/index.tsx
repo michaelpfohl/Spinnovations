@@ -38,7 +38,8 @@ class Auth extends Component<AuthProps> {
     } else {
       return (
         <div className="d-flex justify-content-center">
-          <div className="auth-container">
+          <div className="auth-container d-flex">
+            <p className="mr-4">Hello, {user?.first_Name}!</p>
             <button className="btn btn-secondary google-logo" onClick={this.logMeOut}>
               Log Out
             </button>
