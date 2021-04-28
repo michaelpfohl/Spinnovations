@@ -7,6 +7,8 @@ declare module 'OrderTypes' {
         city: string;
         country: string;
         postal_Code: string;
+        order_Details: Array<OrderDetails>;
+        products: Array<Products>;
     }
     interface OrderDetails {
         id: number;
