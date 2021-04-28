@@ -1,5 +1,6 @@
 import React from 'react';
-import userData, { User } from '../Helpers/Data/userData';
+import userData from '../Helpers/Data/userData';
+import { User } from '../Helpers/Interfaces/UserInterfaces';
 
 type UserProps = {
     user: User | null

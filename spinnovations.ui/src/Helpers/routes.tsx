@@ -1,5 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { User } from '../Helpers/Interfaces/UserInterfaces';
+
 import Home from '../Views/Home';
 import Products from '../Views/Products';
 import Payments from '../Views/Payments';
@@ -8,7 +10,7 @@ import Orders from '../Views/Orders';
 import NotFound from '../Views/NotFound';
 
 type RouteProps = {
-  user: any | null
+  user: User | null
 }
 
 export default function Routes({ user}: RouteProps): JSX.Element {

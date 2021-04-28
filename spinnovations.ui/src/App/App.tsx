@@ -5,11 +5,13 @@ import fbConnection from '../Helpers/fbConnection';
 import './App.scss';
 import Routes from '../Helpers/routes';
 import userData from '../Helpers/Data/userData';
+import { User } from '../Helpers/Interfaces/UserInterfaces';
+import Navigation from '../Components/Navbar';
 
 fbConnection();
 
 type AppState = {
-  user?: any | boolean;
+  user?: User | boolean;
 }
 
 class App extends Component<AppState> {
@@ -39,6 +41,7 @@ class App extends Component<AppState> {
     console.log(user);
     return <div className="App">
       <Router>
+        <Navigation />
         <Routes user={user}/>
       </Router>
     </div>;
