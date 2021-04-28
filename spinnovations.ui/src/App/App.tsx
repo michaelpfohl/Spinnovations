@@ -19,7 +19,9 @@ class App extends Component<AppState> {
     user: null
   };
 
-  componentDidMount(this: any): void {
+  removeListener = (noop: void): void => noop;
+
+  componentDidMount(): void {
     this.removeListener = firebase.auth().onAuthStateChanged((user: any) => {
       if (user) {
         user.getIdToken().then((token: string) => sessionStorage.setItem("token", token));
@@ -32,16 +34,15 @@ class App extends Component<AppState> {
     });
   }
 
-  componentWillUnmount(this: any): void {
+  componentWillUnmount(): void {
     this.removeListener();
   }
   
   render(): JSX.Element {
     const { user } = this.state;
-    console.log(user);
     return <div className="App">
       <Router>
-        <Navigation />
+        <Navigation user={user}/>
         <Routes user={user}/>
       </Router>
     </div>;
