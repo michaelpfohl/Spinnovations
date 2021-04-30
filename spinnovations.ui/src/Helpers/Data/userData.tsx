@@ -1,22 +1,8 @@
 import axios from 'axios';
-import {BaseURL} from '../config.json';
+import { BaseURL } from '../config.json';
+import { User } from '../Interfaces/UserInterfaces';
 
 const usersUrl = `${BaseURL}/users`;
-
-export interface User {
-    id: number;
-    first_Name: string;
-    last_Name: string;
-    address: string;
-    city: string;
-    country: string;
-    postal_code: string;
-    payment_Info_Id: number;
-    display_Name: string;
-    profile_Picture: string;
-    user_Created_Date: Date;
-    state: string;
-  }
 
 const getAllUsers = (): Promise<User[]> => new Promise((resolve, reject) => {
     axios.get(usersUrl).then((response) => {
@@ -24,8 +10,22 @@ const getAllUsers = (): Promise<User[]> => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
+const getUserByFirebaseUid = (firebase_Uid: string): Promise<User> => new Promise((resolve, reject) => {
+    axios.get(`${usersUrl}/firebase/${firebase_Uid}`).then((response) => {
+        resolve(response.data);
+    }).catch((error) => reject(error));
+});
+
+const AddNewUser = (user: User): Promise<User> => new Promise((resolve, reject) => {
+    axios.post(`${usersUrl}`, user).then((response) => {
+        return response.data;
+    }).catch((error) => reject(error));
+});
+
 const userData = {
-    getAllUsers
+    getAllUsers,
+    getUserByFirebaseUid,
+    AddNewUser
 }
 
 export default userData;
