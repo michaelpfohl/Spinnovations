@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SearchInput from '../SearchInput';
 import {
     Collapse,
     Navbar,
@@ -15,78 +16,38 @@ type NavProps = {
   user: User | null
 }
 
-// const Navigation = ({ user }: NavProps): JSX.Element => {
-/*
-type NavType = {
-  isOpen : boolean,
-}
+const Navigation = ({ user}: NavProps): JSX.Element => {
 
-class Navigation extends Component {
-  state : NavType = {
-    isOpen: true,
-  }
+  const [isOpen, setIsOpen] = useState(false);
 
-  render () : JSX.Element {
-    const { isOpen }
+  const toggle = () => setIsOpen(!isOpen);
 
-    return (
-      <div>
-        <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">Spinnovations</NavbarBrand>
-          <NavbarToggler onClick={toggle} />
-          <Collapse isOpen={isOpen} navbar>
-            <Nav className="mr-auto" navbar>
-              <NavItem>
-                <NavLink href="/">Spin</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/Products">Browse</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/">Cart</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/Profile">Profile</NavLink>
-              </NavItem>
-            </Nav>
-          </Collapse>
-        </Navbar>
-      </div>
-    )
-  }
-}
-*/
-
-const Navigation = ({user}: NavProps) : JSX.Element => {
-    const [isOpen, setIsOpen] = useState(false);
-  
-    const toggle = () => setIsOpen(!isOpen);
-  
-    return (
-      <div>
-        <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">Spinnovations</NavbarBrand>
-          <NavbarToggler onClick={toggle} />
-          <Collapse isOpen={isOpen} navbar>
-            <Nav className="mr-auto" navbar>
-              <NavItem>
-                <NavLink href="/">Spin</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/Products">Browse</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/">Cart</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/Profile">Profile</NavLink>
-              </NavItem>
-            </Nav>
-          </Collapse>
-          <Auth user={user}/>
-        </Navbar>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <Navbar color="light" light expand="md">
+        <NavbarBrand href="/">Spinnovations</NavbarBrand>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="mr-auto" navbar>
+            <NavItem>
+              <NavLink href="/">Spin</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/Products">Browse</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/">Cart</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/Profile">Profile</NavLink>
+            </NavItem>
+          </Nav>
+        </Collapse>
+        <SearchInput/>
+        <Auth user={user}/>
+      </Navbar>
+    </div>
+  );
+};
 
 export default Navigation;
