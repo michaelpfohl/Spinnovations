@@ -58,10 +58,11 @@ namespace Spinnovations.Data
 	                        [Country],
 	                        [Postal_Code],
 	                        [Display_Name],
-	                        [Profile_Picture],
+	                        [Image_Url],
 	                        [User_Created_Date],
 	                        [State],
-                            [Firebase_Uid])
+                            [Firebase_Uid],
+                            [Email])
                         VALUES 
 	                        (@First_Name, 
 	                        @Last_Name, 
@@ -70,10 +71,11 @@ namespace Spinnovations.Data
 	                        @Country, 
 	                        @Postal_Code, 
 	                        @Display_Name,
-	                        @Profile_Picture,
+	                        @Image_Url,
 	                        @User_Created_Date,
 	                        @State,
-                            @Firebase_Uid)";
+                            @Firebase_Uid,
+                            @Email)";
             var id = db.ExecuteScalar<int>(sql, user);
             user.Id = id;
         }
@@ -89,10 +91,11 @@ namespace Spinnovations.Data
                             Country = @Country,
                             Postal_Code = @Postal_Code,
                             Display_Name = @Display_Name,
-                            Profile_Picture = @Profile_Picture,
+                            Image_Url = @Image_Url,
                             User_Created_Date = @User_Created_Date,
                             [State] = @State,
-                            Firebase_Uid = @Firebase_Uid
+                            Firebase_Uid = @Firebase_Uid,
+                            Email = @Email
                         WHERE Id = @id";
             db.Execute(sql, user);
         }

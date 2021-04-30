@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import fbConnection from '../Helpers/fbConnection';
 import './App.scss';
 import Routes from '../Helpers/routes';
@@ -22,7 +22,7 @@ class App extends Component<AppState> {
   removeListener = (noop: void): void => noop;
 
   componentDidMount(): void {
-    this.removeListener = firebase.auth().onAuthStateChanged((user: any) => {
+    this.removeListener = firebase.auth().onAuthStateChanged((user: firebase.User | null) => {
       if (user) {
         user.getIdToken().then((token: string) => sessionStorage.setItem("token", token));
         userData.getUserByFirebaseUid(user.uid).then((response) => {
