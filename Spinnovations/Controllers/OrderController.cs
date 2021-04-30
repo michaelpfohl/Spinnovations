@@ -10,7 +10,7 @@ namespace Spinnovations.Controllers
 {
     [Route("api/Order")]
     [ApiController]
-    public class OrderController : ControllerBase
+    public class OrderController : FirebaseEnabledController
     {
         OrderRepository _repo;
         public OrderController(OrderRepository repo)
