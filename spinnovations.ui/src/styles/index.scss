@@ -1,8 +1,11 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
 @import 'variables';
 @import 'product';
 @import 'productCategoryBar';
+@import 'profile';
 @import 'homeCarousel';
 
-body {
+body{
   background-color: $favColor;
 }
