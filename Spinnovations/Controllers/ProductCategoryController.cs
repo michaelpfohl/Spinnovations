@@ -11,7 +11,7 @@ namespace Spinnovations.Controllers
 {
     [ApiController]
     [Route("api/Product_Category")]
-    public class ProductCategoryController : ControllerBase
+    public class ProductCategoryController : FirebaseEnabledController
     {
         ProductCategoryRepository _repo;
 

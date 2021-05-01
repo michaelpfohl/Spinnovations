@@ -1,21 +1,34 @@
 import React from 'react';
-import userData, { User } from '../Helpers/Data/userData';
+import userData from '../Helpers/Data/userData';
+import { User } from '../Helpers/Interfaces/UserInterfaces';
 
-class Users extends React.Component {
+type UserProps = {
+    user: User | null
+}
+
+type UserState = {
+    users?: User[],
+    user?: User | null
+}
+
+class Users extends React.Component<UserProps, UserState> {
     state = {
-        users: []
+        users: [],
+        user: null
     };
 
     componentDidMount(): void {
+        const { user } = this.props;
         userData.getAllUsers().then((response : User[]) => {
             this.setState({ 
                 users: response 
             })
         });
+        this.setState({ user: user })
     }
 
     render() : JSX.Element {
-        const { users } = this.state;
+        const { users, user } = this.state;
 
         const userCard = (user: User) => {
             return (
@@ -25,7 +38,7 @@ class Users extends React.Component {
             )
         }
         const cards = users.map(userCard);
-
+        console.log(user);
         return (
             <>
             <h2>Users</h2>

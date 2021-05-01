@@ -11,7 +11,7 @@ namespace Spinnovations.Controllers
 {
     [ApiController]
     [Route("api/Users")]
-    public class UserController : ControllerBase
+    public class UserController : FirebaseEnabledController
     {
         UserRepository _repo;
 
@@ -30,6 +30,17 @@ namespace Spinnovations.Controllers
         public IActionResult GetUser(int id)
         {
             var user = _repo.GetUser(id);
+            if (user == null)
+            {
+                return NotFound("This user does not exist.");
+            }
+            return Ok(user);
+        }
+
+        [HttpGet("firebase/{firebase_Uid}")]
+        public IActionResult GetUserByFirebaseUid(string firebase_Uid)
+        {
+            var user = _repo.GetUserByFirebaseUid(firebase_Uid);
             if (user == null)
             {
                 return NotFound("This user does not exist.");

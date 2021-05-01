@@ -1,18 +1,52 @@
-import React, { ReactElement } from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
+import firebase from 'firebase/app';
+import fbConnection from '../Helpers/fbConnection';
 import './App.scss';
 import Routes from '../Helpers/routes';
+import userData from '../Helpers/Data/userData';
+import { User } from '../Helpers/Interfaces/UserInterfaces';
 import Navigation from '../Components/Navbar';
 
-const App: React.FC = (): ReactElement => {
-  return (
-    <div className="App">
+fbConnection();
+
+type AppState = {
+  user?: User | boolean;
+}
+
+class App extends Component<AppState> {
+  state = {
+    user: null
+  };
+
+  removeListener = (noop: void): void => noop;
+
+  componentDidMount(): void {
+    this.removeListener = firebase.auth().onAuthStateChanged((user: firebase.User | null) => {
+      if (user) {
+        user.getIdToken().then((token: string) => sessionStorage.setItem("token", token));
+        userData.getUserByFirebaseUid(user.uid).then((response) => {
+          this.setState({ user: response });
+        });
+      } else {
+        this.setState({ user: false });
+      }
+    });
+  }
+
+  componentWillUnmount(): void {
+    this.removeListener();
+  }
+  
+  render(): JSX.Element {
+    const { user } = this.state;
+    return <div className="App">
       <Router>
-        <Navigation />
-        <Routes />
+        <Navigation user={user}/>
+        <Routes user={user}/>
       </Router>
-    </div>
-  );
-};
+    </div>;
+  }
+}
 
 export default App;

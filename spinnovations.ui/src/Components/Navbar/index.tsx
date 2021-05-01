@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
 import SearchInput from '../SearchInput';
 import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-} from 'reactstrap';
+    Collapse,
+    Navbar,
+    NavbarToggler,
+    NavbarBrand,
+    Nav,
+    NavItem,
+    NavLink
+  } from 'reactstrap';
+  import Auth from '../Auth';
+  import { User } from '../../Helpers/Interfaces/UserInterfaces';
 
+type NavProps = {
+  user: User | null
+}
 
-const Navigation = (): JSX.Element => {
+const Navigation = ({ user}: NavProps): JSX.Element => {
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -39,6 +44,7 @@ const Navigation = (): JSX.Element => {
           </Nav>
         </Collapse>
         <SearchInput/>
+        <Auth user={user}/>
       </Navbar>
     </div>
   );
