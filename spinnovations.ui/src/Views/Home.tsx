@@ -25,7 +25,7 @@ class Home extends Component {
   render() : JSX.Element {
     const { products } = this.state;
     const productCard = (product: Product): JSX.Element => {
-      return (<ProductCard product={product} />)
+      return (<ProductCard product={product} key={product.id}/>)
     };
     const cards = products?.map(productCard);
       return (

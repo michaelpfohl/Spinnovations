@@ -8,6 +8,7 @@ import Payments from '../Views/Payments';
 import Users from '../Views/Users';
 import Orders from '../Views/Orders';
 import Profile from '../Views/Profile'
+import AddProduct from '../Views/AddProduct';
 import NotFound from '../Views/NotFound';
 import SearchResults from '../Views/SearchResults';
 import { SearchProps } from '../Helpers/Interfaces/SearchInterfaces';
@@ -25,6 +26,7 @@ export default function Routes({ user}: RouteProps): JSX.Element {
         <Route exact path="/Orders" component={() => <Orders/>} />
         <Route exact path="/Users" component={() => <Users user={user}/>} />
         <Route exact path="/Profile" component={() => <Profile/>} />
+        <Route exact path="/Add-Product" component={() => <AddProduct user={user}/>}/>
         <Route exact path='/search/:term/' component={(props : SearchProps) => <SearchResults{...props}/>} />
         <Route component={NotFound} />
       </Switch>

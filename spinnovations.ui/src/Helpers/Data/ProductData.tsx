@@ -16,9 +16,16 @@ const getLastTwentyProducts = (): Promise<Product[]> => new Promise((resolve, re
     }).catch((error) => reject(error));
 });
 
+const addNewProduct = (product: Product): Promise<Product> => new Promise((resolve, reject) => {
+    axios.post(`${productsURL}`, product).then((response) => {
+        resolve(response.data)
+    }).catch((error) => reject(error));
+});
+
 const productData = {
     getProducts,
-    getLastTwentyProducts
+    getLastTwentyProducts,
+    addNewProduct,
 }
 
 export default productData;
