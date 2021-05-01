@@ -5,15 +5,16 @@ import {
   } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-const goToSingleProduct = (productId : number) => {
-  console.log("image clicked", productId);
-}
-
 export const ProductCard = ({ product }: ProductProps): JSX.Element => 
   <div className="col-lg-3" key={product.id}>
     <Card className="product-card">
-      <Link to="/details">
-        <CardImg className="product-image" top width="100%" src={product.imageUrl} alt="product image" onClick={() => goToSingleProduct(product.id)}/>
+      <Link to={{
+        pathname:"/details",
+        state: {
+          product: product
+        }
+        }}>
+        <CardImg className="product-image" top width="100%" src={product.imageUrl} alt="product image"/>
       </Link>
       <CardBody>
         <CardTitle tag="h5">{product.name}</CardTitle>
