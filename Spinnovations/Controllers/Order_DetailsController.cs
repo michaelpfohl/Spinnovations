@@ -50,5 +50,11 @@ namespace Spinnovations.Controllers
             _repo.Update(orderDetails);
             return Ok();
         }
+        [HttpGet("order/{orderId}")]
+        public IActionResult GetOrder_DetailsByOrderId(int orderId)
+        {
+            _repo.GetOrderDetailsByOrder(orderId);
+            return Ok();
+        }
     }
 }

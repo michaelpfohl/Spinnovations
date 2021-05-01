@@ -1,36 +1,46 @@
-import React, { Component } from 'react';
-
-import orderData, { Order } from '../Helpers/Data/orderData';
+import React, { Component } from "react";
+import { Order } from "../Helpers/Interfaces/OrderInterfaces";
+import orderData from "../Helpers/Data/orderData";
+import { OrderCard } from "../Components/Cards/OrderCard";
+import { Table } from "reactstrap";
 
 class Orders extends Component {
-    state = {
-        orders: [],
-    };
+  state = {
+    orders: [],
+  };
 
-    componentDidMount(): void {
-        orderData.getAllOrders().then((response: Order[]) => {
-            this.setState({
-                orders: response
-            })
-        });
-    }
-    render() : JSX.Element {
-        const { orders } = this.state
-        const orderCard = (order: Order) => {
-            return (
-                <div key={order.id}>
-                    <h1>{order.customer_Id}</h1>
-                </div>
-            )
-        }
-        const cards = orders.map(orderCard)
-        return (
-            <div>
-                <h2>Orders Customer Ids</h2>
-                {cards}
-            </div>
-        )
-    }
+  componentDidMount(): void {
+    orderData.getAllUserOrders(4).then((response: Order[]) => {
+      this.setState({
+        orders: response,
+      });
+    });
+  }
+  render(): JSX.Element {
+    const { orders } = this.state;
+    const orderCard = (order: Order): JSX.Element => {
+      return <OrderCard order={order} />;
+    };
+    const cards = orders.map(orderCard);
+    return (
+      <div>
+          <h1>Orders</h1>
+        <Table hover>
+          <thead>
+            <tr>
+              <th scope="row"></th>
+              <th>Order Date</th>
+              <th>Address</th>
+              <th>Total Cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            {cards}
+          </tbody>
+        </Table>
+      </div>
+    );
+  }
 }
 
 export default Orders;
