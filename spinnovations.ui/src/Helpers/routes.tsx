@@ -24,7 +24,7 @@ export default function Routes({ user}: RouteProps): JSX.Element {
         <Route exact path="/Products" component={() => <Products/>} />
         <Route exact path="/Orders" component={() => <Orders/>} />
         <Route exact path="/Users" component={() => <Users user={user}/>} />
-        <Route exact path="/Profile" component={() => <Profile/>} />
+        <Route exact path="/Profile" component={() => <Profile user={user}/>} />
         <Route exact path='/search/:term/' component={(props : SearchProps) => <SearchResults{...props}/>} />
         <Route component={NotFound} />
       </Switch>
