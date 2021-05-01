@@ -4,18 +4,12 @@ import { User } from '../Helpers/Interfaces/UserInterfaces';
 type UserProps = {
   user: User | null;
 };
+class Profile extends React.Component<UserProps> {
 
-type UserState = {
-  user?: User | null;
-};
-
-class Profile extends React.Component<UserProps, UserState> {
-  state = {
-    user: null,
-  };
 
   render(): JSX.Element {
-    const { user } = this.state;
+    const { user } = this.props;
+    console.warn(user);
     return (
       <div id="profilePage">
         <div className="profileCard">
