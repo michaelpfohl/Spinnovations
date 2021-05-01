@@ -6,6 +6,6 @@
 @import 'profile';
 @import 'homeCarousel';
 
-body{
-  background-color: $favColor;
+body, html, .App {
+  background-color: $BackgroundLight;
 }

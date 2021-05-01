@@ -5,7 +5,6 @@ import ProductForm from '../Components/Forms/ProductForm';
 type AddProductProps = {
     user: User;
 }
-
 class AddProduct extends Component<AddProductProps> {
 
     render(): JSX.Element {
