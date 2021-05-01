@@ -4,21 +4,11 @@ import { User } from '../Helpers/Interfaces/UserInterfaces';
 type UserProps = {
   user: User;
 };
-class Profile extends React.Component<UserProps> {
-  state = {
-    user: null,
-  };
 
-  componentDidMount () : void {
-    this.setState({
-      user: this.props.user
-    })
-  }
+class Profile extends React.Component<UserProps> {
 
   render(): JSX.Element {
-    const { user } = this.state;
-    console.warn(user);
-    console.warn(this.props.user)
+    const { user } = this.props;
     return (
       <div id="profilePage">
       {user != null &&
@@ -28,10 +18,10 @@ class Profile extends React.Component<UserProps> {
             <i className="fas fa-pencil-alt">...</i>
           </a>
         </div>
-        <img src="{user.profile_Picture}" className="profilePhoto" />
+        <img src={user.image_Url} className="profilePhoto" />
         <div>
           <h3 className="userName">
-            {user.Display_Name}
+            {user.display_Name}
           </h3>
           <div className="buttonGroup">
             <a href="/" id="acctinfo">
