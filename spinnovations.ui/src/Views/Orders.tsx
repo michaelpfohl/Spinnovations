@@ -23,9 +23,10 @@ class Orders extends Component {
     };
     const cards = orders.map(orderCard);
     return (
-      <div className="d-flex">
+      <div>
+          <h1>Orders</h1>
         <Table hover>
-          <thead className="justify-content-center">
+          <thead>
             <tr>
               <th scope="row"></th>
               <th>Order Date</th>
@@ -33,7 +34,9 @@ class Orders extends Component {
               <th>Total Cost</th>
             </tr>
           </thead>
-          {cards}
+          <tbody>
+            {cards}
+          </tbody>
         </Table>
       </div>
     );
