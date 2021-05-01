@@ -1,25 +1,42 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { OrderDetails, OrderProps } from '../../Helpers/Interfaces/OrderInterfaces';
+import { Order, OrderProps } from '../../Helpers/Interfaces/OrderInterfaces';
+import {OrderDetailsCard} from '../Cards/OrderDetailsCard';
+import { Table } from "reactstrap";
 
 const OrderDetailsModal
- = (props: OrderProps) => {
-  const {
-    title,
-    buttonLabel,
-    className
-  } = props;
+ = ({order}: OrderProps) : JSX.Element => {
 
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
+  const orderDetailsCard = (order: OrderProps): JSX.Element => {
+    const orderDetailsCardsArray = [];
+    for (let i = 0; i < order.products.length; i++) {
+      orderDetailsCardsArray.push(<OrderDetailsCard order_Details={order.order_Details[i]} product={order.products[i]}/>)
+    }
+    const cards = orderDetailsCardsArray.map((card) => card);
+    return (<tbody>{cards}</tbody>)
+  };
 
   return (
     <div>
-      <Button color="danger" onClick={toggle}>{buttonLabel}</Button>
-      <Modal isOpen={modal} toggle={toggle} className={className}>
-        <ModalHeader toggle={toggle}>{title}</ModalHeader>
+      <Button color="danger" onClick={toggle}>See Details</Button>
+      <Modal isOpen={modal} toggle={toggle}>
+        <ModalHeader toggle={toggle}>Order Details</ModalHeader>
         <ModalBody>
+          <Table>
+          <thead>
+            <tr>
+              <th scope="row"></th>
+              <th></th>
+              <th>Product</th>
+              <th>Cost</th>
+              <th>Quantity</th>
+            </tr>
+          </thead>
+            {orderDetailsCard(order)}
+            </Table>
         </ModalBody>
         <ModalFooter>
           <Button color="secondary" onClick={toggle}>Exit</Button>

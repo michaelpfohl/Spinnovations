@@ -21,7 +21,7 @@ declare module 'OrderTypes' {
         order: Order
     }
     interface OrderDetailsProps{
-        orderDetailsProps: OrderDetailsProps
+        orderDetailsProps: OrderDetails
     }
 }
 
