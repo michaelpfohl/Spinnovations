@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Order, OrderProps } from '../../Helpers/Interfaces/OrderInterfaces';
-import {OrderDetailsCard} from '../Cards/OrderDetailsCard';
+import OrderDetailsCard from '../Cards/OrderDetailsCard';
 import { Table } from "reactstrap";
 
 const OrderDetailsModal
