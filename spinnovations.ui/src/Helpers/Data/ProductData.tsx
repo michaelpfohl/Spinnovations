@@ -21,11 +21,17 @@ const addNewProduct = (product: Product): Promise<Product> => new Promise((resol
         resolve(response.data)
     }).catch((error) => reject(error));
 });
+const getProduct = (productId : number): Promise<Product> => new Promise((resolve, reject) => {
+    axios.get(`${productsURL}/${productId}`).then((response) => {
+        resolve(response.data)
+    }).catch((error) => reject(error));
+})
 
 const productData = {
     getProducts,
     getLastTwentyProducts,
     addNewProduct,
+    getProduct
 }
 
 export default productData;

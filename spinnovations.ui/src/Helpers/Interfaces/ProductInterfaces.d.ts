@@ -10,7 +10,8 @@ declare module 'ProductTypes' {
         quantity_In_Stock: number;
     }
     interface ProductProps {
-        product: Product
+        product: Product,
+        location: RouteComponentProps["location"];
     }
 }
 

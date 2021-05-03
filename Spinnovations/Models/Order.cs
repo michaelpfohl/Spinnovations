@@ -14,5 +14,7 @@ namespace Spinnovations.Models
         public string City { get; set; }
         public string Country { get; set; }
         public string Postal_Code { get; set; }
+        public List<Order_Details> Order_Details { get; set; }
+        public List<Product> Products { get; set; }
     }
 }

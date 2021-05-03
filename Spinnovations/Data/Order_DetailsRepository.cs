@@ -63,5 +63,12 @@ namespace Spinnovations.Data
                         WHERE Id = @id";
             db.Execute(sql, orderDetails);
         }
+        public IEnumerable<Order_Details> GetOrderDetailsByOrder(int orderId)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = $@"SELECT * from Order_Details
+                         WHERE Order_Id = @orderId";
+            return db.Query<Order_Details>(sql, new { orderId = orderId });
+        }
     }
 }
