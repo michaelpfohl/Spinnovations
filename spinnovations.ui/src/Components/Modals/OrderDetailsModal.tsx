@@ -31,6 +31,7 @@ const OrderDetailsModal
               <th scope="row"></th>
               <th></th>
               <th>Product</th>
+              <th>Creator</th>
               <th>Cost</th>
               <th>Quantity</th>
             </tr>
