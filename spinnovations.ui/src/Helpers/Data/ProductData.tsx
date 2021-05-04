@@ -10,6 +10,12 @@ const getProducts = (): Promise<Product[]> => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
+const getProductsByUserId = (creatorId: number): Promise<Product[]> => new Promise((resolve, reject) => {
+    axios.get(`${productsURL}/${creatorId}`).then((response) => {
+        resolve(response.data)
+    }).catch((error) => reject(error));
+})
+
 const getLastTwentyProducts = (): Promise<Product[]> => new Promise((resolve, reject) => {
     axios.get(`${productsURL}/last20`).then((response) => {
         resolve(response.data)
@@ -24,6 +30,7 @@ const getProduct = (productId : number): Promise<Product> => new Promise((resolv
 
 const productData = {
     getProducts,
+    getProductsByUserId,
     getLastTwentyProducts,
     getProduct
 }

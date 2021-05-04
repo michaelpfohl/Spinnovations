@@ -10,6 +10,12 @@ const getAllUsers = (): Promise<User[]> => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
+const getUserById = (id: number): Promise<User> => new Promise((resolve, reject) => {
+    axios.get(`${usersUrl}/${id}`).then((response) => {
+        resolve(response.data);
+    }).catch((error) => reject(error))
+});
+
 const getUserByFirebaseUid = (firebase_Uid: string): Promise<User> => new Promise((resolve, reject) => {
     axios.get(`${usersUrl}/firebase/${firebase_Uid}`).then((response) => {
         resolve(response.data);
@@ -24,6 +30,7 @@ const AddNewUser = (user: User): Promise<User> => new Promise((resolve, reject) 
 
 const userData = {
     getAllUsers,
+    getUserById,
     getUserByFirebaseUid,
     AddNewUser
 }
