@@ -37,7 +37,7 @@ class SingleSeller extends Component<SellerProps, SingleSellerState> {
   render(): JSX.Element {
     const { products, user } = this.state
     const productCard = (product: Product): JSX.Element => {
-        return (<ProductCard product={product}/>)
+        return (<ProductCard product={product} key={product.id}/>)
     }
 
     const cards = products?.map(productCard);

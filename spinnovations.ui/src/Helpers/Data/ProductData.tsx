@@ -11,7 +11,7 @@ const getProducts = (): Promise<Product[]> => new Promise((resolve, reject) => {
 });
 
 const getProductsByUserId = (creatorId: number): Promise<Product[]> => new Promise((resolve, reject) => {
-    axios.get(`${productsURL}/${creatorId}`).then((response) => {
+    axios.get(`${productsURL}/seller/${creatorId}`).then((response) => {
         resolve(response.data)
     }).catch((error) => reject(error));
 })
