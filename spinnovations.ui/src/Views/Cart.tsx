@@ -24,11 +24,12 @@ class Cart extends React.Component<UserProps, cartState> {
   render(): JSX.Element {
     const { user } = this.props;
     const { products } = this.state;
-    const productCard = (product: Product): JSX.Element => {
-      return <ProductCard key={product.id} product={product} />;
-    };
-    const cards = products?.map(productCard);
-    console.warn('cards', cards);
+
+    const renderProducts = () =>
+      products?.map((product) => (
+        <ProductCard key={product.id} product={product} />
+      ));
+    console.warn(renderProducts())
     return (
       <div id="cartPage">
         {user != null && (
@@ -40,7 +41,7 @@ class Cart extends React.Component<UserProps, cartState> {
             </div>
           </div>
         )}
-        <div>{cards}</div>
+        <div>{renderProducts()}</div>
       </div>
     );
   }
