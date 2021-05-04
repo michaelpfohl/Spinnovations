@@ -30,7 +30,7 @@ export default function Routes({ user}: RouteProps): JSX.Element {
         <Route exact path="/Add-Product" component={() => <AddProduct user={user}/>}/>
         <Route exact path="/Profile" component={() => <Profile user={user}/>} />
         <Route exact path='/search/:term/' component={(props : SearchProps) => <SearchResults{...props}/>} />
-        <Route exact path="/details" component={(props: ProductProps) => <SingleProduct{...props}/>} />
+        <Route exact path="/details" component={(props: ProductProps) => <SingleProduct{...props} user={user}/>} />
         <Route component={NotFound} />
       </Switch>
   );

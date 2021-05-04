@@ -1,6 +1,4 @@
-import {
-  OrderProps,OrderDetails
-} from "../../Helpers/Interfaces/OrderInterfaces";
+import { OrderDetails } from "../../Helpers/Interfaces/OrderInterfaces";
 import {Product} from '../../Helpers/Interfaces/ProductInterfaces';
 
 type OrderDetailsCardProps = {

@@ -11,7 +11,7 @@ class AddProduct extends Component<AddProductProps> {
         const { user } = this.props;
         return (
             <>
-              <ProductForm user={user}/>
+              <ProductForm user={user} />
             </>
         )
     }

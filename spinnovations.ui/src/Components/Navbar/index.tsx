@@ -37,16 +37,16 @@ const Navigation = ({ user }: NavProps): JSX.Element => {
             <NavItem>
               <NavLink href="/">Cart</NavLink>
             </NavItem>
+            {user && 
+              <NavItem>
+                <NavLink href="/Profile">Profile</NavLink>
+              </NavItem>
+            }
             { user && 
             <NavItem>
               <NavLink href="/Add-Product">Add Product</NavLink>
             </NavItem>
             }
-            {user && (
-              <NavItem>
-                <NavLink href="/Profile">Profile</NavLink>
-              </NavItem>
-            )}
           </Nav>
         </Collapse>
         <SearchInput />
