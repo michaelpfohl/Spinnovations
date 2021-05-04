@@ -16,7 +16,7 @@ class SingleSeller extends Component<SellerProps, SingleSellerState> {
 
   state : SingleSellerState = {
     products: [],
-    creatorId: this.props.match.params.id,
+    creatorId: Number(this.props.match.params.id.substring(1)),
     user: null,
   }
 
