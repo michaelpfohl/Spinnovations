@@ -54,12 +54,16 @@ class Products extends React.Component<ProductsState> {
     render() : JSX.Element {
         const { products, filteredProducts, categories } = this.state
         const productCard = (product: Product): JSX.Element => {
-            return (<ProductCard product={product}/>)
+            return (<ProductCard key={product.id} product={product}/>)
         }
         let cards = products?.map(productCard)
 
         if (filteredProducts !== products){
-            cards = filteredProducts?.map(productCard);
+            if (!filteredProducts?.length) {
+                cards = [<h1>No Products Currently In Category!</h1>]
+            } else {
+                cards = filteredProducts?.map(productCard);
+            }
         } else {
             cards = products?.map(productCard);
         }
