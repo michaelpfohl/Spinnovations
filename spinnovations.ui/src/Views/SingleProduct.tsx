@@ -13,6 +13,15 @@ class SingleProduct extends Component<ProductProps> {
     product: this.props.location.state.product,
   }
 
+
+  addToCart = (): void => {
+    const { product } = this.state;
+    localStorage.setItem(product.name, JSON.stringify(product));
+    //setItem('KEY', 'VALUE')
+    console.warn("THIS IS THE PRODUCT", product);
+
+  }
+
   render(): JSX.Element {
     const { product } = this.state;
     return (
@@ -34,7 +43,7 @@ class SingleProduct extends Component<ProductProps> {
         </div>
         <div className="row">
           <div className="col max-auto">
-            <Button>Add to Cart</Button>
+            <Button onClick={this.addToCart}>Add to Cart</Button>
             <Link to='/Products'>
               <Button>Return to Products</Button>
             </Link>

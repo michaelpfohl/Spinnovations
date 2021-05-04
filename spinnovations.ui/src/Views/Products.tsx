@@ -54,7 +54,7 @@ class Products extends React.Component<ProductsState> {
     render() : JSX.Element {
         const { products, filteredProducts, categories } = this.state
         const productCard = (product: Product): JSX.Element => {
-            return (<ProductCard product={product}/>)
+            return (<ProductCard key={product.id} product={product}/>)
         }
         let cards = products?.map(productCard)
 

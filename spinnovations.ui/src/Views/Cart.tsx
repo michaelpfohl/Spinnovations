@@ -1,32 +1,34 @@
 import React from 'react';
 import { User } from '../Helpers/Interfaces/UserInterfaces';
-import { CartProps } from '../Helpers/Interfaces/CartInterfaces';
 import { Product } from '../Helpers/Interfaces/ProductInterfaces';
+import { ProductCard } from '../Components/Cards/ProductCard';
 
 type UserProps = {
   user: User;
 };
 
-type CartState = {
-  inCart?: Product[];
-  user: User;
+type cartState = {
+  products?: Product[];
 };
 
-class Cart extends React.Component<CartProps, UserProps> {
-    state: CartState = {
-      inCart: [],
-      user: User,
-    };
-
-  setUrl = (): void => {
-    this.props.history.push(`/search/${this.state.user.id}`);
+class Cart extends React.Component<UserProps, cartState> {
+  state: cartState = {
+    products: [],
   };
+
   componentDidMount(): void {
-    this.setUrl;
+    const cartItem = JSON.parse(localStorage.getItem('The Wheel') || '');
+    this.state.products?.push(cartItem);
   }
 
   render(): JSX.Element {
     const { user } = this.props;
+    const { products } = this.state;
+    const productCard = (product: Product): JSX.Element => {
+      return <ProductCard key={product.id} product={product} />;
+    };
+    const cards = products?.map(productCard);
+    console.warn('cards', cards);
     return (
       <div id="cartPage">
         {user != null && (
@@ -38,6 +40,7 @@ class Cart extends React.Component<CartProps, UserProps> {
             </div>
           </div>
         )}
+        <div>{cards}</div>
       </div>
     );
   }
