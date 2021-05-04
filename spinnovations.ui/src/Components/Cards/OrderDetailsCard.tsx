@@ -15,7 +15,7 @@ type OrderDetailsCardState = {
 
 export default class OrderDetailsCard extends React.Component<OrderDetailsCardProps> {
   state: OrderDetailsCardState = {
-    sellerInfo: {}
+    sellerInfo: null
   }
   componentDidMount(): void {
     userData.getUserById(this.props.product.creator_Id).then((response: User) => {
@@ -33,7 +33,7 @@ export default class OrderDetailsCard extends React.Component<OrderDetailsCardPr
             <img src={product.imageUrl} alt={product.name} height='50'></img>
           </td>
           <td>{product.name}</td>
-          <td>{sellerInfo.display_Name}</td>
+          <td>{sellerInfo?.display_Name}</td>
           <td>{product.price}</td>
           <td>{order_Details.quantity}</td>
         </tr>

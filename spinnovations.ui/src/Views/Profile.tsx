@@ -1,5 +1,6 @@
 import React from 'react';
 import { User } from '../Helpers/Interfaces/UserInterfaces';
+import {Link} from 'react-router-dom';
 
 type UserProps = {
   user: User;
@@ -27,9 +28,14 @@ class Profile extends React.Component<UserProps> {
             <a href="/" id="acctinfo">
               Account Information
             </a>
-            <a href="/" id="myorders">
-              My Orders
-            </a>
+            <Link to={{
+               pathname:"/orders",
+                state: {
+                 user: user
+                }
+              }}>
+                My Orders
+            </Link>
             <a href="/" id="submitinnovation">
               Submit an innovation
             </a>

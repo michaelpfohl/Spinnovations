@@ -3,14 +3,22 @@ import { Order } from "../Helpers/Interfaces/OrderInterfaces";
 import orderData from "../Helpers/Data/orderData";
 import { OrderCard } from "../Components/Cards/OrderCard";
 import { Table } from "reactstrap";
+import {User} from '../Helpers/Interfaces/UserInterfaces';
+import {OrderProps} from '../Helpers/Interfaces/OrderInterfaces';
 
-class Orders extends Component {
-  state = {
+type OrderState = {
+  orders: Orders[],
+  user: User;
+}
+
+class Orders extends Component<OrderProps> {
+  state : OrderState = {
     orders: [],
+    user: this.props.location.state.user
   };
 
   componentDidMount(): void {
-    orderData.getAllUserOrders(4).then((response: Order[]) => {
+    orderData.getAllUserOrders(this.state.user.id).then((response: Order[]) => {
       this.setState({
         orders: response,
       });
