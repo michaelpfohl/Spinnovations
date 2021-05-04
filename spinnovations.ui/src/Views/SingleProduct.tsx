@@ -16,8 +16,9 @@ class SingleProduct extends Component<ProductProps> {
   }
 
   deleteProduct = (): void => {
-    productData.deleteProduct(this.state.product.id);
-    this.props.history.push('/Products')
+    productData.deleteProduct(this.state.product.id).then(() => {
+      this.props.history.push('/Products')
+    });
   }
 
   onUpdate = (): void => {

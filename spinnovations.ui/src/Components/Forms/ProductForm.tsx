@@ -161,6 +161,7 @@ class ProductForm extends Component<ProductFormProps> {
                   className="form-control form-group"
                   onChange={this.handleChange}
                   name="category_Id"
+                  value={this.state.category_Id}
                 >
                   {options}
                 </select>
