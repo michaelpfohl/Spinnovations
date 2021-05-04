@@ -26,6 +26,12 @@ namespace Spinnovations.Controllers
             return Ok(_repo.GetAll());
         }
 
+        [HttpGet("seller/{creatorId}")]
+        public IActionResult GetProductsByCreatorId(int creatorId)
+        {
+            return Ok(_repo.GetProductsByCreatorId(creatorId));
+        }
+
         [HttpGet("{id}")]
         public IActionResult GetProduct(int id)
         {
