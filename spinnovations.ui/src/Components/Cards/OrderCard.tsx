@@ -4,6 +4,7 @@ import {
 } from "../../Helpers/Interfaces/OrderInterfaces";
 import OrderDetailsModal from "../Modals/OrderDetailsModal";
 
+
 export const OrderCard = ({ order }: OrderProps): JSX.Element => {
   const calcOrderTotal = (order: OrderProps): number => {
     let totalCost = 0;
