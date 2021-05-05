@@ -17,8 +17,19 @@ class Cart extends React.Component<UserProps, cartState> {
   };
 
   componentDidMount(): void {
-    const cartItem = JSON.parse(localStorage.getItem('The Wheel') || '');
-    this.state.products?.push(cartItem);
+    const keys = Object.keys(localStorage);
+    const items: Product[] = [];
+    for (const key of keys) {
+      const getCartItems = async (): Promise<Product> => {
+        const cartItem = await JSON.parse(localStorage.getItem(key) || '');
+        items.push(cartItem);
+      };
+      getCartItems().then(() => {
+        this.setState({
+          products: items,
+        });
+      });
+    }
   }
 
   render(): JSX.Element {
@@ -26,10 +37,9 @@ class Cart extends React.Component<UserProps, cartState> {
     const { products } = this.state;
 
     const renderProducts = () =>
-      products?.map((product) => (
+      products?.map((product: Product) => (
         <ProductCard key={product.id} product={product} />
       ));
-    console.warn(renderProducts())
     return (
       <div id="cartPage">
         {user != null && (
