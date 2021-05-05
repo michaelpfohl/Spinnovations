@@ -1,7 +1,7 @@
 import React from 'react';
 import { User } from '../Helpers/Interfaces/UserInterfaces';
 import { Product } from '../Helpers/Interfaces/ProductInterfaces';
-import { ProductCard } from '../Components/Cards/ProductCard';
+import { CartCard } from '../Components/Cards/CartCard';
 
 type UserProps = {
   user: User;
@@ -16,7 +16,12 @@ class Cart extends React.Component<UserProps, cartState> {
     products: [],
   };
 
-  componentDidMount(): void {
+  deleteFromCart = (productKey: string): void => {
+    localStorage.removeItem(`${productKey}`);
+    this.getTheCart();
+  }
+
+  getTheCart = (): void => {
     const keys = Object.keys(localStorage);
     const items: Product[] = [];
     for (const key of keys) {
@@ -32,16 +37,24 @@ class Cart extends React.Component<UserProps, cartState> {
     }
   }
 
+  componentDidMount(): void {
+    this.getTheCart();
+  }
+
   render(): JSX.Element {
     const { user } = this.props;
     const { products } = this.state;
-
+    
     const renderProducts = () =>
       products?.map((product: Product) => (
-        <ProductCard key={product.id} product={product} />
+        <CartCard key={product.id} product={product} deleteFromCart={this.deleteFromCart} />
       ));
     return (
-      <div id="cartPage">
+      <>
+      {products?.length === 0 ? (
+        <h1>No Products</h1>
+      ) : (
+        <div id="cartPage">
         {user != null && (
           <div className="profileCard">
             <div>
@@ -51,8 +64,12 @@ class Cart extends React.Component<UserProps, cartState> {
             </div>
           </div>
         )}
-        <div>{renderProducts()}</div>
+        <div className="container d-flex flex-wrap justify-content-around">
+          {renderProducts()}
+        </div>
       </div>
+      )}
+      </>
     );
   }
 }

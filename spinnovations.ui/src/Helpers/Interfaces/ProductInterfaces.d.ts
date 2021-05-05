@@ -14,6 +14,7 @@ declare module 'ProductTypes' {
         location: RouteComponentProps["location"],
         user: User,
         onUpdate?: () => void,
+        deleteFromCart?: () => void,
      }
 }
 
