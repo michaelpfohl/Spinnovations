@@ -41,7 +41,14 @@ class Profile extends React.Component<UserProps> {
             </a>
           </div>
           <div className="buttonGroupTwo">
-            <a href="/">My Payments</a>
+          <Link to={{
+               pathname:"/payments",
+                state: {
+                 user: user
+                }
+              }}>
+                My Payment Info
+            </Link>
             <a href="/">My Spins</a>
             <a href="/">Help</a>
           </div>

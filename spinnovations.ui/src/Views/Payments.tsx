@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
 
 import paymentsData, { Payment } from '../Helpers/Data/PaymentData';
+import {User} from '../Helpers/Interfaces/UserInterfaces';
+
+type PaymentState = {
+    user: User,
+    payments: Payment[]
+}
 
 class Payments extends Component {
-    state = {
+    state: PaymentState = {
+        user: this.props.location.state.user,
         payments: [],
     };
 
