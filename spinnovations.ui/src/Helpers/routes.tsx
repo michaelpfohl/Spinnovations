@@ -8,12 +8,14 @@ import Payments from '../Views/Payments';
 import Users from '../Views/Users';
 import Orders from '../Views/Orders';
 import Profile from '../Views/Profile'
+import AddProduct from '../Views/AddProduct';
 import NotFound from '../Views/NotFound';
 import SearchResults from '../Views/SearchResults';
 import { SearchProps } from '../Helpers/Interfaces/SearchInterfaces';
 import SingleProduct from '../Views/SingleProduct';
 import { ProductProps } from '../Helpers/Interfaces/ProductInterfaces';
 import Cart from '../Views/Cart';
+import {OrderProps} from '../Helpers/Interfaces/OrderInterfaces'
 
 type RouteProps = {
   user: User | null
@@ -25,12 +27,13 @@ export default function Routes({ user}: RouteProps): JSX.Element {
         <Route exact path="/" component={() => <Home/>} />
         <Route exact path="/Payments" component={() => <Payments/>} />
         <Route exact path="/Products" component={() => <Products/>} />
-        <Route exact path="/Orders" component={() => <Orders/>} />
+        <Route exact path="/Orders" component={(props: OrderProps) => <Orders{...props}/>} />
         <Route exact path="/Users" component={() => <Users user={user}/>} />
+        <Route exact path="/Add-Product" component={() => <AddProduct user={user}/>}/>
         <Route exact path="/Profile" component={() => <Profile user={user}/>} />
         <Route exact path='/search/:term/' component={(props : SearchProps) => <SearchResults{...props}/>} />
         <Route exact path="/Cart" component={() => <Cart user={user}/>} />
-        <Route exact path="/details" component={(props: ProductProps) => <SingleProduct{...props}/>} />
+        <Route exact path="/details" component={(props: ProductProps) => <SingleProduct{...props} user={user}/>} />
         <Route component={NotFound} />
       </Switch>
   );

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { Order, OrderProps } from '../../Helpers/Interfaces/OrderInterfaces';
-import {OrderDetailsCard} from '../Cards/OrderDetailsCard';
+import { OrderProps } from '../../Helpers/Interfaces/OrderInterfaces';
+import OrderDetailsCard from '../Cards/OrderDetailsCard';
 import { Table } from "reactstrap";
 
 const OrderDetailsModal
@@ -31,6 +31,7 @@ const OrderDetailsModal
               <th scope="row"></th>
               <th></th>
               <th>Product</th>
+              <th>Creator</th>
               <th>Cost</th>
               <th>Quantity</th>
             </tr>

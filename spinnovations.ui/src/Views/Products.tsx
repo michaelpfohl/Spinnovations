@@ -59,7 +59,11 @@ class Products extends React.Component<ProductsState> {
         let cards = products?.map(productCard)
 
         if (filteredProducts !== products){
-            cards = filteredProducts?.map(productCard);
+            if (!filteredProducts?.length) {
+                cards = [<h1>No Products Currently In Category!</h1>]
+            } else {
+                cards = filteredProducts?.map(productCard);
+            }
         } else {
             cards = products?.map(productCard);
         }
