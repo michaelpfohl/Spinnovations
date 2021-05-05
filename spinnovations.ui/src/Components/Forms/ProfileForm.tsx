@@ -1,0 +1,172 @@
+import React, { Component } from "react";
+import { User } from "../../Helpers/Interfaces/UserInterfaces";
+import userData from "../../Helpers/Data/userData";
+
+type ProfileFormProps = {
+    user: User;
+    onUpdate?: () => void;
+};
+
+class ProfileForm extends Component<ProfileFormProps, User> {
+  state: User = {
+    id: this.props.user?.id || "",
+    first_Name: this.props.user?.first_Name || "",
+    last_Name: this.props.user?.last_Name || "",
+    address: this.props.user?.address || "",
+    city: this.props.user?.city || "",
+    country: this.props.user?.country || "",
+    postal_code: this.props.user?.postal_code || "",
+    display_Name: this.props.user?.display_Name || "",
+    image_Url: this.props.user?.image_Url || "",
+    state: this.props.user?.state || "",
+  };
+
+  handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ): void => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  handleSubmit = (e: React.ChangeEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    const user = {
+      id: this.state.id,
+      first_Name: this.state.first_Name,
+      last_Name: this.state.last_Name,
+      address: this.state.address,
+      city: this.state.city,
+      country: this.state.country,
+      postal_code: this.state.postal_code,
+      display_Name: this.state.display_Name,
+      image_Url: this.state.image_Url,
+      state: this.state.state,
+    };
+    userData.updateUser(user).then(() => {
+        if (this.props.onUpdate) {
+          this.props.onUpdate();
+        }
+      });
+  };
+
+  render(): JSX.Element {
+    return (
+      <div>
+        <div className="d-flex justify-content-center mt-5">
+          <div className="product-form-container p-3">
+            <h1 className="product-form-header">Update Profile</h1>
+            <div className="d-flex justify-content-center">
+              <form onSubmit={this.handleSubmit} className="add-Product-form">
+                <div className="form-group">
+                  <input
+                    type="text"
+                    name="first_Name"
+                    value={this.state.first_Name}
+                    onChange={this.handleChange}
+                    placeholder="First Name"
+                    className="form-control form-control-lg m-2 modal-input"
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    name="last_Name"
+                    value={this.state.last_Name}
+                    onChange={this.handleChange}
+                    placeholder="Last Name"
+                    className="form-control form-control-lg m-2 modal-input"
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    name="display_Name"
+                    value={this.state.display_Name}
+                    onChange={this.handleChange}
+                    placeholder="Display Name"
+                    className="form-control form-control-lg m-2 modal-input"
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    name="address"
+                    value={this.state.address}
+                    onChange={this.handleChange}
+                    placeholder="Address"
+                    className="form-control form-control-lg m-2 modal-input"
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    name="city"
+                    value={this.state.city}
+                    onChange={this.handleChange}
+                    placeholder="City"
+                    className="form-control form-control-lg m-2 modal-input"
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    name="state"
+                    value={this.state.state}
+                    onChange={this.handleChange}
+                    placeholder="State"
+                    className="form-control form-control-lg m-2 modal-input"
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    name="country"
+                    value={this.state.country}
+                    onChange={this.handleChange}
+                    placeholder="Country"
+                    className="form-control form-control-lg m-2 modal-input"
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    name="postal_code"
+                    value={this.state.postal_code}
+                    onChange={this.handleChange}
+                    placeholder="Postal Code"
+                    className="form-control form-control-lg m-2 modal-input"
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    name="image_Url"
+                    value={this.state.image_Url}
+                    onChange={this.handleChange}
+                    placeholder="Profile Picture"
+                    className="form-control form-control-lg m-2 modal-input"
+                    required
+                  />
+                </div>
+                <button className="btn btn-success form-button form-button-text mt-1 mb-1">
+                  Submit
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default ProfileForm;

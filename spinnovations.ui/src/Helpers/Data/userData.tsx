@@ -28,11 +28,18 @@ const AddNewUser = (user: User): Promise<User> => new Promise((resolve, reject) 
     }).catch((error) => reject(error));
 });
 
+const updateUser = (user: User): Promise<User> => new Promise((resolve, reject) => {
+    axios.put(`${usersUrl}/${user.id}`).then((response) => {
+        return response.data;
+    }).catch((error) => reject(error));
+});
+
 const userData = {
     getAllUsers,
     getUserByFirebaseUid,
     AddNewUser,
-    getUserById
+    getUserById,
+    updateUser,
 }
 
 export default userData;
