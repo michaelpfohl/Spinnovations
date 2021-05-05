@@ -39,18 +39,18 @@ class Auth extends Component<AuthProps> {
     if (user == false){
       return (
         <div className="d-flex justify-content-center">
-            <button className="btn btn-secondary google-logo" onClick={this.loginClickEvent}>
-              Sign In
+            <button className="signin-button google-logo" onClick={this.loginClickEvent}>
+            <i className="fas fa-sign-out-alt"></i> Sign In
             </button>
         </div>
       );
     } else {
       return (
         <div className="d-flex justify-content-center">
-          <div className="auth-container d-flex">
-            <p className="mr-4">Hello, {user?.display_Name}!</p>
-            <button className="btn btn-secondary google-logo" onClick={this.logoutClickEvent}>
-              Log Out
+          <div className="auth-container d-flex align-items-center">
+            <p className="m-auto scheme-blue-green greeting-text">Hello, {user?.display_Name}!</p>
+            <button className="google-logo ml-4 logout-button" onClick={this.logoutClickEvent}>
+              <i className="fas fa-sign-out-alt signout-icon"></i> Log Out
             </button>
           </div>
         </div>

@@ -7,7 +7,12 @@
 @import 'homeCarousel';
 @import 'productForm';
 @import 'navbar';
+@import 'searchInput';
 
 body, html, .App {
   background-color: $BackgroundLight;
+}
+
+.danger {
+  background-color: $SchemeRed;
 }

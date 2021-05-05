@@ -21,6 +21,11 @@ $categoryCircleText: #fff;
   justify-content: center;
   align-items: center;
   border: none;
+  transition: all 0.25s ease-in-out;
+}
+
+.product-category-circle:hover {
+  transform: scale(1.05);
 }
 
 .product-category-circle-text {

@@ -9,6 +9,7 @@ $SchemeYellow: #F9C74F;
 $SchemeGreen: #90BE6D;
 $SchemeBlue-Green: #43AA8B;
 $SchemeBlue: #577590;
+$SchemePink: #FFC2B4;
 
 //optional background colors
 $BackgroundLight: #8C92AC;
@@ -24,4 +25,5 @@ $StyleFont: 'Roboto', sans-serif;
 .scheme-yellow { color: $SchemeYellow; }
 .scheme-green { color:$SchemeGreen; }
 .scheme-blue-green { color: $SchemeBlue-Green; }
-.scheme-blue { color: $SchemeBlue }
+.scheme-blue { color: $SchemeBlue; }
+.scheme-pink {color: $SchemePink; }

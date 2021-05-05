@@ -7,7 +7,6 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
 } from 'reactstrap';
 import Auth from '../Auth';
 import { User } from '../../Helpers/Interfaces/UserInterfaces';
@@ -24,27 +23,27 @@ const Navigation = ({ user }: NavProps): JSX.Element => {
   return (
     <div>
       <Navbar expand="md">
-        <NavbarBrand href="/">Spinnovations</NavbarBrand>
+        <NavbarBrand href="/" className="scheme-pink">Spinnovations</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink className="scheme-blue" href="/"><i className="fas fa-cog"></i> Spin</NavLink>
+              <a className=" scheme-orange" href="/"><i className="fas fa-cog"></i> Spin</a>
             </NavItem>
             <NavItem>
-              <NavLink className="scheme-blue-green" href="/Products"><i className="fas fa-eye"></i> Browse</NavLink>
+              <a className=" scheme-yellow" href="/Products"><i className="fas fa-eye"></i> Browse</a>
             </NavItem>
             <NavItem>
-              <NavLink className="scheme-green" href="/"><i className="fas fa-shopping-cart"></i> Cart</NavLink>
+              <a className="scheme-green" href="/"><i className="fas fa-shopping-cart"></i> Cart</a>
             </NavItem>
             {user && 
               <NavItem>
-                <NavLink className="scheme-yellow" href="/Profile"><i className="fas fa-user-circle"></i> Profile</NavLink>
+                <a className="scheme-blue-green" href="/Profile"><i className="fas fa-user-circle"></i> Profile</a>
               </NavItem>
             }
             { user && 
             <NavItem>
-              <NavLink className="scheme-orange" href="/Add-Product"><i className="fas fa-plus-circle"></i> Add Product</NavLink>
+              <a className="scheme-blue" href="/Add-Product"><i className="fas fa-plus-circle"></i> Add Product</a>
             </NavItem>
             }
           </Nav>
