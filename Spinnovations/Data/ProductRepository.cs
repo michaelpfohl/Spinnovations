@@ -25,6 +25,13 @@ namespace Spinnovations.Data
             return db.Query<Product>(sql).ToList();
         }
 
+        public List<Product> GetProductsByCreatorId(int creatorId)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = "SELECT * FROM Products WHERE Creator_Id = @creatorId";
+            return db.Query<Product>(sql, new { creatorId = creatorId }).ToList();
+        }
+
         public Product Get(int id)
         {
             using var db = new SqlConnection(ConnectionString);

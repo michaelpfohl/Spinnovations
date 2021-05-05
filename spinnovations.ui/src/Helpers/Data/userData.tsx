@@ -30,9 +30,9 @@ const AddNewUser = (user: User): Promise<User> => new Promise((resolve, reject) 
 
 const userData = {
     getAllUsers,
+    getUserById,
     getUserByFirebaseUid,
-    AddNewUser,
-    getUserById
+    AddNewUser
 }
 
 export default userData;
