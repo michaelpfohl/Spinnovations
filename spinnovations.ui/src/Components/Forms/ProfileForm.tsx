@@ -19,6 +19,9 @@ class ProfileForm extends Component<ProfileFormProps, User> {
     display_Name: this.props.user?.display_Name || "",
     image_Url: this.props.user?.image_Url || "",
     state: this.props.user?.state || "",
+    user_Created_Date: this.props.user.user_Created_Date,
+    firebase_Uid: this.props.user.firebase_Uid,
+    email: this.props.user.email
   };
 
   handleChange = (
@@ -42,6 +45,9 @@ class ProfileForm extends Component<ProfileFormProps, User> {
       display_Name: this.state.display_Name,
       image_Url: this.state.image_Url,
       state: this.state.state,
+      user_Created_Date: this.props.user.user_Created_Date,
+      firebase_Uid: this.props.user.firebase_Uid,
+      email: this.props.user.email
     };
     userData.updateUser(user).then(() => {
         if (this.props.onUpdate) {
@@ -53,8 +59,8 @@ class ProfileForm extends Component<ProfileFormProps, User> {
   render(): JSX.Element {
     return (
       <div>
-        <div className="d-flex justify-content-center mt-5">
-          <div className="product-form-container p-3">
+        <div className="d-flex justify-content-center">
+          <div className="product-form-container">
             <h1 className="product-form-header">Update Profile</h1>
             <div className="d-flex justify-content-center">
               <form onSubmit={this.handleSubmit} className="add-Product-form">
@@ -66,6 +72,7 @@ class ProfileForm extends Component<ProfileFormProps, User> {
                     onChange={this.handleChange}
                     placeholder="First Name"
                     className="form-control form-control-lg m-2 modal-input"
+                    maxLength={50}
                     required
                   />
                 </div>
@@ -77,6 +84,7 @@ class ProfileForm extends Component<ProfileFormProps, User> {
                     onChange={this.handleChange}
                     placeholder="Last Name"
                     className="form-control form-control-lg m-2 modal-input"
+                    maxLength={50}
                     required
                   />
                 </div>
@@ -88,6 +96,7 @@ class ProfileForm extends Component<ProfileFormProps, User> {
                     onChange={this.handleChange}
                     placeholder="Display Name"
                     className="form-control form-control-lg m-2 modal-input"
+                    maxLength={20}
                     required
                   />
                 </div>
@@ -99,6 +108,7 @@ class ProfileForm extends Component<ProfileFormProps, User> {
                     onChange={this.handleChange}
                     placeholder="Address"
                     className="form-control form-control-lg m-2 modal-input"
+                    maxLength={100}
                     required
                   />
                 </div>
@@ -110,6 +120,7 @@ class ProfileForm extends Component<ProfileFormProps, User> {
                     onChange={this.handleChange}
                     placeholder="City"
                     className="form-control form-control-lg m-2 modal-input"
+                    maxLength={50}
                     required
                   />
                 </div>
@@ -121,6 +132,7 @@ class ProfileForm extends Component<ProfileFormProps, User> {
                     onChange={this.handleChange}
                     placeholder="State"
                     className="form-control form-control-lg m-2 modal-input"
+                    maxLength={30}
                     required
                   />
                 </div>
@@ -132,6 +144,7 @@ class ProfileForm extends Component<ProfileFormProps, User> {
                     onChange={this.handleChange}
                     placeholder="Country"
                     className="form-control form-control-lg m-2 modal-input"
+                    maxLength={60}
                     required
                   />
                 </div>
@@ -143,6 +156,7 @@ class ProfileForm extends Component<ProfileFormProps, User> {
                     onChange={this.handleChange}
                     placeholder="Postal Code"
                     className="form-control form-control-lg m-2 modal-input"
+                    maxLength={5}
                     required
                   />
                 </div>
@@ -154,6 +168,7 @@ class ProfileForm extends Component<ProfileFormProps, User> {
                     onChange={this.handleChange}
                     placeholder="Profile Picture"
                     className="form-control form-control-lg m-2 modal-input"
+                    maxLength={200}
                     required
                   />
                 </div>

@@ -1,6 +1,8 @@
 import React from "react";
 import { User } from "../Helpers/Interfaces/UserInterfaces";
 import { Link } from "react-router-dom";
+import UpdateProfileModal from '../Components/Modals/UpdateProfileModal'
+
 
 type UserProps = {
   user: User;
@@ -21,17 +23,23 @@ class Profile extends React.Component<UserProps> {
             <img src={user.image_Url} className="profilePhoto" />
             <div>
               <h3 className="userName">{user.display_Name}</h3>
+              <div className="row d-flex justify-content-center">
+                <div className="col-6">
+                  <p>First Name: {user.first_Name|| "Not yet added"}</p>
+                  <p>Last Name: {user.first_Name|| "Not yet added"}</p>
+                  <p>Email: {user.email}</p>
+                  <p>User Since: {user.user_Created_Date}</p>      
+                </div>
+                <div className="col-6">
+                  <p>Address: {user.address || "Not yet added"}</p>
+                  <p>City: {user.city || "Not yet added"}</p>
+                  <p>State: {user.state || "Not yet added"}</p>
+                  <p>Postal Code: {user.postal_Code || "Not yet added"}</p>
+                  <p>Country: {user.country || "Not yet added"}</p>
+                </div>  
+              </div>
               <div className="buttonGroup">
-                <Link
-                  to={{
-                    pathname: "/Update-Profile",
-                    state: {
-                      user: user,
-                    },
-                  }}
-                >
-                  Update Profile
-                </Link>
+                <UpdateProfileModal user={user}/> 
                 <Link
                   to={{
                     pathname: "/orders",

@@ -14,6 +14,11 @@ declare module 'UserTypes' {
       firebase_Uid: string;
       email: string;
     }
+
+  type UpdateProfileProps = {
+      user: User,
+      onUpdate: () => void,
+  }
 }
 
-export { User }
+export { User, UpdateProfileProps }

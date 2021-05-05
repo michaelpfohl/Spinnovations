@@ -23,28 +23,28 @@ const Navigation = ({ user }: NavProps): JSX.Element => {
 
   return (
     <div>
-      <Navbar color="light" light expand="md">
+      <Navbar expand="md">
         <NavbarBrand href="/">Spinnovations</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink href="/">Spin</NavLink>
+              <NavLink className="scheme-blue" href="/"><i className="fas fa-cog"></i> Spin</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/Products">Browse</NavLink>
+              <NavLink className="scheme-blue-green" href="/Products"><i className="fas fa-eye"></i> Browse</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/">Cart</NavLink>
+              <NavLink className="scheme-green" href="/"><i className="fas fa-shopping-cart"></i> Cart</NavLink>
             </NavItem>
             {user && 
               <NavItem>
-                <NavLink href="/Profile">Profile</NavLink>
+                <NavLink className="scheme-yellow" href="/Profile"><i className="fas fa-user-circle"></i> Profile</NavLink>
               </NavItem>
             }
             { user && 
             <NavItem>
-              <NavLink href="/Add-Product">Add Product</NavLink>
+              <NavLink className="scheme-orange" href="/Add-Product"><i className="fas fa-plus-circle"></i> Add Product</NavLink>
             </NavItem>
             }
           </Nav>
