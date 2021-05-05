@@ -18,10 +18,12 @@ declare module 'OrderTypes' {
         quantity: number;
     }
     interface OrderProps {
-        order: Order
+        order: Order;
+        user: User;
+        location: RouteComponentProps["location"];
     }
     interface OrderDetailsProps{
-        orderDetailsProps: OrderDetails
+        orderDetailsProps: OrderDetails;
     }
 }
 

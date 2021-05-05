@@ -22,17 +22,31 @@ const getLastTwentyProducts = (): Promise<Product[]> => new Promise((resolve, re
     }).catch((error) => reject(error));
 });
 
+
 const getProduct = (productId : number): Promise<Product> => new Promise((resolve, reject) => {
     axios.get(`${productsURL}/${productId}`).then((response) => {
         resolve(response.data)
     }).catch((error) => reject(error));
 })
 
+const addNewProduct = (product: Product): Promise<Product> => new Promise((resolve, reject) => {
+    axios.post(`${productsURL}`, product).then((response) => {
+        resolve(response.data)
+    }).catch((error) => reject(error));
+});
+
+const deleteProduct = (productId: number): Promise<void> => axios.delete(`${productsURL}/${productId}`)
+
+const updateProduct = (product: Product): Promise<void> => axios.put(`${productsURL}/${product.id}`, product);
+
 const productData = {
     getProducts,
     getProductsByUserId,
     getLastTwentyProducts,
-    getProduct
+    addNewProduct,
+    getProduct,
+    deleteProduct,
+    updateProduct,
 }
 
 export default productData;

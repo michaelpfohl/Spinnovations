@@ -5,7 +5,8 @@
 @import 'productCategoryBar';
 @import 'profile';
 @import 'homeCarousel';
+@import 'productForm';
 
-body{
-  background-color: $favColor;
+body, html, .App {
+  background-color: $BackgroundLight;
 }

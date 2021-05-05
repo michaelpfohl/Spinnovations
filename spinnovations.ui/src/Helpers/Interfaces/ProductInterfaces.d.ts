@@ -11,8 +11,10 @@ declare module 'ProductTypes' {
     }
     interface ProductProps {
         product: Product,
-        location: RouteComponentProps["location"];
-    }
+        location: RouteComponentProps["location"],
+        user: User,
+        onUpdate?: () => void,
+     }
 }
 
 export { Product, ProductProps }

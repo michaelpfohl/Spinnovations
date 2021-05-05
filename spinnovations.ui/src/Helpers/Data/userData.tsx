@@ -32,7 +32,8 @@ const userData = {
     getAllUsers,
     getUserById,
     getUserByFirebaseUid,
-    AddNewUser
+    AddNewUser,
+    getUserById
 }
 
 export default userData;
