@@ -26,7 +26,7 @@ class Profile extends React.Component<UserProps> {
               <div className="row d-flex justify-content-center">
                 <div className="col-6">
                   <p>First Name: {user.first_Name|| "Not yet added"}</p>
-                  <p>Last Name: {user.first_Name|| "Not yet added"}</p>
+                  <p>Last Name: {user.last_Name|| "Not yet added"}</p>
                   <p>Email: {user.email}</p>
                   <p>User Since: {user.user_Created_Date}</p>      
                 </div>

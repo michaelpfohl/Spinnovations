@@ -9,7 +9,9 @@ type AuthProps = {
 }
 
 class Auth extends Component<AuthProps> {
-  state = {};
+  state = {
+    greetingColor: 0,
+  };
 
   loginClickEvent = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
     e.preventDefault();
@@ -27,6 +29,10 @@ class Auth extends Component<AuthProps> {
     });
   };
 
+  componentDidMount(): void {
+    this.setState({ greetingColor: Math.floor(Math.random() * 7)})
+  }
+
   logoutClickEvent = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
     e.preventDefault();
     window.sessionStorage.removeItem('token');
@@ -36,6 +42,7 @@ class Auth extends Component<AuthProps> {
 
   logInOrOut = (): JSX.Element => {
     const { user } = this.props;
+    const { greetingColor } = this.state;
     if (user == false){
       return (
         <div className="d-flex justify-content-center">
@@ -48,7 +55,7 @@ class Auth extends Component<AuthProps> {
       return (
         <div className="d-flex justify-content-center">
           <div className="auth-container d-flex align-items-center">
-            <p className="m-auto scheme-blue-green greeting-text">Hello, {user?.display_Name}!</p>
+            <p className={`m-auto greeting-text color-text-${greetingColor}`}>Hello, {user?.display_Name}!</p>
             <button className="google-logo ml-4 logout-button" onClick={this.logoutClickEvent}>
               <i className="fas fa-sign-out-alt signout-icon"></i> Log Out
             </button>

@@ -30,7 +30,7 @@ const AddNewUser = (user: User): Promise<User> => new Promise((resolve, reject) 
 
 const updateUser = (user: User): Promise<User> => new Promise((resolve, reject) => {
     axios.put(`${usersUrl}/${user.id}`).then((response) => {
-        return response.data;
+        resolve(response.data);
     }).catch((error) => reject(error));
 });
 
