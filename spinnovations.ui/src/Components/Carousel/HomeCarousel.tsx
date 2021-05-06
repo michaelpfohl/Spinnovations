@@ -4,17 +4,17 @@ import {
   CarouselItem,
   CarouselControl,
   CarouselIndicators,
-  CarouselCaption
+  // CarouselCaption
 } from 'reactstrap';
 
 const items = [
     {
-      src: 'https://dummyimage.com/1000x400/000/fff',
+      src: 'https://images.pexels.com/photos/3758105/pexels-photo-3758105.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260',
       altText: 'Slide 1',
       caption: 'Slide 1'
     },
     {
-      src: 'https://dummyimage.com/1000x400/1c1c1c/fff',
+      src: 'https://images.pexels.com/photos/6991600/pexels-photo-6991600.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
       altText: 'Slide 2',
       caption: 'Slide 2'
     },
@@ -54,7 +54,7 @@ const items = [
           key={item.src}
         >
           <img src={item.src} alt={item.altText} />
-          <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+          {/* <CarouselCaption captionText={item.caption} captionHeader={item.caption} /> */}
         </CarouselItem>
       );
     });
