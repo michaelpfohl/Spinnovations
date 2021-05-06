@@ -1,19 +1,44 @@
-import { Card, Button, CardFooter, CardBody,
-  CardTitle, CardText } from 'reactstrap';
-import {PaymentProps} from '../../Helpers/Interfaces/PaymentInterfaces';
+import {
+  Card,
+  Button,
+  CardFooter,
+  CardBody,
+  CardTitle,
+  CardText,
+} from "reactstrap";
+import { PaymentProps } from "../../Helpers/Interfaces/PaymentInterfaces";
 
-const PaymentInfoCard = ({payment}: PaymentProps): JSX.Element => {
+const PaymentInfoCard = ({ payment }: PaymentProps): JSX.Element => {
+  const getCardCompany = (payment: PaymentProps) : string => {
+    switch (payment.card_Company) {
+      case 1:
+        return "American Express";
+      case 2:
+        return "Discover";
+      case 3:
+        return "Mastercard";
+      case 4:
+        return "Visa";
+      default: 
+      return "Credit Card";
+    }
+  }
   return (
-    <div className='p-5'>
-      <Card>
+    <div className="p-5">
+      <Card style={{ width: "25em" }} className="d-flex align-items-center">
         <CardBody>
-          <CardTitle tag="h3">{payment.card_Number}</CardTitle>
-          <div className='d-flex justify-content-center p-2'>
-            <CardText className='mr-4'>EXP: {payment.expiration_Month}/{payment.expiration_Year}</CardText>
+          <CardTitle tag="h2">{payment.card_Number}</CardTitle>
+          <div className="justify-content-space-between p-2">
+            <CardText>
+              EXP: {payment.expiration_Month}/{payment.expiration_Year}
+            </CardText>
             <CardText>CVV: {payment.cvv}</CardText>
           </div>
-        <CardText tag="h3">{payment.card_Company}</CardText>
-          <Button>Edit</Button>
+          <CardText tag="h3">{getCardCompany(payment)}</CardText>
+          <div className="justify-content-space-between p-2">
+            <Button color="info">Edit</Button>
+            <Button color="danger">Remove</Button>
+          </div>
         </CardBody>
       </Card>
     </div>
