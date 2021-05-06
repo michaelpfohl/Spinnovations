@@ -2,15 +2,14 @@ import { ProductProps } from "../../Helpers/Interfaces/ProductInterfaces";
 import {
   CardImg,
   CardBody,
-  CardTitle,
   CardSubtitle,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 
-export const ProductCard = ({ product }: ProductProps): JSX.Element => (
+export const ProductCard = ({ product, color }: ProductProps): JSX.Element => (
   <div className="col-lg-3" key={product.id}>
-    <div className="product-card">
-      <CardTitle className="product-name" tag="h5">{product.name}</CardTitle>
+    <div className={`product-card color-border-${color} color-text-${color}`}>
+      <div className={`product-name color-bottom-border-${color}`}>{product.name}</div>
       <Link
         to={{
           pathname: "/details",
@@ -35,7 +34,7 @@ export const ProductCard = ({ product }: ProductProps): JSX.Element => (
         <i className="fas fa-ellipsis-v"></i>
         <CardSubtitle>{`$${product.price}`}</CardSubtitle>
         <i className="fas fa-ellipsis-v"></i>
-        <button className="cart-button"><i className="fas fa-cart-plus"></i></button>
+        <button className={`cart-button color-cart-${color}`}><i className="fas fa-cart-plus"></i></button>
         </div>
       </CardBody>
     </div>

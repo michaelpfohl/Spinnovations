@@ -53,21 +53,35 @@ class Products extends React.Component<ProductsState> {
 
     render() : JSX.Element {
         const { products, filteredProducts, categories } = this.state
-        const productCard = (product: Product): JSX.Element => {
-            return (<ProductCard key={product.id} product={product}/>)
+        const productCard = (product: Product, color: number): JSX.Element => {
+            return (<ProductCard key={product.id} product={product} color={color}/>)
         }
-        let cards = products?.map(productCard)
+        const assignColors = (products: Product[]) => {
+            const cards: Product[] = [];
+            let counter = 0;
+            products?.forEach((product) => {
+                counter++;
+                if (counter >= 8) counter = 1;
+                cards.push(productCard(product, counter));
+            })
+            return cards;
+        }
+        let cards: Product[] = []
+        if (products?.length){
+            cards = assignColors(products);
+        }
 
         if (filteredProducts !== products){
             if (!filteredProducts?.length) {
                 cards = [<h1>No Products Currently In Category!</h1>]
             } else {
-                cards = filteredProducts?.map(productCard);
+                cards = assignColors(filteredProducts);
             }
         } else {
-            cards = products?.map(productCard);
+            if (products?.length){
+                cards = assignColors(products);
+            }
         }
-
         return (
             <div>
                 <ProductCategoryBar categories={categories} filter={this.filterByCategory} all={this.filterAll}/>

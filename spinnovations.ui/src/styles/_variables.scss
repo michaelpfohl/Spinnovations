@@ -27,3 +27,35 @@ $StyleFont: 'Roboto', sans-serif;
 .scheme-blue-green { color: $SchemeBlue-Green; }
 .scheme-blue { color: $SchemeBlue; }
 .scheme-pink {color: $SchemePink; }
+
+.color-border-1 { border: 4px solid $SchemePink;}
+.color-border-2 { border: 4px solid $SchemeOrange;}
+.color-border-3 { border: 4px solid $SchemeYellow;}
+.color-border-4 { border: 4px solid $SchemeGreen;}
+.color-border-5 { border: 4px solid $SchemeBlue-Green;}
+.color-border-6 { border: 4px solid $SchemeBlue;}
+.color-border-7 { border: 4px solid $SchemeRed;}
+
+.color-text-1 { color: $SchemePink;}
+.color-text-2 { color: $SchemeOrange;}
+.color-text-3 { color: $SchemeYellow;}
+.color-text-4 { color: $SchemeGreen;}
+.color-text-5 { color: $SchemeBlue-Green;}
+.color-text-6 { color: $SchemeBlue;}
+.color-text-7 { color: $SchemeRed;}
+
+.color-cart-1 { background-color: $SchemePink;}
+.color-cart-2 { background-color: $SchemeOrange;}
+.color-cart-3 { background-color: $SchemeYellow;}
+.color-cart-4 { background-color: $SchemeGreen;}
+.color-cart-5 { background-color: $SchemeBlue-Green;}
+.color-cart-6 { background-color: $SchemeBlue;}
+.color-cart-7 { background-color: $SchemeRed;}
+
+.color-bottom-border-1 { border-bottom: 4px solid $SchemePink;}
+.color-bottom-border-2 { border-bottom: 4px solid $SchemeOrange;}
+.color-bottom-border-3 { border-bottom: 4px solid $SchemeYellow;}
+.color-bottom-border-4 { border-bottom: 4px solid $SchemeGreen;}
+.color-bottom-border-5 { border-bottom: 4px solid $SchemeBlue-Green;}
+.color-bottom-border-6 { border-bottom: 4px solid $SchemeBlue;}
+.color-bottom-border-7 { border-bottom: 4px solid $SchemeRed;}
