@@ -31,7 +31,7 @@ class Payments extends Component<PaymentProps> {
     render() : JSX.Element {
         const { payments, user } = this.state
         const paymentCard = (payment: Payment): JSX.Element => {
-            return <PaymentInfoCard payment={payment}/>
+            return <PaymentInfoCard payment={payment} user={user} onUpdate={this.onUpdate}/>
         };
 
         const cards = payments.map(paymentCard)
@@ -39,7 +39,7 @@ class Payments extends Component<PaymentProps> {
             
             <div>
                 <h1>Payment Info</h1>
-                <PaymentInfoModal user={user} onUpdate={this.onUpdate}/>
+                <PaymentInfoModal user={user} onUpdate={this.onUpdate} title={"Add New Card"}/>
                 <div className="d-flex flex-wrap justify-content-center">
                 {cards}
                 </div>

@@ -5,7 +5,7 @@ declare module 'PaymentTypes' {
         expiration_Month: number;
         card_Company: string;
         expiration_Year: number;
-        CVV: number;
+        cvv: number;
         customer_Id: number;
     }
     interface PaymentProps {

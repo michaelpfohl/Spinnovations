@@ -1,23 +1,23 @@
 import {
   Card,
   Button,
-  CardFooter,
   CardBody,
   CardTitle,
   CardText,
 } from "reactstrap";
-import { PaymentProps } from "../../Helpers/Interfaces/PaymentInterfaces";
+import { PaymentInfoFormProps, PaymentProps } from "../../Helpers/Interfaces/PaymentInterfaces";
+import PaymentInfoModal from "../../Components/Modals/PaymentInfoModal";
 
-const PaymentInfoCard = ({ payment }: PaymentProps): JSX.Element => {
+const PaymentInfoCard = ({ payment, onUpdate, user }: PaymentInfoFormProps): JSX.Element => {
   const getCardCompany = (payment: PaymentProps) : string => {
     switch (payment.card_Company) {
-      case 1:
+      case "1":
         return "American Express";
-      case 2:
+      case "2":
         return "Discover";
-      case 3:
+      case "3":
         return "Mastercard";
-      case 4:
+      case "4":
         return "Visa";
       default: 
       return "Credit Card";
@@ -36,7 +36,7 @@ const PaymentInfoCard = ({ payment }: PaymentProps): JSX.Element => {
           </div>
           <CardText tag="h3">{getCardCompany(payment)}</CardText>
           <div className="justify-content-space-between p-2">
-            <Button color="info">Edit</Button>
+          <PaymentInfoModal user={user} payment={payment} onUpdate={onUpdate} title={"Edit Card"}/>
             <Button color="danger">Remove</Button>
           </div>
         </CardBody>

@@ -11,7 +11,7 @@ class PaymentInfoForm extends Component<PaymentInfoFormProps> {
     expiration_Month: this.props.payment?.expiration_Month || "",
     card_Company: this.props.payment?.card_Company || "",
     expiration_Year: this.props.payment?.expiration_Year || "",
-    CVV: this.props.payment?.CVV || "",
+    cvv: this.props.payment?.cvv || "",
     customer_Id: this.props.payment?.customer_Id || "",
     added: false,
   };
@@ -35,7 +35,7 @@ class PaymentInfoForm extends Component<PaymentInfoFormProps> {
       expiration_Month: this.state.expiration_Month,
       card_Company: this.state.card_Company,
       expiration_Year: this.state.expiration_Year,
-      CVV: this.state.CVV,
+      cvv: this.state.cvv,
       customer_Id: this.state.customer_Id,
     };
     if (this.state.id === null) {
@@ -47,11 +47,12 @@ class PaymentInfoForm extends Component<PaymentInfoFormProps> {
       setTimeout(() => this.setState({added: false}), 3000);
     } else {
       const payment = {
+        id: this.state.id,
         card_Number: this.state.card_Number,
         expiration_Month: this.state.expiration_Month,
-        card_Company: Number(this.state.card_Company),
+        card_Company: this.state.card_Company,
         expiration_Year: this.state.expiration_Year,
-        CVV: this.state.CVV,
+        cvv: this.state.cvv,
         customer_Id: Number(this.state.customer_Id),
       };
       paymentData.updatePayment(payment).then(()=> {
@@ -75,7 +76,7 @@ class PaymentInfoForm extends Component<PaymentInfoFormProps> {
         }
         <div className="d-flex justify-content-center mt-5">
           <div className="product-form-container p-3">
-            <h1 className="product-form-header">Add A New Card</h1>
+            <h1 className="product-form-header">Enter Card Information</h1>
             <div className="d-flex justify-content-center">
               <form onSubmit={this.handleSubmit} className="add-Product-form">
                 <div className="form-group">
@@ -92,10 +93,10 @@ class PaymentInfoForm extends Component<PaymentInfoFormProps> {
                 <div className="form-group">
                   <input
                     type="text"
-                    name="CVV"
-                    value={this.state.CVV}
+                    name="cvv"
+                    value={this.state.cvv}
                     onChange={this.handleChange}
-                    placeholder="CVV"
+                    placeholder="cvv"
                     className="form-control form-control-lg m-2 modal-input"
                     required
                   />
@@ -107,29 +108,41 @@ class PaymentInfoForm extends Component<PaymentInfoFormProps> {
                     onChange={this.handleChange}
                     required
                   >
-                      <option value={'01'}>
+                      <option value={'1'}>
                         Jan
                       </option>
-                      <option value={'02'}>
+                      <option value={'2'}>
                         Feb
                       </option>
-                      <option value={'03'}>
+                      <option value={'3'}>
                         Mar
                       </option>
-                      <option value={'04'}>
+                      <option value={'4'}>
                         Apr
                       </option>
-                      <option value={'05'}>
+                      <option value={'5'}>
                         May
                       </option>
-                      <option value={'06'}>
+                      <option value={'6'}>
                         Jun
                       </option>
                       <option value={'07'}>
                         Jul
                       </option>
-                      <option value={'08'}>
+                      <option value={'8'}>
                         Aug
+                      </option>
+                      <option value={'9'}>
+                        Sep
+                      </option>
+                      <option value={'10'}>
+                        Oct
+                      </option>
+                      <option value={'11'}>
+                        Nov
+                      </option>
+                      <option value={'12'}>
+                        Dec
                       </option>
                     </select>
                   <select
