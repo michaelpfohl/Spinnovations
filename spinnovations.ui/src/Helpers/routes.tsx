@@ -14,6 +14,7 @@ import SearchResults from '../Views/SearchResults';
 import { SearchProps } from '../Helpers/Interfaces/SearchInterfaces';
 import SingleProduct from '../Views/SingleProduct';
 import { ProductProps } from '../Helpers/Interfaces/ProductInterfaces';
+import Cart from '../Views/Cart';
 import SingleSeller from '../Views/SingleSeller';
 import { SellerProps } from '../Helpers/Interfaces/SellerInterfaces';
 import {OrderProps} from '../Helpers/Interfaces/OrderInterfaces'
@@ -33,7 +34,7 @@ export default function Routes({ user}: RouteProps): JSX.Element {
         <Route exact path="/Add-Product" component={() => <AddProduct user={user}/>}/>
         <Route exact path="/Profile" component={() => <Profile user={user}/>} />
         <Route exact path='/search/:term/' component={(props : SearchProps) => <SearchResults{...props}/>} />
-        <Route exact path="/details" component={(props: ProductProps) => <SingleProduct{...props}/>} />
+        <Route exact path="/Cart" component={() => <Cart user={user}/>} />
         <Route exact path="/seller/:id" component={(props: SellerProps) => <SingleSeller{...props}/>} />
         <Route exact path="/details" component={(props: ProductProps) => <SingleProduct{...props} user={user}/>} />
         <Route component={NotFound} />
