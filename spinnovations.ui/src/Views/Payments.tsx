@@ -3,6 +3,7 @@ import PaymentInfoCard from '../Components/Cards/PaymentInfoCard';
 import paymentData from '../Helpers/Data/PaymentData';
 import {PaymentProps, Payment} from '../Helpers/Interfaces/PaymentInterfaces';
 import {User} from '../Helpers/Interfaces/UserInterfaces';
+import PaymentInfoModal from '../Components/Modals/PaymentInfoModal';
 
 type PaymentState = {
     user: User,
@@ -17,23 +18,31 @@ class Payments extends Component<PaymentProps> {
 
     componentDidMount(): void {
         paymentData.getUserPayments(this.state.user.id).then((response: Payment[]) => {
-            console.log(response);
             this.setState({
                 payments: response
             })
         });
     }
+    onUpdate = (): void => {
+        paymentData.getUserPayments(this.state.user.id).then((response: Payment[]) => {
+          this.setState({payments: response})
+        })
+      }
     render() : JSX.Element {
-        const { payments } = this.state
+        const { payments, user } = this.state
         const paymentCard = (payment: Payment): JSX.Element => {
             return <PaymentInfoCard payment={payment}/>
         };
 
         const cards = payments.map(paymentCard)
         return (
+            
             <div>
                 <h1>Payment Info</h1>
+                <PaymentInfoModal user={user} onUpdate={this.onUpdate}/>
+                <div className="d-flex flex-wrap justify-content-center">
                 {cards}
+                </div>
             </div>
         )
     }

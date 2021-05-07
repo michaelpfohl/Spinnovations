@@ -1,18 +1,23 @@
 declare module 'PaymentTypes' {
     interface Payment {
         id: number;
-        Card_Number: string;
-        Expiration_Month: number;
-        Card_Company: string;
-        Expiration_Year: number;
+        card_Number: string;
+        expiration_Month: number;
+        card_Company: string;
+        expiration_Year: number;
         CVV: number;
-        Customer_Id: number;
+        customer_Id: number;
     }
     interface PaymentProps {
         payment: Payment,
         location: RouteComponentProps["location"],
         user: User,
     }
+    interface PaymentInfoFormProps  {
+        user: User;
+        payment?: Payment;
+        onUpdate?: () => void;
+      };
 }
 
-export { Payment, PaymentProps }
+export { Payment, PaymentProps, PaymentInfoFormProps }
