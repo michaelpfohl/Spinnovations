@@ -4,24 +4,27 @@ import {
   CarouselItem,
   CarouselControl,
   CarouselIndicators,
-  // CarouselCaption
+  CarouselCaption
 } from 'reactstrap';
 
 const items = [
     {
-      src: 'https://images.pexels.com/photos/3758105/pexels-photo-3758105.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260',
-      altText: 'Slide 1',
-      caption: 'Slide 1'
+      src: 'https://images.pexels.com/photos/1599819/pexels-photo-1599819.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+      altText: 'Add Products',
+      caption: 'Join our community of spinnovators and start adding products now.',
+      link: ''
     },
     {
-      src: 'https://images.pexels.com/photos/6991600/pexels-photo-6991600.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-      altText: 'Slide 2',
-      caption: 'Slide 2'
+      src: 'https://images.pexels.com/photos/2527768/pexels-photo-2527768.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+      altText: 'Top Tech',
+      caption: 'Slide 2',
+      link: ''
     },
     {
-      src: 'https://dummyimage.com/1000x400/3b3b3b/fff',
+      src: 'https://images.pexels.com/photos/776080/pexels-photo-776080.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
       altText: 'Slide 3',
-      caption: 'Slide 3'
+      caption: 'Slide 3',
+      link: ''
     }
   ];
   
@@ -54,7 +57,7 @@ const items = [
           key={item.src}
         >
           <img src={item.src} alt={item.altText} />
-          {/* <CarouselCaption captionText={item.caption} captionHeader={item.caption} /> */}
+          <CarouselCaption captionText={item.caption} />
         </CarouselItem>
       );
     });
