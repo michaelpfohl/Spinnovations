@@ -1,7 +1,8 @@
 import React from "react";
 import { User } from "../Helpers/Interfaces/UserInterfaces";
 import { Link } from "react-router-dom";
-import UpdateProfileModal from '../Components/Modals/UpdateProfileModal'
+import UpdateProfileModal from '../Components/Modals/UpdateProfileModal';
+import userData from '../Helpers/Data/userData';
 
 
 type UserProps = {
@@ -9,8 +10,19 @@ type UserProps = {
 };
 
 class Profile extends React.Component<UserProps> {
+
+  state = {
+    user: this.props.user,
+  }
+
+  onUpdate = (): void => {
+    userData.getUserByFirebaseUid(this.state.user.firebase_Uid).then((response) => {
+      this.setState({ user: response})
+    })
+  }
+
   render(): JSX.Element {
-    const { user } = this.props;
+    const { user } = this.state;
     return (
       <div id="profilePage">
         {user != null && (
@@ -39,7 +51,7 @@ class Profile extends React.Component<UserProps> {
                 </div>  
               </div>
               <div className="buttonGroup">
-                <UpdateProfileModal user={user}/> 
+                <UpdateProfileModal user={user} onUpdate={this.onUpdate}/> 
                 <Link
                   to={{
                     pathname: "/orders",

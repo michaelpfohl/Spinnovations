@@ -15,7 +15,7 @@ class ProfileForm extends Component<ProfileFormProps, User> {
     address: this.props.user?.address || "",
     city: this.props.user?.city || "",
     country: this.props.user?.country || "",
-    postal_code: this.props.user?.postal_code || "",
+    postal_Code: this.props.user?.postal_Code || "",
     display_Name: this.props.user?.display_Name,
     image_Url: this.props.user?.image_Url || "",
     state: this.props.user?.state || "",
@@ -34,21 +34,6 @@ class ProfileForm extends Component<ProfileFormProps, User> {
 
   handleSubmit = (e: React.ChangeEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    // const user = {
-    //   id: this.state.id,
-    //   first_Name: this.state.first_Name,
-    //   last_Name: this.state.last_Name,
-    //   address: this.state.address,
-    //   city: this.state.city,
-    //   country: this.state.country,
-    //   postal_code: this.state.postal_code,
-    //   display_Name: this.state.display_Name,
-    //   image_Url: this.state.image_Url,
-    //   state: this.state.state,
-    //   user_Created_Date: new Date(this.props.user.user_Created_Date),
-    //   firebase_Uid: this.props.user.firebase_Uid,
-    //   email: this.props.user.email
-    // };
     userData.updateUser(this.state).then(() => {
         if (this.props.onUpdate) {
           this.props.onUpdate();
@@ -151,8 +136,8 @@ class ProfileForm extends Component<ProfileFormProps, User> {
                 <div className="form-group">
                   <input
                     type="text"
-                    name="postal_code"
-                    value={this.state.postal_code}
+                    name="postal_Code"
+                    value={this.state.postal_Code}
                     onChange={this.handleChange}
                     placeholder="Postal Code"
                     className="form-control form-control-lg m-2 modal-input"

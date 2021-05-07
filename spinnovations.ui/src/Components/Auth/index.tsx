@@ -30,7 +30,7 @@ class Auth extends Component<AuthProps> {
   };
 
   componentDidMount(): void {
-    this.setState({ greetingColor: Math.floor(Math.random() * 7)})
+    this.setState({ greetingColor: Math.floor(Math.random() * 7) + 1})
   }
 
   logoutClickEvent = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {

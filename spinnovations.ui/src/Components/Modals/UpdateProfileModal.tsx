@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'reactstrap';
-import UserForm from '../Forms/ProfileForm';
+import ProfileForm from '../Forms/ProfileForm';
 import { UpdateProfileProps } from '../../Helpers/Interfaces/UserInterfaces';
 
 const UpdateProfileModal = ({ user, onUpdate }: UpdateProfileProps): JSX.Element => {
@@ -12,7 +12,7 @@ const UpdateProfileModal = ({ user, onUpdate }: UpdateProfileProps): JSX.Element
     <div>
       <Button color="primary" onClick={toggle}>Update Profile</Button>
       <Modal isOpen={modal} toggle={toggle}>
-        <UserForm user={user} onUpdate={onUpdate}/>
+        <ProfileForm user={user} onUpdate={onUpdate}/>
       </Modal>
     </div>
   );
