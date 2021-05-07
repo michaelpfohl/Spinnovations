@@ -27,6 +27,12 @@ class SingleProduct extends Component<ProductProps> {
     });
   }
 
+
+  addToCart = (): void => {
+    const { product } = this.state;
+    localStorage.setItem(product.name, JSON.stringify(product));
+  }
+
   deleteProduct = (): void => {
     productData.deleteProduct(this.state.product.id).then(() => {
       this.props.history.push('/Products')
@@ -62,7 +68,7 @@ class SingleProduct extends Component<ProductProps> {
         </div>
         <div className="row">
           <div className="col max-auto">
-            <Button>Add to Cart</Button>
+            <Button onClick={this.addToCart}>Add to Cart</Button>
             <Link to='/Products'>
               <Button>Return to Products</Button>
             </Link>
