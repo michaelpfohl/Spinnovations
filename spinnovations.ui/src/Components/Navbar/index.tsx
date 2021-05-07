@@ -45,8 +45,9 @@ const Navigation = ({ user }: NavProps): JSX.Element => {
             { user && 
             <NavItem>
               <a className="scheme-blue" href="/Add-Product" data-toggle="tooltip" data-placement="bottom" title="Add Product"><i className="fas fa-plus-circle fa-lg"></i></a>
+            )}
             </NavItem>
-            }
+            )}
           </Nav>
         </Collapse>
         <SearchInput />
