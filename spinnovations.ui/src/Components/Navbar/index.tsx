@@ -7,10 +7,10 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
 } from 'reactstrap';
 import Auth from '../Auth';
 import { User } from '../../Helpers/Interfaces/UserInterfaces';
+import logo from '../../Assets/Images/SpinnovationsLogo.png';
 
 type NavProps = {
   user: User | null;
@@ -23,28 +23,28 @@ const Navigation = ({ user }: NavProps): JSX.Element => {
 
   return (
     <div>
-      <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">Spinnovations</NavbarBrand>
+      <Navbar expand="md">
+        <NavbarBrand href="/" className="scheme-pink"><img className="nav-logo" src={logo}/>Spinnovations</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink href="/">Spin</NavLink>
+              <a className="scheme-orange" href="/" data-toggle="tooltip" data-placement="bottom" title="Spin"><i className="fas fa-cog fa-lg spinning-cog"></i></a>
             </NavItem>
             <NavItem>
-              <NavLink href="/Products">Browse</NavLink>
+              <a className="scheme-yellow" href="/Products" data-toggle="tooltip" data-placement="bottom" title="Browse"><i className="fas fa-eye fa-lg"></i></a>
             </NavItem>
             <NavItem>
-              <NavLink href="/">Cart</NavLink>
+              <a className="scheme-green" href="/" data-toggle="tooltip" data-placement="bottom" title="Cart"><i className="fas fa-shopping-cart fa-lg"></i></a>
             </NavItem>
             {user && 
               <NavItem>
-                <NavLink href="/Profile">Profile</NavLink>
+                <a className="scheme-blue-green" href="/Profile" data-toggle="tooltip" data-placement="bottom" title="Profile"><i className="fas fa-user-circle fa-lg"></i></a>
               </NavItem>
             }
             { user && 
             <NavItem>
-              <NavLink href="/Add-Product">Add Product</NavLink>
+              <a className="scheme-blue" href="/Add-Product" data-toggle="tooltip" data-placement="bottom" title="Add Product"><i className="fas fa-plus-circle fa-lg"></i></a>
             </NavItem>
             }
           </Nav>

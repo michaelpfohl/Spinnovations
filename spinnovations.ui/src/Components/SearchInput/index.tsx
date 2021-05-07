@@ -11,10 +11,6 @@ class SearchInput extends Component<SearchProps> {
 
   handleSubmit= () => {
     this.props.history.push(`/search/${this.state.text}`);
-
-    this.setState({
-      text: '',
-    });
   }
 
   handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,7 +22,7 @@ class SearchInput extends Component<SearchProps> {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <input type='text' name='text' value={this.state.text} onChange={this.handleChange} />
+        <input placeholder="Search for a Spinnovation!" type='text' name='text' className="search-input" value={this.state.text} onChange={this.handleChange} />
       </form>
     );
   }
