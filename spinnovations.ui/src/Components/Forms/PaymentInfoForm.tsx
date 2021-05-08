@@ -39,12 +39,13 @@ class PaymentInfoForm extends Component<PaymentInfoFormProps> {
       customer_Id: this.state.customer_Id,
     };
     if (this.state.id === null) {
-      paymentData.addPayment(payment);
-      this.setState({
-        added: true,
-      });
-      this.props.onUpdate();
-      setTimeout(() => this.setState({added: false}), 3000);
+      paymentData.addPayment(payment).then(() => {
+        this.props.onUpdate();
+        this.setState({
+          added: true,
+        });
+        setTimeout(() => this.setState({added: false}), 3000);
+      })
     } else {
       const payment = {
         id: this.state.id,

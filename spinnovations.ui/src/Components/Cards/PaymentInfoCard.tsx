@@ -38,7 +38,7 @@ const PaymentInfoCard = ({ payment, onUpdate, user }: PaymentInfoFormProps): JSX
           <CardText tag="h3">{getCardCompany(payment)}</CardText>
           <div className="justify-content-space-between p-2">
           <PaymentInfoModal user={user} payment={payment} onUpdate={onUpdate} title={"Edit Card"}/>
-          <Button className="btn-danger" onClick={() => paymentData.deletePaymentInfo(payment.id)}>Remove Card</Button>
+          <Button className="btn-danger" onClick={() => paymentData.deletePaymentInfo(payment.id).then(onUpdate())}>Remove Card</Button>
           </div>
         </CardBody>
       </Card>
