@@ -61,7 +61,7 @@ namespace Spinnovations.Controllers
             return Ok();
         }
 
-        [HttpDelete("{id}")]
+        [HttpPut("delete/{id}")]
         public IActionResult DeletePayment(int id)
         {
             _repo.Delete(id);
