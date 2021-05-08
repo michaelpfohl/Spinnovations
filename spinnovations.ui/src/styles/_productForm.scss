@@ -1,9 +1,29 @@
-.product-form-container {
-    background: $BackgroundDark;
-    border-radius: 30px;
-    border-top-left-radius: 0;
+.product-form-content {
+  background: $BackgroundDark;
+  border-radius: 30px;
+  border-top-left-radius: 0;
 }
 
-.product-form-header {
-    color: $SchemeBlue-Green;
+.product-form-container {
+  border-radius: 33px;
+  border-top-left-radius: 0;
+  -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
+}
+
+.add-product-input-container {
+  margin-left: -15px;
+}
+
+.submit-new-product-button {
+  height: 30px;
+  background-color: $AddGreen;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  border-top-left-radius: 0;
+  padding: 0 10px;
+  -webkit-box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.1);
+  padding: 0 15px;
 }

@@ -16,3 +16,22 @@ body, html, .App {
 .danger {
   background-color: $SchemeRed;
 }
+
+input, select {
+  border-radius: 10px !important;
+  border-top-left-radius: 0 !important;
+  background-color: $BackgroundLight;
+  width: 100%;
+  border:none;
+  -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
+}
+
+input::placeholder {
+  color: #fff;
+}
+
+select {
+  color: #fff;
+  font-size: 1.25rem;
+}

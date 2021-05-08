@@ -9,6 +9,7 @@ type ProductFormProps = {
   user: User;
   product?: Product;
   onUpdate?: () => void;
+  color?: number,
 };
 
 class ProductForm extends Component<ProductFormProps> {
@@ -78,6 +79,7 @@ class ProductForm extends Component<ProductFormProps> {
 
   render(): JSX.Element {
     const { product_categories, added } = this.state;
+    const { color } = this.props;
     const categoryNames = (category: ProductCategory): JSX.Element => {
       return (
         <option key={category.id} value={category.id}>
@@ -97,75 +99,75 @@ class ProductForm extends Component<ProductFormProps> {
           </div>
         </div>
         }
-        <div className="d-flex justify-content-center mt-5">
-          <div className="product-form-container p-3">
-            <h1 className="product-form-header">Add A New Product</h1>
-            <div className="d-flex justify-content-center">
+        <div className="d-flex justify-content-center">
+          <div className="product-form-content p-3">
+            <h1 className={`product-form-header color-text-${color}`}>Add A New Product</h1>
+            <div className="d-flex justify-content-center add-product-input-container">
               <form onSubmit={this.handleSubmit} className="add-Product-form">
-                <div className="form-group">
+                <div>
                   <input
                     type="text"
                     name="name"
                     value={this.state.name}
                     onChange={this.handleChange}
                     placeholder="Product Name"
-                    className="form-control form-control-lg m-2 modal-input"
+                    className={`form-control-lg m-2 modal-input color-half-border-${color}`}
                     required
                   />
                 </div>
-                <div className="form-group">
+                <div className="">
                   <input
                     type="url"
                     name="imageUrl"
                     value={this.state.imageUrl}
                     onChange={this.handleChange}
                     placeholder="Image URL"
-                    className="form-control form-control-lg m-2 modal-input"
+                    className={`form-control-lg m-2 modal-input color-half-border-${color}`}
                     required
                   />
                 </div>
-                <div className="form-group">
+                <div className="">
                   <input
                     type="text"
                     name="description"
                     value={this.state.description}
                     onChange={this.handleChange}
                     placeholder="Product Description"
-                    className="form-control form-control-lg m-2 modal-input"
+                    className={`form-control-lg m-2 modal-input color-half-border-${color}`}
                     required
                   />
                 </div>
-                <div className="form-group">
+                <div className="">
                   <input
                     type="number"
                     name="price"
                     value={this.state.price}
                     onChange={this.handleChange}
                     placeholder="Price"
-                    className="form-control form-control-lg m-2 modal-input"
+                    className={`form-control-lg m-2 modal-input color-half-border-${color}`}
                     required
                   />
                 </div>
-                <div className="form-group">
+                <div className="">
                   <input
                     type="number"
                     name="quantity_In_Stock"
                     value={this.state.quantity_In_Stock}
                     onChange={this.handleChange}
                     placeholder="Quantity In Stock"
-                    className="form-control form-control-lg m-2 modal-input"
+                    className={`form-control-lg m-2 modal-input color-half-border-${color}`}
                     required
                   />
                 </div>
                 <select
-                  className="form-control form-group"
+                  className={`form-group form-control-lg m-2 color-half-border-${color}`}
                   onChange={this.handleChange}
                   name="category_Id"
                   value={this.state.category_Id}
                 >
                   {options}
                 </select>
-                <button className="btn btn-success form-button form-button-text mt-1 mb-1">
+                <button className="submit-new-product-button form-button form-button-text mt-1 mb-1">
                   Submit
                 </button>
               </form>
