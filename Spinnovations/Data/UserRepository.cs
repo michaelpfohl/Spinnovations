@@ -62,7 +62,8 @@ namespace Spinnovations.Data
 	                        [User_Created_Date],
 	                        [State],
                             [Firebase_Uid],
-                            [Email])
+                            [Email],
+                            [Active])
                         VALUES 
 	                        (@First_Name, 
 	                        @Last_Name, 
@@ -75,7 +76,8 @@ namespace Spinnovations.Data
 	                        @User_Created_Date,
 	                        @State,
                             @Firebase_Uid,
-                            @Email)";
+                            @Email,
+                            1)";
             var id = db.ExecuteScalar<int>(sql, user);
             user.Id = id;
         }
@@ -95,7 +97,8 @@ namespace Spinnovations.Data
                             User_Created_Date = @User_Created_Date,
                             [State] = @State,
                             Firebase_Uid = @Firebase_Uid,
-                            Email = @Email
+                            Email = @Email,
+                            Active = 1,
                         WHERE Id = @id";
             db.Execute(sql, user);
         }
