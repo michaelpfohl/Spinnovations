@@ -98,7 +98,7 @@ namespace Spinnovations.Data
                             [State] = @State,
                             Firebase_Uid = @Firebase_Uid,
                             Email = @Email,
-                            Active = 1,
+                            Active = 1
                         WHERE Id = @id";
             db.Execute(sql, user);
         }
