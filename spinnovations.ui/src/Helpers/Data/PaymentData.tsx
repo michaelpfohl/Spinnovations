@@ -24,11 +24,14 @@ const addPayment = (payment: Payment): Promise<Payment> => new Promise((resolve,
 
 const updatePayment = (payment: Payment): Promise<void> => axios.put(`${paymentsURL}/${payment.id}`, payment);
 
+const deletePaymentInfo = (paymentId: number): Promise<void> => axios.put(`${paymentsURL}/delete/${paymentId}`, paymentId);
+
 //comment for git commit to fix an error
 const paymentData = {
     getPayments,
     getUserPayments,
     addPayment,
-    updatePayment
+    updatePayment,
+    deletePaymentInfo
 }
 export default paymentData;

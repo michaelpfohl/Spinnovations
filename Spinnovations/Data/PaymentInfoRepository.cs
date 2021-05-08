@@ -36,7 +36,7 @@ namespace Spinnovations.Data
         public List<Payment_Info> GetUserPayments(int custId)
         {
             using var db = new SqlConnection(ConnectionString);
-            var sql = "SELECT * FROM PaymentInfo WHERE PaymentInfo.Customer_Id = @custId";
+            var sql = "SELECT * FROM PaymentInfo WHERE PaymentInfo.Customer_Id = @custId and PaymentInfo.isActive = 1";
             var payment = db.Query<Payment_Info>(sql, new { custId = custId }).ToList();
             return payment;
         }
@@ -50,8 +50,9 @@ namespace Spinnovations.Data
                                ,[Expiration_Month]
                                ,[Expiration_Year]
                                ,[CVV]
-                               ,[Customer_Id])
-                         VALUES (@Card_Company, @Card_Number, @Expiration_Month, @Expiration_Year, @CVV, @Customer_Id)";
+                               ,[Customer_Id]
+                               ,[isActive])
+                         VALUES (@Card_Company, @Card_Number, @Expiration_Month, @Expiration_Year, @CVV, @Customer_Id, 1)";
             var id = db.ExecuteScalar<int>(sql, payment);
             payment.Id = id;
         }
@@ -65,7 +66,8 @@ namespace Spinnovations.Data
                             Expiration_Month = @expiration_Month,
                             Expiration_Year = @expiration_Year,
                             CVV = @cvv,
-                            Customer_Id = @customer_Id
+                            Customer_Id = @customer_Id,
+                            isActive = 1
                         WHERE Id = @id";
             db.Execute(sql, payment);
         }
@@ -73,7 +75,9 @@ namespace Spinnovations.Data
         public void Delete(int id)
         {
             using var db = new SqlConnection(ConnectionString);
-            var sql = "DELETE FROM PaymentInfo WHERE Id = @id";
+            var sql = @"UPDATE PaymentInfo
+                        SET isActive = 0
+                        WHERE Id = @id";
             db.Execute(sql, new { id = id });
         }
     }

@@ -7,6 +7,7 @@ import {
 } from "reactstrap";
 import { PaymentInfoFormProps, PaymentProps } from "../../Helpers/Interfaces/PaymentInterfaces";
 import PaymentInfoModal from "../../Components/Modals/PaymentInfoModal";
+import paymentData from '../../Helpers/Data/PaymentData';
 
 const PaymentInfoCard = ({ payment, onUpdate, user }: PaymentInfoFormProps): JSX.Element => {
   const getCardCompany = (payment: PaymentProps) : string => {
@@ -37,7 +38,7 @@ const PaymentInfoCard = ({ payment, onUpdate, user }: PaymentInfoFormProps): JSX
           <CardText tag="h3">{getCardCompany(payment)}</CardText>
           <div className="justify-content-space-between p-2">
           <PaymentInfoModal user={user} payment={payment} onUpdate={onUpdate} title={"Edit Card"}/>
-            <Button color="danger">Remove</Button>
+          <Button className="btn-danger" onClick={() => paymentData.deletePaymentInfo(payment.id)}>Remove Card</Button>
           </div>
         </CardBody>
       </Card>

@@ -15,5 +15,6 @@ namespace Spinnovations.Models
         public string Expiration_Year { get; set; }
         public string CVV { get; set; }
         public int Customer_Id { get; set; }
+        public bool isActive { get; set; }
     }
 }
