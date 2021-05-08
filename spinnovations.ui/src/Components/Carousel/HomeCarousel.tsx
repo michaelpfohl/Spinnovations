@@ -6,22 +6,26 @@ import {
   CarouselIndicators,
   CarouselCaption
 } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 const items = [
     {
-      src: 'https://dummyimage.com/1000x400/000/fff',
-      altText: 'Slide 1',
-      caption: 'Slide 1'
+      src: 'https://images.pexels.com/photos/1599819/pexels-photo-1599819.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+      altText: 'Add Products Now',
+      caption: 'Join our community of spinnovators and start adding products now.',
+      link: '/add-product'
     },
     {
-      src: 'https://dummyimage.com/1000x400/1c1c1c/fff',
-      altText: 'Slide 2',
-      caption: 'Slide 2'
+      src: 'https://images.pexels.com/photos/2527768/pexels-photo-2527768.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+      altText: 'Top Tech',
+      caption: 'See our newest spinnovations, pushing the boundaries of current technology.',
+      link: '/products'
     },
     {
-      src: 'https://dummyimage.com/1000x400/3b3b3b/fff',
-      altText: 'Slide 3',
-      caption: 'Slide 3'
+      src: 'https://images.pexels.com/photos/776080/pexels-photo-776080.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+      altText: 'Trending Now',
+      caption: 'View our most popular products. These spinnovations represent the very best of what we have to offer.',
+      link: '/products'
     }
   ];
   
@@ -54,7 +58,9 @@ const items = [
           key={item.src}
         >
           <img src={item.src} alt={item.altText} />
-          <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+          <Link to={item.link}>
+            <CarouselCaption captionHeader={item.altText} captionText={item.caption} />
+          </Link>
         </CarouselItem>
       );
     });
