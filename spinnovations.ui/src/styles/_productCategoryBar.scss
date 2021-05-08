@@ -3,14 +3,14 @@ $categoryCircleColor: lightblue;
 $categoryCircleText: #fff;
 
 .product-category-bar {
-  background: $productBarBackground;
+  background: $SchemeBlue-Green;
   -webkit-box-shadow: 0px 3px 15px -3px rgba(0, 0, 0, 0.5);
   box-shadow: 0px 3px 15px -3px rgba(0, 0, 0, 0.5);
   margin-bottom: 2.5%;
 }
 
 .product-category-circle {
-  background: $categoryCircleColor;
+  background: $SchemeYellow;
   width: 85px;
   height: 85px;
   border-radius: 50%;
@@ -21,6 +21,11 @@ $categoryCircleText: #fff;
   justify-content: center;
   align-items: center;
   border: none;
+  transition: all 0.1s linear;
+}
+
+.product-category-circle:hover {
+  transform: scale(1.05);
 }
 
 .product-category-circle-text {

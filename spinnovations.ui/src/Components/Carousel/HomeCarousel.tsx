@@ -70,6 +70,7 @@ const items = [
         activeIndex={activeIndex}
         next={next}
         previous={previous}
+        className="mb-4"
       >
         <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
         {slides}
