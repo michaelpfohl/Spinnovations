@@ -32,6 +32,10 @@ input::placeholder {
   color: #fff;
 }
 
+input:focus::placeholder {
+  color: transparent;
+}
+
 select {
   color: #fff;
   font-size: 1.25rem;
