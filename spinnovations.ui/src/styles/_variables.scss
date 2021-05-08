@@ -15,6 +15,7 @@ $SchemePurple: #998FC7;
 //optional background colors
 $BackgroundLight: #8C92AC;
 $BackgroundDark: #353839;
+$BackgroundMid: #5b6593;
 
 $AddGreen: #63C132;
 
@@ -31,6 +32,15 @@ $StyleFont: 'Roboto', sans-serif;
 .scheme-blue { color: $SchemeBlue; }
 .scheme-pink {color: $SchemePink; }
 
+.bg-scheme-red { background-color: $SchemeRed; }
+.bg-scheme-orange-red { background-color: $SchemeOrange-Red; }
+.bg-scheme-orange { background-color: $SchemeOrange; }
+.bg-scheme-yellow { background-color: $SchemeYellow; }
+.bg-scheme-green { background-color:$SchemeGreen; }
+.bg-scheme-blue-green { background-color: $SchemeBlue-Green; }
+.bg-scheme-blue { background-color: $SchemeBlue; }
+.bg-scheme-pink {background-color: $SchemePink; }
+
 .color-border-1 { border: 4px solid $SchemePink;}
 .color-border-2 { border: 4px solid $SchemeOrange;}
 .color-border-3 { border: 4px solid $SchemeYellow;}
@@ -38,6 +48,14 @@ $StyleFont: 'Roboto', sans-serif;
 .color-border-5 { border: 4px solid $SchemeBlue-Green;}
 .color-border-6 { border: 4px solid $SchemeBlue;}
 .color-border-7 { border: 4px solid $SchemePurple;}
+
+.color-half-border-1 { border: 2px solid $SchemePink;}
+.color-half-border-2 { border: 2px solid $SchemeOrange;}
+.color-half-border-3 { border: 2px solid $SchemeYellow;}
+.color-half-border-4 { border: 2px solid $SchemeGreen;}
+.color-half-border-5 { border: 2px solid $SchemeBlue-Green;}
+.color-half-border-6 { border: 2px solid $SchemeBlue;}
+.color-half-border-7 { border: 2px solid $SchemePurple;}
 
 .color-text-1 { color: $SchemePink;}
 .color-text-2 { color: $SchemeOrange;}

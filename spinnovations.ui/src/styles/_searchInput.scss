@@ -1,8 +1,7 @@
 .search-input { 
-    background-color: $BackgroundLight;
+    background-color: $BackgroundMid;
     height: 30px;
     width: 500px;
-    border: none;
     border-radius: 7px; 
     border-top-left-radius: 0;
     margin-right: 50px;
@@ -13,7 +12,7 @@
 }
 
 .search-input::placeholder {
-    color: lightgray;
+    color: #fff;
 }
 
 .search-input:focus {

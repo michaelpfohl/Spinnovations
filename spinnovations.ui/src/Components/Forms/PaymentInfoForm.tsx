@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import { User } from "../../Helpers/Interfaces/UserInterfaces";
-import { Payment } from "../../Helpers/Interfaces/PaymentInterfaces";
 import paymentData from "../../Helpers/Data/PaymentData";
 import {PaymentInfoFormProps} from '../../Helpers/Interfaces/PaymentInterfaces';
 
