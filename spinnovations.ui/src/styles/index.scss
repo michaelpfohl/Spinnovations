@@ -8,6 +8,7 @@
 @import 'productForm';
 @import 'navbar';
 @import 'searchInput';
+@import 'sellerShop';
 
 body, html, .App {
   background-color: $BackgroundLight;
@@ -20,7 +21,7 @@ body, html, .App {
 input, select {
   border-radius: 10px !important;
   border-top-left-radius: 0 !important;
-  background-color: $BackgroundLight;
+  background-color: $BackgroundMid;
   width: 100%;
   border:none;
   -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
@@ -34,4 +35,21 @@ input::placeholder {
 select {
   color: #fff;
   font-size: 1.25rem;
+}
+
+.style-button {
+  height: 38px;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  border-top-left-radius: 0;
+  padding: 0 10px;
+  -webkit-box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.1);
+  transition: all .25s ease;
+}
+
+.style-button:hover {
+  filter: saturate(60%);
+  color: $BackgroundDark;
 }

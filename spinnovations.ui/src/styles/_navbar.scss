@@ -17,13 +17,16 @@
   padding: 0 !important;
 }
 
+.navbar-brand:hover {
+  color: #fff;
+}
+
 .nav-item a {
   padding: 0 10px;
 }
 
 .nav-item a:hover {
-  color: $SchemePink;
-  text-decoration: none;
+  color: #fff;
 }
 
 .nav-item a:hover .spinning-cog {
@@ -43,6 +46,12 @@
   padding: 0 10px;
   -webkit-box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.1);
+  transition: all .25s ease;
+}
+
+.logout-button:hover, .signin-button:hover {
+  filter: saturate(60%);
+  color: $BackgroundDark;
 }
 
 .signin-button {
