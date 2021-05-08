@@ -63,21 +63,19 @@ class SingleProduct extends Component<ProductProps> {
             <p>{product.description}</p>
             <p>Spinnovator: {<Link to={url}>{user?.display_Name}</Link>}</p>
             <p>Quantity Available: {product.quantity_In_Stock}</p>
-            <strong>Price: ${product.price}</strong>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col max-auto">
-            <Button onClick={this.addToCart}>Add to Cart</Button>
-            <Link to='/Products'>
-              <Button>Return to Products</Button>
-            </Link>
-            {user?.id === product?.creator_Id &&
-              <div> 
-                <UpdateProductModal user={user} product={product} onUpdate={this.onUpdate}/>
-                <Button className="btn-danger" onClick={this.deleteProduct}>Delete</Button>
-              </div>
-            }
+            <strong className="pb-2">Price: ${product.price}</strong>
+            <div className="buttons d-block">
+              <Button className="d-block" onClick={this.addToCart}>Add to Cart</Button>
+              <Link to='/Products'>
+                <Button>Return to Products</Button>
+              </Link>
+              {this.props.user?.id === product?.creator_Id &&
+                <div> 
+                  <UpdateProductModal user={user} product={product} onUpdate={this.onUpdate}/>
+                  <Button className="btn-danger" onClick={this.deleteProduct}>Delete</Button>
+                </div>
+              }
+            </div>
           </div>
         </div>
       </div>
