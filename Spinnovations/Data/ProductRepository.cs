@@ -21,14 +21,14 @@ namespace Spinnovations.Data
         public List<Product> GetAll()
         {
             using var db = new SqlConnection(ConnectionString);
-            var sql = "SELECT * FROM Products";
+            var sql = "SELECT * FROM Products WHERE Active = 1";
             return db.Query<Product>(sql).ToList();
         }
 
         public List<Product> GetProductsByCreatorId(int creatorId)
         {
             using var db = new SqlConnection(ConnectionString);
-            var sql = "SELECT * FROM Products WHERE Creator_Id = @creatorId";
+            var sql = "SELECT * FROM Products WHERE Creator_Id = @creatorId AND Active = 1";
             return db.Query<Product>(sql, new { creatorId = creatorId }).ToList();
         }
 
@@ -45,6 +45,7 @@ namespace Spinnovations.Data
             using var db = new SqlConnection(ConnectionString);
             var sql = @"SELECT TOP 20 *
                         FROM Products
+                        WHERE Active = 1
                         ORDER BY Id DESC";
             return db.Query<Product>(sql).ToList();
         }
@@ -55,7 +56,7 @@ namespace Spinnovations.Data
             var sql = @"SELECT * 
                         FROM Products AS p
                         JOIN Product_Category AS pc ON p.Category_Id = pc.Id
-                        WHERE p.Category_Id = @id;";
+                        WHERE p.Category_Id = @id AND p.Active = 1";
             return db.Query<Product>(sql, new { id = id}).ToList();
         }
 
@@ -69,8 +70,9 @@ namespace Spinnovations.Data
                                ,[Category_Id]
                                ,[Price]
                                ,[Creator_Id]
-                               ,[Quantity_In_Stock])
-                         VALUES (@Name, @ImageUrl, @Description, @Category_Id, @Price, @Creator_Id, @Quantity_In_Stock)";
+                               ,[Quantity_In_Stock]
+                               ,[Active])
+                         VALUES (@Name, @ImageUrl, @Description, @Category_Id, @Price, @Creator_Id, @Quantity_In_Stock, 1)";
             var id = db.ExecuteScalar<int>(sql, product);
             product.Id = id;
         }
@@ -84,7 +86,8 @@ namespace Spinnovations.Data
                             Description = @description,
                             Category_Id = @category_Id,
                             Price = @price,
-                            Quantity_In_Stock = @quantity_In_Stock
+                            Quantity_In_Stock = @quantity_In_Stock,
+                            Active = 1
                         WHERE Id = @id";
             db.Execute(sql, product);
         }

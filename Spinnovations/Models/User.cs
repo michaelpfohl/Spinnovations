@@ -20,5 +20,6 @@ namespace Spinnovations.Models
         public string State { get; set; }
         public string Firebase_Uid { get; set; }
         public string Email { get; set; }
+        public bool Active { get; set; }
     }
 }

@@ -15,5 +15,6 @@ namespace Spinnovations.Models
         public double Price { get; set; }
         public int Creator_Id { get; set; }
         public int Quantity_In_Stock { get; set; }
+        public bool Active { get; set; }
     }
 }
