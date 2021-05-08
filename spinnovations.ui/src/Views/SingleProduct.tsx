@@ -56,7 +56,7 @@ class SingleProduct extends Component<ProductProps> {
           </div>
         </div>
         <div className="row">
-          <div className="col-10 mx-auto col-md my-3">
+          <div className="single-product-image col-10 mx-auto col-md my-3">
             <img src={product.imageUrl} alt="product image"/>
           </div>
           <div className="col-10 max-auto col-md my-3 text-left">
