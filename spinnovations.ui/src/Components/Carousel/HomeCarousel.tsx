@@ -13,7 +13,7 @@ const items = [
       src: 'https://images.pexels.com/photos/1599819/pexels-photo-1599819.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
       altText: 'Add Products Now',
       caption: 'Join our community of spinnovators and start adding products now.',
-      link: '/products'
+      link: '/add-product'
     },
     {
       src: 'https://images.pexels.com/photos/2527768/pexels-photo-2527768.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
