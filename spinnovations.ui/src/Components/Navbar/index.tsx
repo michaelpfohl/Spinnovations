@@ -35,7 +35,7 @@ const Navigation = ({ user }: NavProps): JSX.Element => {
               <a className="scheme-yellow" href="/Products" data-toggle="tooltip" data-placement="bottom" title="Browse"><i className="fas fa-eye fa-lg"></i></a>
             </NavItem>
             <NavItem>
-              <a className="scheme-green" href="/" data-toggle="tooltip" data-placement="bottom" title="Cart"><i className="fas fa-shopping-cart fa-lg"></i></a>
+              <a className="scheme-green" href="/Cart" data-toggle="tooltip" data-placement="bottom" title="Cart"><i className="fas fa-shopping-cart fa-lg"></i></a>
             </NavItem>
             {user && 
               <NavItem>
