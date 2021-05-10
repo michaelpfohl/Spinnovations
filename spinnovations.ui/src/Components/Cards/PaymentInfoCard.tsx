@@ -8,6 +8,7 @@ import {
 import { PaymentInfoFormProps, PaymentProps } from "../../Helpers/Interfaces/PaymentInterfaces";
 import PaymentInfoModal from "../../Components/Modals/PaymentInfoModal";
 import paymentData from '../../Helpers/Data/PaymentData';
+import { on } from "node:events";
 
 const PaymentInfoCard = ({ payment, onUpdate, user }: PaymentInfoFormProps): JSX.Element => {
   const getCardCompany = (payment: PaymentProps) : string => {
@@ -25,7 +26,7 @@ const PaymentInfoCard = ({ payment, onUpdate, user }: PaymentInfoFormProps): JSX
     }
   }
   return (
-    <div className="p-5">
+    <div className="p-5" key={payment.id}>
       <Card style={{ width: "25em" }} className="d-flex align-items-center">
         <CardBody>
           <CardTitle tag="h2">{payment.card_Number}</CardTitle>
@@ -38,7 +39,14 @@ const PaymentInfoCard = ({ payment, onUpdate, user }: PaymentInfoFormProps): JSX
           <CardText tag="h3">{getCardCompany(payment)}</CardText>
           <div className="justify-content-space-between p-2">
           <PaymentInfoModal user={user} payment={payment} onUpdate={onUpdate} title={"Edit Card"}/>
-          <Button className="btn-danger" onClick={() => paymentData.deletePaymentInfo(payment.id).then(onUpdate())}>Remove Card</Button>
+          <Button className="btn-danger" onClick={() => {
+                paymentData.deletePaymentInfo(payment.id).then(() => {
+                  onUpdate();
+                });
+              }
+            }>
+            Remove Card
+          </Button>
           </div>
         </CardBody>
       </Card>

@@ -244,7 +244,7 @@ class PaymentInfoForm extends Component<PaymentInfoFormProps> {
                       <option value={'6'}>
                         Jun
                       </option>
-                      <option value={'07'}>
+                      <option value={'7'}>
                         Jul
                       </option>
                       <option value={'8'}>
