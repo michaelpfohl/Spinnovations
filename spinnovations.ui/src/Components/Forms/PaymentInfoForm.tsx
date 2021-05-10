@@ -95,7 +95,7 @@ class PaymentInfoForm extends Component<PaymentInfoFormProps> {
                     name="cvv"
                     value={this.state.cvv}
                     onChange={this.handleChange}
-                    placeholder="cvv"
+                    placeholder="CVV"
                     className="form-control form-control-lg m-2 modal-input"
                     required
                   />
@@ -107,6 +107,9 @@ class PaymentInfoForm extends Component<PaymentInfoFormProps> {
                     onChange={this.handleChange}
                     required
                   >
+                      <option value="" selected disabled hidden>
+                        Select a Month
+                      </option>
                       <option value={'1'}>
                         Jan
                       </option>
@@ -151,6 +154,9 @@ class PaymentInfoForm extends Component<PaymentInfoFormProps> {
                     onChange={this.handleChange}
                     required
                   >
+                      <option value="" selected disabled hidden>
+                        Select a Year
+                      </option>
                       <option value={'2021'}>
                         2021
                       </option>
@@ -174,6 +180,9 @@ class PaymentInfoForm extends Component<PaymentInfoFormProps> {
                     onChange={this.handleChange}
                     required
                   >
+                      <option value="" selected disabled hidden>
+                        Select a Card Company
+                      </option>
                       <option value={1}>
                         American Express
                       </option>
