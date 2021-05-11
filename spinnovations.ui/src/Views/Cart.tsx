@@ -1,7 +1,7 @@
 import React from 'react';
 import { User } from '../Helpers/Interfaces/UserInterfaces';
 import { Product } from '../Helpers/Interfaces/ProductInterfaces';
-import { CartCard } from "../Components/Cards/CartCard";
+import CartCard from "../Components/Cards/CartCard";
 
 type UserProps = {
   user: User;
@@ -69,6 +69,8 @@ class Cart extends React.Component<UserProps, cartState> {
             {cartCards}
           </tbody>
         </table>
+        <hr></hr>
+        <h3>Total in cart: </h3>
       </div>
     )
     
