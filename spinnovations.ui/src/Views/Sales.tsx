@@ -58,11 +58,18 @@ class Sales extends Component<OrderProps> {
       totalSales,
       averagePrice,
       last30,
+      quantityByCategory
     } = this.state;
     const orderCard = (order: Order): JSX.Element => {
-      return <OrderCard order={order} />;
+      return <OrderCard key={order.id} order={order} />;
     };
     const cards = orders.map(orderCard);
+    const categoryTotalsDivs = (categoryTotal: CategoryTotals): JSX.Element => (
+        <div key={categoryTotal.name}>
+            {categoryTotal.name}: {categoryTotal.total}
+        </div>
+    )
+    const categoryTotals = quantityByCategory.map(categoryTotalsDivs);
     return (
       <div>
         <div className="d-flex justify-content-center mt-5">
@@ -76,6 +83,12 @@ class Sales extends Component<OrderProps> {
               <p>Total Lifetime Sales: ${totalSales.toFixed(2)}</p>
               <p>Last Month Sales: ${last30.toFixed(2)}</p>
               <p>Average Product Sale Price: ${averagePrice.toFixed(2)}</p>
+            </div>
+            <h4 className={`mt-4 mb-4 color-text-${greetingColor} underline`}>
+              Inventory by Category
+            </h4>
+            <div className="d-flex justify-content-around mt-4 mb-4">
+              {categoryTotals}
             </div>
           </div>
         </div>

@@ -58,7 +58,7 @@ namespace Spinnovations.Controllers
             return Ok();
         }
 
-        [HttpGet("/totals/{creatorId}")]
+        [HttpGet("totals/{creatorId}")]
         public IActionResult GetQuantityByCategory(int creatorId)
         {
             return Ok(_repo.GetQuantityByCategory(creatorId));

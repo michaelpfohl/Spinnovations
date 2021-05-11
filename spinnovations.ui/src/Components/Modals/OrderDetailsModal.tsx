@@ -13,7 +13,7 @@ const OrderDetailsModal
   const orderDetailsCard = (order: OrderProps): JSX.Element => {
     const orderDetailsCardsArray = [];
     for (let i = 0; i < order.products.length; i++) {
-      orderDetailsCardsArray.push(<OrderDetailsCard order_Details={order.order_Details[i]} product={order.products[i]}/>)
+      orderDetailsCardsArray.push(<OrderDetailsCard key={order.id} order_Details={order.order_Details[i]} product={order.products[i]}/>)
     }
     const cards = orderDetailsCardsArray.map((card) => card);
     return (<tbody>{cards}</tbody>)
