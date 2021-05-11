@@ -35,12 +35,33 @@ const getAllUserSales = (creatorId: number): Promise<Order> => new Promise((reso
     }).catch((error) => reject(error));
 });
 
+const getTotalUserSales = (creatorId: number): Promise<number> => new Promise((resolve, reject) => {
+    axios.get(`${ordersUrl}/sales/total/${creatorId}`).then((response) => {
+        resolve(response.data);
+    }).catch((error) => reject(error));
+})
+
+const getAverageProductSoldPrice = (creatorId: number): Promise<number> => new Promise((resolve, reject) => {
+    axios.get(`${ordersUrl}/sales/average/${creatorId}`).then((response) => {
+        resolve(response.data);
+    }).catch((error) => reject(error));
+})
+
+const getTotalUserSalesLastMonth = (creatorId: number): Promise<number> => new Promise((resolve, reject) => {
+    axios.get(`${ordersUrl}/sales/last30/${creatorId}`).then((response) => {
+        resolve(response.data);
+    }).catch((error) => reject(error));
+})
+
 const orderData = {
     getAllOrders,
     getOrderById,
     getOrderDetailsById,
     getAllUserOrders,
     getAllUserSales,
+    getTotalUserSales,
+    getAverageProductSoldPrice,
+    getTotalUserSalesLastMonth,
 }
 
 export default orderData;

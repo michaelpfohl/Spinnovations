@@ -59,5 +59,15 @@ namespace Spinnovations.Data
             var sql = "DELETE FROM Product_Category WHERE Id = @id";
             db.Execute(sql, new { id = id });
         }
+
+        public IEnumerable<CategoryTotals> GetQuantityByCategory(int creatorId)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = @"SELECT pc.Category_Name, SUM(p.Quantity_In_Stock) AS Quantity_Sum FROM Products AS p
+                        JOIN Product_Category AS pc ON pc.Id = p.Category_Id
+                        WHERE p.Creator_Id = @creatorId
+                        GROUP BY pc.Category_Name";
+            return db.Query<CategoryTotals>(sql, new { creatorId = creatorId });
+        }
     }
 }

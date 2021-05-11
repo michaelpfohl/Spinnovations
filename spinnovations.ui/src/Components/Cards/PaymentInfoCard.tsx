@@ -8,7 +8,6 @@ import {
 import { PaymentInfoFormProps, PaymentProps } from "../../Helpers/Interfaces/PaymentInterfaces";
 import PaymentInfoModal from "../../Components/Modals/PaymentInfoModal";
 import paymentData from '../../Helpers/Data/PaymentData';
-import { on } from "node:events";
 
 const PaymentInfoCard = ({ payment, onUpdate, user }: PaymentInfoFormProps): JSX.Element => {
   const getCardCompany = (payment: PaymentProps) : string => {

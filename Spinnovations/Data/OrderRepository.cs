@@ -100,6 +100,43 @@ namespace Spinnovations.Data
             return userOrders;
         }
 
+        public double GetTotalCreatorSales(int creatorId)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = $@"SELECT SUM(od.Unit_Price * od.Quantity) from Orders o
+                        JOIN Order_Details od 
+                            ON od.Order_Id = o.id
+                        JOIN Products p
+                            ON p.id = od.Product_Id
+                        WHERE p.Creator_Id = @creatorId";
+            return db.ExecuteScalar<double>(sql, new { creatorId = creatorId });
+        }
+
+        public double GetAverageProductSoldPrice(int creatorId)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = $@"SELECT AVG(od.Unit_Price) from Orders o
+                        JOIN Order_Details od 
+                            ON od.Order_Id = o.id
+                        JOIN Products p
+                            ON p.id = od.Product_Id
+                        WHERE p.Creator_Id = @creatorId";
+            return db.ExecuteScalar<double>(sql, new { creatorId = creatorId });
+        }
+
+        public double GetTotalCreatorSalesLastMonth(int creatorId)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = $@"SELECT SUM(od.Unit_Price * od.Quantity) from Orders o
+                        JOIN Order_Details od 
+                            ON od.Order_Id = o.id
+                        JOIN Products p
+                            ON p.id = od.Product_Id
+                        WHERE p.Creator_Id = 7
+                        AND DATEDIFF(day, o.Order_Date, GETDATE()) < 30;";
+            return db.ExecuteScalar<double>(sql, new { creatorId = creatorId });
+        }
+
         public void Add(Order order)
         {
             using var db = new SqlConnection(ConnectionString);

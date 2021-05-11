@@ -44,6 +44,25 @@ namespace Spinnovations.Controllers
             return Ok(_repo.GetAllOrdersByCreator(creatorId));
         }
 
+        [HttpGet("sales/total/{creatorId}")]
+        public IActionResult GetTotalCreatorSales(int creatorId)
+        {
+            return Ok(_repo.GetTotalCreatorSales(creatorId));
+        }
+
+        [HttpGet("sales/average/{creatorId}")]
+        public IActionResult GetAverageProductSoldPrice(int creatorId)
+        {
+            return Ok(_repo.GetAverageProductSoldPrice(creatorId));
+        }
+
+        [HttpGet("sales/last30/{creatorId}")]
+        public IActionResult GetTotalCreatorSalesLastMonth(int creatorId)
+        {
+            return Ok(_repo.GetTotalCreatorSalesLastMonth(creatorId));
+        }
+
+
         [HttpPost]
         public IActionResult AddOrder_Details(Order order)
         {
