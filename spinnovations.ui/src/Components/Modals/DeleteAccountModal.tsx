@@ -3,6 +3,7 @@ import { Modal } from 'reactstrap';
 import { DeleteAccountProps } from '../../Helpers/Interfaces/UserInterfaces';
 import userData from '../../Helpers/Data/userData';
 import firebase from 'firebase';
+import productData from '../../Helpers/Data/ProductData';
 
 const DeleteAccountModal = ({user} : DeleteAccountProps): JSX.Element => {
   const [modal, setModal] = useState(false);
@@ -18,6 +19,8 @@ const DeleteAccountModal = ({user} : DeleteAccountProps): JSX.Element => {
                     <h3 className="d-flex text-align-center">Are you sure you want to close your account?</h3>
                     <p className="text-align-center">Any Spinnovations you have added will also be removed.</p>
                     <button className="btn btn-danger form-button form-button-text mt-1 mb-1" onClick={() => {
+                        //delete all products added by user
+                        productData.deleteProductsByCreator(user.id);
                         //change active column in database to false
                         userData.deleteUser(user.id);
                         //delete user from firebase
