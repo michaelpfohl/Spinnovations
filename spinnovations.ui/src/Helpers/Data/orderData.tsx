@@ -29,11 +29,18 @@ const getAllUserOrders = (customerId: number): Promise<Order> => new Promise((re
     }).catch((error) => reject(error));
 });
 
+const getAllUserSales = (creatorId: number): Promise<Order> => new Promise((resolve, reject) => {
+    axios.get(`${ordersUrl}/sales/${creatorId}`).then((response) => {
+        resolve(response.data)
+    }).catch((error) => reject(error));
+});
+
 const orderData = {
     getAllOrders,
     getOrderById,
     getOrderDetailsById,
-    getAllUserOrders
+    getAllUserOrders,
+    getAllUserSales,
 }
 
 export default orderData;

@@ -37,6 +37,13 @@ namespace Spinnovations.Controllers
         {
             return Ok(_repo.GetAllOrdersByUser(customerId)) ;
         }
+
+        [HttpGet("sales/{creatorId}")]
+        public IActionResult GetOrderByCreator(int creatorId)
+        {
+            return Ok(_repo.GetAllOrdersByCreator(creatorId));
+        }
+
         [HttpPost]
         public IActionResult AddOrder_Details(Order order)
         {

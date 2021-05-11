@@ -21,7 +21,7 @@ const OrderDetailsModal
 
   return (
     <div>
-      <Button color="danger" onClick={toggle}>See Details</Button>
+      <button className="style-button bg-scheme-yellow" onClick={toggle}>See Details</button>
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Order Details</ModalHeader>
         <ModalBody>

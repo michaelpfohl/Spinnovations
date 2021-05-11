@@ -80,7 +80,16 @@ class Profile extends React.Component<UserProps> {
                  user: user
                 }
               }}><button className="style-button bg-scheme-yellow">My Payments</button></Link>
-                <a href="/"><button className="style-button bg-scheme-orange">My Spins</button></a>
+                <Link
+                  to={{
+                    pathname: "/sales",
+                    state: {
+                      user: user,
+                    },
+                  }}
+                >
+                  <button className="style-button bg-scheme-orange">My Sales</button>
+                </Link>
                 <a href="/"><button className="style-button bg-scheme-red">Help</button></a>
               </div>
             </div>

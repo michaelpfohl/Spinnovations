@@ -66,6 +66,40 @@ namespace Spinnovations.Data
             return userOrders;
 
         }
+
+        public IEnumerable<Order> GetAllOrdersByCreator(int creatorId)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = $@"SELECT * from Orders o
+                        JOIN Order_Details od 
+                            ON od.Order_Id = o.id
+                        JOIN Products p
+                            ON p.id = od.Product_Id
+                        WHERE p.Creator_Id = @creatorId";
+            var orders = new Dictionary<int, Order>();
+            var userOrders = db.Query<Order, Order_Details, Product, Order>(sql, (order, order_details, product) =>
+            {
+                //in the case that I haven't seen the order before, 
+                //add it to the dictionary, and initialize the lists
+                if (!orders.ContainsKey(order.Id))
+                {
+                    order.Order_Details = new List<Order_Details>();
+                    order.Products = new List<Product>();
+                    orders.Add(order.Id, order);
+                }
+
+                //add the product and order items to the correct lists
+                var currentOrder = orders[order.Id];
+                currentOrder.Order_Details.Add(order_details);
+                currentOrder.Products.Add(product);
+
+                //return the order item
+
+                return currentOrder;
+            }, new { creatorId = creatorId }, splitOn: "Id").Distinct();
+            return userOrders;
+        }
+
         public void Add(Order order)
         {
             using var db = new SqlConnection(ConnectionString);
