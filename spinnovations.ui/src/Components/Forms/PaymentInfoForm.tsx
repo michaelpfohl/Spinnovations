@@ -15,7 +15,8 @@ class PaymentInfoForm extends Component<PaymentInfoFormProps> {
     error: false,
     updated: false,
     errorMessageCard: "",
-    errorMessageCVV: ""
+    errorMessageCVV: "",
+    errorMessageExp: "",
   };
 
   componentDidMount(): void {
@@ -91,14 +92,40 @@ class PaymentInfoForm extends Component<PaymentInfoFormProps> {
   }
 
   validateCVV(): boolean {
-    if (this.state.cvv.length < 3 || this.state.cvv.length > 4) {
+    if (this.state.card_Company === "1" && this.state.cvv.length !== 4) {
       this.setState({
-        errorMessageCVV: "Please enter a valid CVV"
+        errorMessageCVV: "Please enter a valid 4 digit CVV"
+      })
+      return false;
+    } else if (this.state.card_Company !== "1" && this.state.cvv.length !== 3) {
+      this.setState({
+        errorMessageCVV: "Please enter a valid 3 digit CVV"
       })
       return false;
     } else {
       this.setState({
         errorMessageCVV: ""
+      })
+      return true;
+    }
+  }
+  validateExp(): boolean {
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth() + 1;
+    const currentYear = currentDate.getFullYear();
+    if (parseInt(this.state.expiration_Year) < currentYear) {
+      this.setState({
+        errorMessageExp: 'This Card Has Expired'
+      })
+      return false;
+    } else if ((parseInt(this.state.expiration_Year) === currentYear) && (parseInt(this.state.expiration_Month) < currentMonth)) {
+      this.setState({
+        errorMessageExp: 'This Card Has Expired'
+      })
+      return false;
+    } else {
+      this.setState({
+        errorMessageExp: ""
       })
       return true;
     }
@@ -109,6 +136,9 @@ class PaymentInfoForm extends Component<PaymentInfoFormProps> {
   ): void => {
     this.setState({
       [e.target.name]: e.target.value,
+      errorMessageCard: "",
+      errorMessageCVV: "",
+      errorMessageExp: "",
     });
   };
 
@@ -122,7 +152,7 @@ class PaymentInfoForm extends Component<PaymentInfoFormProps> {
       cvv: this.state.cvv,
       customer_Id: this.state.customer_Id,
     };
-    if ((this.validateCard()) && (this.validateCVV())) {
+    if ((this.validateCard()) && (this.validateCVV()) && (this.validateExp())) {
       if (this.state.id === null) {
         paymentData.addPayment(payment).then(() => {
           this.props.onUpdate();
@@ -164,7 +194,7 @@ class PaymentInfoForm extends Component<PaymentInfoFormProps> {
   };
 
   render(): JSX.Element {
-    const { added, error, errorMessageCard, errorMessageCVV, updated } = this.state;
+    const { added, error, errorMessageCard, errorMessageCVV, errorMessageExp, updated } = this.state;
     return (
       <div>
         {added && 
@@ -184,8 +214,9 @@ class PaymentInfoForm extends Component<PaymentInfoFormProps> {
         {error &&
         <div>
           <div className="product-added-container mb-5 mt-5">
-            <h4>{errorMessageCard}</h4>
-            <h4>{errorMessageCVV}</h4>
+            <p>{errorMessageCard}</p>
+            <p>{errorMessageCVV}</p>
+            <p>{errorMessageExp}</p>
           </div>
         </div>
         }
