@@ -2,6 +2,7 @@ import React from 'react';
 import { User } from '../Helpers/Interfaces/UserInterfaces';
 import { Product } from '../Helpers/Interfaces/ProductInterfaces';
 import { CartCard } from '../Components/Cards/CartCard';
+import {Link} from 'react-router-dom';
 
 type UserProps = {
   user: User;
@@ -77,6 +78,13 @@ class Cart extends React.Component<UserProps, cartState> {
             <div className="container d-flex flex-wrap justify-content-around">
               {renderProducts()}
             </div>
+            <Link to={{
+              pathname:"/checkout",
+              state: {
+                user: user,
+                products: products
+              },
+              }}>Checkout</Link>
           </div>
         )}
       </>

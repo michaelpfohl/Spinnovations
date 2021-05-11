@@ -3,33 +3,32 @@ import { Payment } from "../Helpers/Interfaces/PaymentInterfaces";
 import { User } from "../Helpers/Interfaces/UserInterfaces";
 import paymentData from "../Helpers/Data/PaymentData";
 import { getCardCompany } from "../Components/Cards/PaymentInfoCard";
-import userData from "../Helpers/Data/userData";
+import { Product } from "../Helpers/Interfaces/ProductInterfaces";
+import { CheckoutProps } from "../Helpers/Interfaces/CheckoutInterfaces";
+import {Table} from 'reactstrap';
 
 type CheckoutState = {
-  paymentMethods: Payment[];
+  payments: Payment[];
+  products: Product[];
   user: User;
   selectedPayment: Payment;
 };
 
-class Checkout extends Component<any> {
+class Checkout extends Component<CheckoutProps> {
   state: CheckoutState = {
-    paymentMethods: [],
-    user: {},
+    payments: [],
+    user: this.props.location.state.user,
     selectedPayment: {},
+    products: this.props.location.state.products,
   };
   componentDidMount(): void {
-    userData.getUserById(5).then((response: User) => {
-      this.setState({
-        user: response,
-      });
-      paymentData
-        .getUserPayments(this.state.user.id)
-        .then((response: Payment[]) => {
-          this.setState({
-            paymentMethods: response,
-          });
+    paymentData
+      .getUserPayments(this.state.user.id)
+      .then((response: Payment[]) => {
+        this.setState({
+          payments: response,
         });
-    });
+      });
   }
   handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -40,7 +39,7 @@ class Checkout extends Component<any> {
   };
 
   render(): JSX.Element {
-    const { paymentMethods, user } = this.state;
+    const { payments, user } = this.state;
     const paymentOptions = (payment: Payment): JSX.Element => {
       const last4 = payment.card_Number.substring(
         payment.card_Number.length - 4,
@@ -52,9 +51,20 @@ class Checkout extends Component<any> {
         </option>
       );
     };
-    const options = paymentMethods.map(paymentOptions);
+    const options = payments.map(paymentOptions);
     return (
       <div>
+        <Table hover>
+          <thead>
+            <tr>
+              <th scope="row"></th>
+              <th>Order Date</th>
+              <th>Address</th>
+              <th>Total Cost</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </Table>
         <div className="d-flex justify-content-center mt-5">
           <div className="product-form-container p-3">
             <h1 className="product-form-header">Select Payment Method</h1>
