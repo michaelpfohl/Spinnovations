@@ -3,11 +3,13 @@ import { ProductProps } from "../../Helpers/Interfaces/ProductInterfaces";
 
 type cartCardState = {
   qty: number,
+  itemSubTotal: number,
 };
 
 class CartCard extends React.Component<ProductProps> {
   state: cartCardState = {
     qty: 1,
+    itemSubTotal: 0,
   };
 
   handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void =>{
@@ -21,7 +23,6 @@ class CartCard extends React.Component<ProductProps> {
     const quantity = this.state.qty;
     const subtotal = quantity * price;
     const roundedSubtotal = parseFloat(subtotal.toFixed(2));
-    this.props.parentCallback(roundedSubtotal);
     return roundedSubtotal;
   }
 

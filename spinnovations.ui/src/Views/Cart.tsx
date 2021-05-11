@@ -21,22 +21,25 @@ class Cart extends React.Component<UserProps, cartState> {
   getTheCart = (): void => {
     const keys = Object.keys(localStorage);
     const items: Product[] = [];
-    let cost = 0;
+    //let cost = 0;
     if (localStorage.length) {
       for (const key of keys) {
         const getCartItems = async (): Promise<Product> => {
           const cartItem = await JSON.parse(localStorage.getItem(key) || '');
           items.push(cartItem);
+          //cost += cartItem.price;
         };
         getCartItems().then(() => {
           this.setState({
             products: items,
+            // cartTotal: cost,
           });
         });
       }
     } else {
       this.setState({
         products: [],
+        cartTotal: 0,
       });
     }
   };
@@ -45,16 +48,8 @@ class Cart extends React.Component<UserProps, cartState> {
     this.getTheCart();
   }
 
-  handleCallback = (childData: number): void => {
-    if (this.state.cartTotal === 0){
-      this.setState({
-        cartTotal: childData,
-      })
-    } else {
-      this.setState({
-        cartTotal: this.state.cartTotal + childData,
-      })
-    }
+  handleCallback = (subtotal: number): void => {
+    
   }
 
   totalTheCart = (): void => {
