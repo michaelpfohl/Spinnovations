@@ -31,7 +31,7 @@ class Payments extends Component<PaymentProps> {
     render() : JSX.Element {
         const { payments, user } = this.state
         const paymentCard = (payment: Payment): JSX.Element => {
-            return <PaymentInfoCard payment={payment} user={user} onUpdate={this.onUpdate}/>
+            return <PaymentInfoCard key={payment.id} payment={payment} user={user} onUpdate={this.onUpdate}/>
         };
 
         const cards = payments.map(paymentCard)
