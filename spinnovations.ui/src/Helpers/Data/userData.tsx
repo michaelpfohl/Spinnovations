@@ -35,12 +35,15 @@ const updateUser = (user: User): Promise<User> => axios({
     headers:{'Content-Type': 'application/json; charset=utf-8'}
 });
 
+const deleteUser = (userId: number): Promise<void> => axios.put(`${usersUrl}/delete/${userId}`, userId);
+
 const userData = {
     getAllUsers,
     getUserById,
     getUserByFirebaseUid,
     AddNewUser,
     updateUser,
+    deleteUser,
 }
 
 export default userData;
