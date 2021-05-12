@@ -3,6 +3,7 @@ import { User } from "../Helpers/Interfaces/UserInterfaces";
 import { Link } from "react-router-dom";
 import UpdateProfileModal from "../Components/Modals/UpdateProfileModal";
 import userData from "../Helpers/Data/userData";
+import DeleteAccountModal from "../Components/Modals/DeleteAccountModal";
 
 type UserProps = {
   user: User;
@@ -91,6 +92,7 @@ class Profile extends React.Component<UserProps> {
                   <button className="style-button bg-scheme-orange">My Sales</button>
                 </Link>
                 <a href="/"><button className="style-button bg-scheme-red">Help</button></a>
+                <DeleteAccountModal user={user} />
               </div>
             </div>
           </div>

@@ -105,8 +105,8 @@ namespace Spinnovations.Data
         public void DeleteUser(int id)
         {
             using var db = new SqlConnection(ConnectionString);
-            var sql = @"DELETE 
-                        FROM Users 
+            var sql = @"UPDATE [Users]
+                        SET Active = 0
                         WHERE Id = @id";
             db.Execute(sql, new { id = id });
         }
