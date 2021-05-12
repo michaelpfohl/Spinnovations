@@ -92,11 +92,23 @@ namespace Spinnovations.Data
             db.Execute(sql, product);
         }
 
-        public void Delete(int id)
+        public void DeleteProduct(int id)
         {
             using var db = new SqlConnection(ConnectionString);
-            var sql = "DELETE FROM Products WHERE Id = @id";
+            var sql = @"UPDATE Products
+                        SET Active = 0
+                        WHERE Id = @id";
             db.Execute(sql, new { id = id });
         }
+
+        public void DeleteProductsByCreator(int creatorId)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = @"UPDATE Products
+                        SET Active = 0
+                        WHERE Creator_Id = @creatorId";
+            db.Execute(sql, new { creatorId = creatorId });
+        }
+
     }
 }

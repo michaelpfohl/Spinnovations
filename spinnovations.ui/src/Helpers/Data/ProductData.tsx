@@ -35,7 +35,9 @@ const addNewProduct = (product: Product): Promise<Product> => new Promise((resol
     }).catch((error) => reject(error));
 });
 
-const deleteProduct = (productId: number): Promise<void> => axios.delete(`${productsURL}/${productId}`)
+const deleteProduct = (productId: number): Promise<void> => axios.put(`${productsURL}/delete/${productId}`);
+
+const deleteProductsByCreator = (creatorId: number): Promise<void> => axios.put(`${productsURL}/deleteByCreator/${creatorId}`);
 
 const updateProduct = (product: Product): Promise<void> => axios.put(`${productsURL}/${product.id}`, product);
 
@@ -47,6 +49,7 @@ const productData = {
     getProduct,
     deleteProduct,
     updateProduct,
+    deleteProductsByCreator,
 }
 
 export default productData;
