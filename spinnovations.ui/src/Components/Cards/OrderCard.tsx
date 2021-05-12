@@ -5,7 +5,7 @@ import {
 import OrderDetailsModal from "../Modals/OrderDetailsModal";
 import orderData from "../../Helpers/Data/orderData";
 
-export const OrderCard = ({ order, shipped, onUpdate }: OrderProps): JSX.Element => {
+export const OrderCard = ({ order, shipped, onUpdate, seller }: OrderProps): JSX.Element => {
   const calcOrderTotal = (order: OrderProps): number => {
     let totalCost = 0;
     order?.order_Details.forEach(function (detail: OrderDetails) {
@@ -37,7 +37,7 @@ export const OrderCard = ({ order, shipped, onUpdate }: OrderProps): JSX.Element
         <td>
           <OrderDetailsModal title={'Order Details'} buttonLabel={'See Details'} order={order}/>
         </td>
-        { !shipped && 
+        { seller && !shipped && 
           <td>
             <button id={order.order_Details[0].id} className="style-button bg-scheme-green" onClick={ship}>Ship</button>
           </td>

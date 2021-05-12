@@ -73,7 +73,7 @@ class Sales extends Component<OrderProps> {
       quantityByCategory
     } = this.state;
     const orderCard = (order: Order): JSX.Element => {
-      return <OrderCard key={order.id} order={order} onUpdate={this.onUpdate} shipped={order.order_Details[0].shipped}/>;
+      return <OrderCard key={order.id} order={order} onUpdate={this.onUpdate} seller={true} shipped={order.order_Details[0].shipped}/>;
     };
     const yesShipped = shipped.map(orderCard);
     const notShipped = toBeShipped.map(orderCard);
