@@ -13,7 +13,7 @@ class CartCard extends React.Component<ProductProps> {
   };
 
   handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, price: number): void =>{
-    let quantityDesired = parseInt(e.target.value); 
+    const quantityDesired = parseInt(e.target.value); 
     const subtotal = quantityDesired * price;
     const change = subtotal - this.state.itemSubTotal;
     const cleanSubtotal = parseFloat(subtotal.toFixed(2));

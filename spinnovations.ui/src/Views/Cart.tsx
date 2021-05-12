@@ -53,8 +53,8 @@ class Cart extends React.Component<UserProps, cartState> {
   }
 
   handleCallback = (subtotal: number): void => {    
-    let grandTotal = this.state.cartTotal += subtotal;
-    let cleanedGrandTotal = parseFloat(grandTotal.toFixed(2));
+    const grandTotal = this.state.cartTotal += subtotal;
+    const cleanedGrandTotal = parseFloat(grandTotal.toFixed(2));
     this.setState({
       cartTotal: cleanedGrandTotal,
     })
