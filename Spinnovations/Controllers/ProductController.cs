@@ -74,10 +74,17 @@ namespace Spinnovations.Controllers
             return Ok();
         }
 
-        [HttpDelete("{id}")]
+        [HttpPut("delete/{id}")]
         public IActionResult DeleteProduct(int id)
         {
-            _repo.Delete(id);
+            _repo.DeleteProduct(id);
+            return Ok();
+        }
+
+        [HttpPut("deleteByCreator/{creatorId}")]
+        public IActionResult DeleteProductsByCreator(int creatorId)
+        {
+            _repo.DeleteProductsByCreator(creatorId);
             return Ok();
         }
 

@@ -19,6 +19,10 @@ declare module 'UserTypes' {
       user: User,
       onUpdate: () => void,
   }
+
+  type DeleteAccountProps = {
+      user: User,
+  }
 }
 
-export { User, UpdateProfileProps }
+export { User, UpdateProfileProps, DeleteAccountProps }
