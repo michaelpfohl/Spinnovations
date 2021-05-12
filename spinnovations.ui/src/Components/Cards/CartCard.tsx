@@ -16,9 +16,10 @@ class CartCard extends React.Component<ProductProps> {
     let quantityDesired = parseInt(e.target.value); 
     const subtotal = quantityDesired * price;
     const change = subtotal - this.state.itemSubTotal;
+    const cleanSubtotal = parseFloat(subtotal.toFixed(2));
     this.setState({
       qty: quantityDesired,
-      itemSubTotal: subtotal,
+      itemSubTotal: cleanSubtotal,
     })
     this.props.parentCallback(change);
   }
