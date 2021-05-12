@@ -54,13 +54,13 @@ class Checkout extends Component<CheckoutProps> {
     const options = payments.map(paymentOptions);
     return (
       <div>
-        <Table hover>
+        <Table>
           <thead>
             <tr>
               <th scope="row"></th>
-              <th>Order Date</th>
-              <th>Address</th>
-              <th>Total Cost</th>
+              <th>Product Name</th>
+              <th>Price</th>
+              <th>Quantity</th>
             </tr>
           </thead>
           <tbody></tbody>
