@@ -9,34 +9,40 @@ type cartCardState = {
 class CartCard extends React.Component<ProductProps> {
   state: cartCardState = {
     qty: 1,
-    itemSubTotal: 0,
+    itemSubTotal: this.props.product.price,
   };
 
-  handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void =>{
+  handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, price: number): void =>{
     let quantityDesired = parseInt(e.target.value); 
+    const subtotal = quantityDesired * price;
+    const change = subtotal - this.state.itemSubTotal;
     this.setState({
       qty: quantityDesired,
+      itemSubTotal: subtotal,
     })
+    this.props.parentCallback(change);
   }
 
-  handleSubtotal = (price: number): number => {
-    const quantity = this.state.qty;
-    const subtotal = quantity * price;
-    const roundedSubtotal = parseFloat(subtotal.toFixed(2));
-    return roundedSubtotal;
-  }
+  // handleSubtotal = (price: number): number => {
+  //   const quantity = this.state.qty;
+  //   const subtotal = quantity * price;
+  //   const roundedSubtotal = parseFloat(subtotal.toFixed(2));
+  //   this.props.parentCallback(roundedSubtotal);
+  //   return roundedSubtotal;
+  // }
 
   render(): JSX.Element {
     const { product } = this.props;
+    const { itemSubTotal } = this.state;
     return (
-  <tr>
+    <tr>
       <th scope="row"><img src={product.imageUrl}></img></th>
       <td>{product.name}</td>
       <td>{product.price}</td>
-      <td><input id='quantity' onChange={this.handleInputChange} type='number' min='1' max={product.quantity_In_Stock} placeholder='1' value={this.state.qty}/></td>
-      <td>{this.handleSubtotal(product.price)}</td>
+      <td><input id='quantity' onChange={(e) => this.handleInputChange(e, product.price)} type='number' min='1' max={product.quantity_In_Stock} placeholder='1' value={this.state.qty}/></td>
+      <td>{itemSubTotal}</td>
     </tr>
     )
-}
+  }
 }
 export default CartCard;

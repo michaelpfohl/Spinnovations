@@ -21,18 +21,18 @@ class Cart extends React.Component<UserProps, cartState> {
   getTheCart = (): void => {
     const keys = Object.keys(localStorage);
     const items: Product[] = [];
-    //let cost = 0;
+    let cost = 0;
     if (localStorage.length) {
       for (const key of keys) {
         const getCartItems = async (): Promise<Product> => {
           const cartItem = await JSON.parse(localStorage.getItem(key) || '');
           items.push(cartItem);
-          //cost += cartItem.price;
+          cost += cartItem.price;
         };
         getCartItems().then(() => {
           this.setState({
             products: items,
-            // cartTotal: cost,
+            cartTotal: cost,
           });
         });
       }
@@ -48,16 +48,13 @@ class Cart extends React.Component<UserProps, cartState> {
     this.getTheCart();
   }
 
-  handleCallback = (subtotal: number): void => {
+  handleCallback = (subtotal: number): void => {    
+    let grandTotal = this.state.cartTotal += subtotal;
+    console.warn(subtotal);
     
-  }
-
-  totalTheCart = (): void => {
-    
-    //get all subtotals
-    //sum them together
-    //add tax (sum + (sum*tax))
-    //return it to the DOM
+    this.setState({
+      cartTotal: grandTotal,
+    })
   }
 
   render(): JSX.Element {
