@@ -57,5 +57,11 @@ namespace Spinnovations.Controllers
             _repo.Delete(id);
             return Ok();
         }
+
+        [HttpGet("totals/{creatorId}")]
+        public IActionResult GetQuantityByCategory(int creatorId)
+        {
+            return Ok(_repo.GetQuantityByCategory(creatorId));
+        }
     }
 }

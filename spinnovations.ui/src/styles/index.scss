@@ -9,6 +9,7 @@
 @import 'navbar';
 @import 'searchInput';
 @import 'sellerShop';
+@import 'sales';
 
 body, html, .App {
   background-color: $BackgroundLight;
@@ -56,4 +57,8 @@ select {
 .style-button:hover {
   filter: saturate(60%);
   color: $BackgroundDark;
+}
+
+.underline {
+  text-decoration: underline;
 }

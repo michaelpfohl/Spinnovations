@@ -1,5 +1,5 @@
 import { BaseURL } from '../config.json';
-import { ProductCategory } from '../Interfaces/ProductCategoryInterfaces';
+import { ProductCategory, CategoryTotals } from '../Interfaces/ProductCategoryInterfaces';
 import axios from 'axios';
 
 const ProductCategoryURL = `${BaseURL}/Product_Category`
@@ -10,6 +10,12 @@ const getProductCategories = (): Promise<ProductCategory[]> => new Promise((reso
     }).catch((error) => reject(error));
 });
 
-const productCategoryData = { getProductCategories };
+const getQuantityByCategory = (creatorId: number): Promise<CategoryTotals[]> => new Promise((resolve, reject) => {
+    axios.get(`${ProductCategoryURL}/totals/${creatorId}`).then((response) => {
+        resolve(response.data)
+    }).catch((error) => reject(error));
+})
+
+const productCategoryData = { getProductCategories, getQuantityByCategory };
 
 export default productCategoryData;

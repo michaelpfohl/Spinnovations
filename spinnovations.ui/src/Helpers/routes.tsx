@@ -9,6 +9,7 @@ import Users from '../Views/Users';
 import Orders from '../Views/Orders';
 import Profile from '../Views/Profile'
 import AddProduct from '../Views/AddProduct';
+import Sales from '../Views/Sales';
 import NotFound from '../Views/NotFound';
 import SearchResults from '../Views/SearchResults';
 import { SearchProps } from '../Helpers/Interfaces/SearchInterfaces';
@@ -41,6 +42,7 @@ export default function Routes({ user}: RouteProps): JSX.Element {
         <Route exact path="/seller/:id" component={(props: SellerProps) => <SingleSeller{...props}/>} />
         <Route exact path="/details" component={(props: ProductProps) => <SingleProduct{...props} user={user}/>} />
         <Route exact path="/checkout" component={(props: CheckoutProps) => <Checkout{...props} user={user}/>} />
+        <Route exact path="/sales" component={(props: OrderProps) => <Sales{...props}/>}/>
         <Route component={NotFound} />
       </Switch>
   );
