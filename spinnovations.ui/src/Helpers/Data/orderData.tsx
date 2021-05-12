@@ -23,14 +23,33 @@ const getOrderDetailsById = (orderDetailsId: number): Promise<OrderDetails> => n
     }).catch((error) => reject(error));
 });
 
+const markOrderAsShipped = (orderDetails: OrderDetails): Promise<OrderDetails> => axios({
+    method: 'PUT',
+    url: `${orderDetailsUrl}/${orderDetails.id}`, 
+    data: JSON.stringify(orderDetails), 
+    headers:{'Content-Type': 'application/json; charset=utf-8'}
+});
+
 const getAllUserOrders = (customerId: number): Promise<Order> => new Promise((resolve, reject) => {
     axios.get(`${ordersUrl}/user/${customerId}`).then((response) => {
         resolve(response.data)
     }).catch((error) => reject(error));
 });
 
-const getAllUserSales = (creatorId: number): Promise<Order> => new Promise((resolve, reject) => {
+const getAllUserSales = (creatorId: number): Promise<Order[]> => new Promise((resolve, reject) => {
     axios.get(`${ordersUrl}/sales/${creatorId}`).then((response) => {
+        resolve(response.data)
+    }).catch((error) => reject(error));
+});
+
+const getSalesShipped = (creatorId: number): Promise<Order[]> => new Promise((resolve, reject) => {
+    axios.get(`${ordersUrl}/shipped/${creatorId}`).then((response) => {
+        resolve(response.data)
+    }).catch((error) => reject(error));
+});
+
+const getSalesNotYetShipped = (creatorId: number): Promise<Order[]> => new Promise((resolve, reject) => {
+    axios.get(`${ordersUrl}/to-be-shipped/${creatorId}`).then((response) => {
         resolve(response.data)
     }).catch((error) => reject(error));
 });
@@ -62,6 +81,9 @@ const orderData = {
     getTotalUserSales,
     getAverageProductSoldPrice,
     getTotalUserSalesLastMonth,
+    getSalesShipped,
+    getSalesNotYetShipped,
+    markOrderAsShipped,
 }
 
 export default orderData;

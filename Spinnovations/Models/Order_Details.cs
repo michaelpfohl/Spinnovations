@@ -12,5 +12,6 @@ namespace Spinnovations.Models
         public int Product_Id { get; set; }
         public decimal Unit_Price { get; set; }
         public int Quantity { get; set; }
+        public bool Shipped { get; set; }
     }
 }

@@ -8,7 +8,8 @@ import { CategoryTotals } from "../Helpers/Interfaces/ProductCategoryInterfaces"
 
 class Sales extends Component<OrderProps> {
   state = {
-    orders: [],
+    shipped: [],
+    toBeShipped: [],
     user: this.props.location.state.user,
     greetingColor: 0,
     totalSales: 0,
@@ -18,9 +19,14 @@ class Sales extends Component<OrderProps> {
   };
 
   componentDidMount(): void {
-    orderData.getAllUserSales(this.state.user.id).then((response: Order[]) => {
+    orderData.getSalesShipped(this.state.user.id).then((response: Order[]) => {
       this.setState({
-        orders: response,
+        shipped: response,
+      });
+    });
+    orderData.getSalesNotYetShipped(this.state.user.id).then((response: Order[]) => {
+      this.setState({
+        toBeShipped: response,
       });
     });
     orderData.getTotalUserSales(this.state.user.id).then((response: number) => {
@@ -51,9 +57,15 @@ class Sales extends Component<OrderProps> {
       });
     this.setState({ greetingColor: Math.floor(Math.random() * 7) + 1 });
   }
+
+  onUpdate = (): void => {
+    this.componentDidMount();
+  }
+
   render(): JSX.Element {
     const {
-      orders,
+      shipped,
+      toBeShipped,
       greetingColor,
       totalSales,
       averagePrice,
@@ -61,9 +73,10 @@ class Sales extends Component<OrderProps> {
       quantityByCategory
     } = this.state;
     const orderCard = (order: Order): JSX.Element => {
-      return <OrderCard key={order.id} order={order} />;
+      return <OrderCard key={order.id} order={order} onUpdate={this.onUpdate} shipped={order.order_Details[0].shipped}/>;
     };
-    const cards = orders.map(orderCard);
+    const yesShipped = shipped.map(orderCard);
+    const notShipped = toBeShipped.map(orderCard);
     const categoryTotalsDivs = (categoryTotal: CategoryTotals): JSX.Element => (
         <div key={categoryTotal.name}>
             {categoryTotal.name}: {categoryTotal.total}
@@ -97,7 +110,34 @@ class Sales extends Component<OrderProps> {
             className={`sales-table-container col-10 color-border-${greetingColor}`}
           >
             <h1 className={`mt-4 mb-4 color-text-${greetingColor} underline`}>
-              Sales
+              To Be Shipped
+            </h1>
+            <div className="container">
+              <Table
+                className={`sales-table mb-4 color-half-border-${greetingColor}`}
+                hover
+              >
+                <thead>
+                  <tr>
+                    <th scope="row"></th>
+                    <th>Order Date</th>
+                    <th>Address</th>
+                    <th>Total Cost</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>{notShipped}</tbody>
+              </Table>
+            </div>
+          </div>
+        </div>
+        <div className="d-flex justify-content-center mt-5 mb-5">
+          <div
+            className={`sales-table-container col-10 color-border-${greetingColor}`}
+          >
+            <h1 className={`mt-4 mb-4 color-text-${greetingColor} underline`}>
+              Shipped
             </h1>
             <div className="container">
               <Table
@@ -113,7 +153,7 @@ class Sales extends Component<OrderProps> {
                     <th></th>
                   </tr>
                 </thead>
-                <tbody>{cards}</tbody>
+                <tbody>{yesShipped}</tbody>
               </Table>
             </div>
           </div>

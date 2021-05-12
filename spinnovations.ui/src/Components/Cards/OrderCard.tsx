@@ -3,9 +3,9 @@ import {
   OrderProps,
 } from "../../Helpers/Interfaces/OrderInterfaces";
 import OrderDetailsModal from "../Modals/OrderDetailsModal";
+import orderData from "../../Helpers/Data/orderData";
 
-
-export const OrderCard = ({ order }: OrderProps): JSX.Element => {
+export const OrderCard = ({ order, shipped, onUpdate }: OrderProps): JSX.Element => {
   const calcOrderTotal = (order: OrderProps): number => {
     let totalCost = 0;
     order?.order_Details.forEach(function (detail: OrderDetails) {
@@ -17,6 +17,14 @@ export const OrderCard = ({ order }: OrderProps): JSX.Element => {
     const dateSplit = order.order_Date.split("T");
     return dateSplit[0];
   }
+
+  const ship = () => {
+    order.order_Details[0].shipped = true;
+    orderData.markOrderAsShipped(order.order_Details[0]).then(() => {
+      onUpdate();
+    })
+  }
+
   return (
     <>
       <tr>
@@ -29,6 +37,11 @@ export const OrderCard = ({ order }: OrderProps): JSX.Element => {
         <td>
           <OrderDetailsModal title={'Order Details'} buttonLabel={'See Details'} order={order}/>
         </td>
+        { !shipped && 
+          <td>
+            <button id={order.order_Details[0].id} className="style-button bg-scheme-green" onClick={ship}>Ship</button>
+          </td>
+        }
       </tr>
     </>
   );

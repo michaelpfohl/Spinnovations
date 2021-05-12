@@ -44,6 +44,18 @@ namespace Spinnovations.Controllers
             return Ok(_repo.GetAllOrdersByCreator(creatorId));
         }
 
+        [HttpGet("shipped/{creatorId}")]
+        public IActionResult GetAllOrdersShipped(int creatorId)
+        {
+            return Ok(_repo.GetAllOrdersShipped(creatorId));
+        }
+
+        [HttpGet("to-be-shipped/{creatorId}")]
+        public IActionResult GetAllOrdersNotYetShipped(int creatorId)
+        {
+            return Ok(_repo.GetAllOrdersNotYetShipped(creatorId));
+        }
+
         [HttpGet("sales/total/{creatorId}")]
         public IActionResult GetTotalCreatorSales(int creatorId)
         {
