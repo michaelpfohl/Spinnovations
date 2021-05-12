@@ -17,6 +17,10 @@ class Cart extends React.Component<UserProps, cartState> {
     cartTotal: 0,
   };
 
+  deleteFromCart = (productKey: string): void => {
+    localStorage.removeItem(`${productKey}`);
+    this.getTheCart();
+  }
 
   getTheCart = (): void => {
     const keys = Object.keys(localStorage);
@@ -59,10 +63,10 @@ class Cart extends React.Component<UserProps, cartState> {
   render(): JSX.Element {
     const { products, cartTotal } = this.state;
     const cartCards = products?.map((product) => (
-      <CartCard key={product.id} product={product} parentCallback={this.handleCallback}/>
+      <CartCard key={product.id} product={product} parentCallback={this.handleCallback} remove={this.deleteFromCart}/>
     ))
     return (
-      <div>
+      <div id="cart_page">
         <h1>Here is cart</h1>
         <table className="table">
           <thead>
@@ -82,7 +86,6 @@ class Cart extends React.Component<UserProps, cartState> {
         <h3>Total in cart: {cartTotal}</h3>
       </div>
     )
-    
   }
 }
 

@@ -33,7 +33,7 @@ export const ProductCard = ({ product, color }: ProductProps): JSX.Element => (
         <i className="fas fa-ellipsis-v"></i>
         <CardSubtitle>{`$${product.price}`}</CardSubtitle>
         <i className="fas fa-ellipsis-v"></i>
-        <button className={`cart-button color-cart-${color}`}><i className="fas fa-cart-plus"></i></button>
+        <button className={`cart-button color-cart-${color}`} onClick={() => localStorage.setItem(product.name, JSON.stringify(product))}><i className="fas fa-cart-plus"></i></button>
         </div>
       </div>
     </div>

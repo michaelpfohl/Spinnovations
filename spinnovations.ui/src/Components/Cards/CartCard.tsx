@@ -24,16 +24,8 @@ class CartCard extends React.Component<ProductProps> {
     this.props.parentCallback(change);
   }
 
-  // handleSubtotal = (price: number): number => {
-  //   const quantity = this.state.qty;
-  //   const subtotal = quantity * price;
-  //   const roundedSubtotal = parseFloat(subtotal.toFixed(2));
-  //   this.props.parentCallback(roundedSubtotal);
-  //   return roundedSubtotal;
-  // }
-
   render(): JSX.Element {
-    const { product } = this.props;
+    const { product, remove } = this.props;
     const { itemSubTotal } = this.state;
     return (
     <tr>
@@ -42,6 +34,7 @@ class CartCard extends React.Component<ProductProps> {
       <td>{product.price}</td>
       <td><input id='quantity' onChange={(e) => this.handleInputChange(e, product.price)} type='number' min='1' max={product.quantity_In_Stock} placeholder='1' value={this.state.qty}/></td>
       <td>{itemSubTotal}</td>
+      <td><button onClick={ () => { remove(product.name); } }>Remove</button></td>
     </tr>
     )
   }
