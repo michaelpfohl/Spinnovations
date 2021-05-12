@@ -67,7 +67,7 @@ class Cart extends React.Component<UserProps, cartState> {
     ))
     return (
       <div id="cart_page">
-        <h1>Here is cart</h1>
+        <h1>Find everything you need?</h1>
         <table className="table">
           <thead>
             <tr>
