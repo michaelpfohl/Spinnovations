@@ -3,6 +3,10 @@ declare module 'ProductCategoryTypes' {
         name: string;
     }
 
+    type CategoryTotals = {
+        name: string;
+        total: number;
+    }
     interface ProductCategoryProps {
         productCategory: ProductCategory;
         filter: () => void;
@@ -10,4 +14,4 @@ declare module 'ProductCategoryTypes' {
     }
 }
 
-export { ProductCategory, ProductCategoryProps }
+export { ProductCategory, ProductCategoryProps, CategoryTotals }

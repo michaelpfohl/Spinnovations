@@ -13,7 +13,7 @@ const OrderDetailsModal
   const orderDetailsCard = (order: OrderProps): JSX.Element => {
     const orderDetailsCardsArray = [];
     for (let i = 0; i < order.products.length; i++) {
-      orderDetailsCardsArray.push(<OrderDetailsCard order_Details={order.order_Details[i]} product={order.products[i]}/>)
+      orderDetailsCardsArray.push(<OrderDetailsCard key={order.id} order_Details={order.order_Details[i]} product={order.products[i]}/>)
     }
     const cards = orderDetailsCardsArray.map((card) => card);
     return (<tbody>{cards}</tbody>)
@@ -21,7 +21,7 @@ const OrderDetailsModal
 
   return (
     <div>
-      <Button color="danger" onClick={toggle}>See Details</Button>
+      <button className="style-button bg-scheme-yellow" onClick={toggle}>See Details</button>
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Order Details</ModalHeader>
         <ModalBody>

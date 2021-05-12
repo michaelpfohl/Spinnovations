@@ -60,6 +60,7 @@ namespace Spinnovations.Data
                             ,[Product_Id] = @Product_Id
                             ,[Unit_Price] = @Unit_Price
                             ,[Quantity] = @Quantity
+                            ,[Shipped] = @Shipped
                         WHERE Id = @id";
             db.Execute(sql, orderDetails);
         }
