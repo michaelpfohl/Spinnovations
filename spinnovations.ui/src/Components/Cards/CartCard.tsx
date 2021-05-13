@@ -34,7 +34,7 @@ class CartCard extends React.Component<ProductProps> {
       <td>{product.price}</td>
       <td><input id='quantity' onChange={(e) => this.handleInputChange(e, product.price)} type='number' min='1' max={product.quantity_In_Stock} placeholder='1' value={this.state.qty}/></td>
       <td>{itemSubTotal}</td>
-      <td><button onClick={ () => { remove(product.name); } }>Remove</button></td>
+      <td><button onClick={ () => { remove(product, this.state.qty); } }>Remove</button></td>
     </tr>
     )
   }

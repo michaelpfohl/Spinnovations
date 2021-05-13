@@ -2,6 +2,7 @@ import React from 'react';
 import { User } from '../Helpers/Interfaces/UserInterfaces';
 import { Product } from '../Helpers/Interfaces/ProductInterfaces';
 import CartCard from "../Components/Cards/CartCard";
+import { CategoryTotals } from '../Helpers/Interfaces/ProductCategoryInterfaces';
 
 type UserProps = {
   user: User;
@@ -17,9 +18,36 @@ class Cart extends React.Component<UserProps, cartState> {
     cartTotal: 0,
   };
 
-  deleteFromCart = (productKey: string): void => {
-    localStorage.removeItem(`${productKey}`);
-    this.getTheCart();
+  deleteFromCart = (product: Product, qty: number): void => {
+    localStorage.removeItem(`${product.name}`);
+    this.resetTotal(product, qty);
+  }
+
+  resetTotal = (product: Product, qty: number): void => {
+    const keys = Object.keys(localStorage);
+    const items: Product[] = [];
+    const newCost = this.state.cartTotal - (product.price * qty);
+    if (localStorage.length) {
+      for (const key of keys) {
+        const getCartItems = async (): Promise<Product> => {
+          const cartItem = await JSON.parse(localStorage.getItem(key) || '');
+          items.push(cartItem);
+        };
+        getCartItems().then(() => {
+          this.setState({
+            products: items,
+          });
+        });
+      }
+      this.setState({
+        cartTotal: newCost,
+      })
+    } else {
+      this.setState({
+        products: [],
+        cartTotal: 0,
+      });
+    } 
   }
 
   getTheCart = (): void => {
@@ -45,7 +73,7 @@ class Cart extends React.Component<UserProps, cartState> {
         products: [],
         cartTotal: 0,
       });
-    }
+    } 
   };
 
   componentDidMount(): void {
@@ -54,9 +82,8 @@ class Cart extends React.Component<UserProps, cartState> {
 
   handleCallback = (subtotal: number): void => {    
     const grandTotal = this.state.cartTotal += subtotal;
-    const cleanedGrandTotal = parseFloat(grandTotal.toFixed(2));
     this.setState({
-      cartTotal: cleanedGrandTotal,
+      cartTotal: grandTotal,
     })
   }
 
@@ -83,7 +110,7 @@ class Cart extends React.Component<UserProps, cartState> {
           </tbody>
         </table>
         <hr></hr>
-        <h3>Total in cart: {cartTotal}</h3>
+        <h3>Total in cart: {parseFloat(cartTotal.toFixed(2))}</h3>
       </div>
     )
   }
