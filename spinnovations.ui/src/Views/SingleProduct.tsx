@@ -10,6 +10,7 @@ import UpdateProductModal from '../Components/Modals/UpdateProductModal';
 type SingleProductState = {
   product: Product;
   user: User;
+  greetingColor: number;
 }
 
 class SingleProduct extends Component<ProductProps> {
@@ -17,6 +18,7 @@ class SingleProduct extends Component<ProductProps> {
   state : SingleProductState = {
     product: this.props.location.state.product,
     user: null,
+    greetingColor: 0,
   }
 
   componentDidMount = () : void => {
@@ -25,6 +27,7 @@ class SingleProduct extends Component<ProductProps> {
           user: response
       })
     });
+    this.setState({ greetingColor: Math.floor(Math.random() * 7) + 1 });
   }
 
 
@@ -46,9 +49,40 @@ class SingleProduct extends Component<ProductProps> {
   }
 
   render(): JSX.Element {
-    const { product, user } = this.state;
+    const { product, user, greetingColor } = this.state;
     const url = `/seller/:${product.creator_Id}/`;
     return (
+      <div>
+        <div className="d-flex justify-content-center mt-5">
+          <div className={`single-product-view col-10 color-border-${greetingColor}`}>
+            <h1 className={`mt-4 mb-4 color-text-${greetingColor} underline`}>
+              {product.name}
+            </h1>
+            <div className="d-flex justify-content-around">
+            <p>{product.description}</p>
+            <p>Spinnovator: {<Link className={`color-text-${greetingColor}`} to={url}>{user?.display_Name}</Link>}</p>
+            <p>Quantity Available: {product.quantity_In_Stock}</p>
+            <strong className="pb-2">Price: ${product.price}</strong>
+              <div className="buttons d-block">
+                <Button className="d-block" onClick={this.addToCart}>Add to Cart</Button>
+                <Link to='/Products'>
+                  <Button>Return to Products</Button>
+                </Link>
+                {this.props.user?.id === product?.creator_Id &&
+                  <div> 
+                    <UpdateProductModal user={user} product={product} onUpdate={this.onUpdate}/>
+                    <Button className="btn-danger" onClick={this.deleteProduct}>Delete</Button>
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      
+
+
+
+
       <div className="container py-5">
         <div className="row">
           <div className="col-10 mx-auto text-center my-5">
@@ -61,7 +95,7 @@ class SingleProduct extends Component<ProductProps> {
           </div>
           <div className="col-10 max-auto col-md my-3 text-left">
             <p>{product.description}</p>
-            <p>Spinnovator: {<Link to={url}>{user?.display_Name}</Link>}</p>
+            <p>Spinnovator: {<Link className="spinnovator-link" to={url}>{user?.display_Name}</Link>}</p>
             <p>Quantity Available: {product.quantity_In_Stock}</p>
             <strong className="pb-2">Price: ${product.price}</strong>
             <div className="buttons d-block">
@@ -78,6 +112,11 @@ class SingleProduct extends Component<ProductProps> {
             </div>
           </div>
         </div>
+      </div>
+
+
+
+
       </div>
     );
   }
