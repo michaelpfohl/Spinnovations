@@ -30,7 +30,7 @@ const OrderDetailsModal
       <Modal isOpen={modal} toggle={toggle} className={`color-border-${greetingColor}`}>
         <ModalHeader toggle={toggle} className={`color-text-${greetingColor}`}>Order Details</ModalHeader>
         <ModalBody>
-          <Table className="orders-table">
+          <Table className={`orders-table color-half-border-${greetingColor}`}>
           <thead>
             <tr>
               <th scope="row"></th>
