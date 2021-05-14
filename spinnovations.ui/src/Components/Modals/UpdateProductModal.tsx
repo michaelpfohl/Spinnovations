@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Modal } from 'reactstrap';
+import { Modal } from 'reactstrap';
 import ProductForm from '../Forms/ProductForm';
 import { ProductProps } from '../../Helpers/Interfaces/ProductInterfaces';
 
