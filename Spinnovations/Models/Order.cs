@@ -9,9 +9,11 @@ namespace Spinnovations.Models
     {
         public int Id { get; set; }
         public int Customer_Id { get; set; }
+        public int Payment_Info_Id { get; set; }
         public DateTime Order_Date { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
+        public string State { get; set; }
         public string Country { get; set; }
         public string Postal_Code { get; set; }
         public List<Order_Details> Order_Details { get; set; }

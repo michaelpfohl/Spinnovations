@@ -76,10 +76,10 @@ namespace Spinnovations.Controllers
 
 
         [HttpPost]
-        public IActionResult AddOrder_Details(Order order)
+        public IActionResult AddOrder(Order order)
         {
             _repo.Add(order);
-            return Created($"/api/order_details/{order.Id}", order);
+            return Created($"/api/orders/{order.Id}", order);
         }
         [HttpDelete("{id}")]
         public IActionResult DeleteOrder(int id)

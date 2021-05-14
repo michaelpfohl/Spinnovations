@@ -210,13 +210,17 @@ namespace Spinnovations.Data
             using var db = new SqlConnection(ConnectionString);
             var sql = $@"INSERT INTO [dbo].[Orders]
                             ([Customer_Id]
+                            ,[Payment_Info_Id]
                             ,[Address]
                             ,[City]
+                            ,[State]
                             ,[Country]
                             ,[Postal_Code])
                         VALUES
                             (@Customer_Id
+                            ,@Payment_Info_Id
                             ,@Address
+                            ,@State
                             ,@City
                             ,@Country
                             ,@Postal_Code)";
