@@ -59,7 +59,7 @@ class SingleProduct extends Component<ProductProps> {
             </h1>
             <div className="d-flex">
               <div className="single-product-image">
-                <img src={product.imageUrl} alt="product image"/>
+                <img className={`color-half-border-${greetingColor}`} src={product.imageUrl} alt="product image"/>
               </div>
               <div className="product-info">
                 <p>{product.description}</p>
