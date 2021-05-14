@@ -1,14 +1,9 @@
-.product-form-content {
-  background: $BackgroundDark;
-  border-radius: 30px;
-  border-top-left-radius: 0;
-}
-
 .product-form-container {
   border-radius: 33px;
   border-top-left-radius: 0;
   -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
+  background: $BackgroundDark;
 }
 
 .add-product-input-container {

@@ -1,0 +1,20 @@
+.orders-table-container,
+.orders-dashboard {
+  color: #fff;
+  border-radius: 25px;
+  border-top-left-radius: 0;
+  -webkit-box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
+  background-color: $BackgroundDark;
+}
+
+.orders-table {
+  -webkit-box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.orders-table th,
+td {
+  background-color: $BackgroundMid;
+  color: #fff;
+}
