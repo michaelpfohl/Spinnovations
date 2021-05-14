@@ -13,12 +13,12 @@ const DeleteAccountModal = ({user} : DeleteAccountProps): JSX.Element => {
   return (
     <div>
       <button className="style-button bg-scheme-red" onClick={toggle}>Delete Account</button>
-        <Modal isOpen={modal} toggle={toggle}>
+        <Modal isOpen={modal} toggle={toggle} className="color-border-red">
             <div className="delete-account-modal d-flex justify-content-center">
                 <div className="p-4">
                     <h3 className="d-flex text-align-center">Are you sure you want to close your account?</h3>
                     <p className="text-align-center">Any Spinnovations you have added will also be removed.</p>
-                    <button className="btn btn-danger form-button form-button-text mt-1 mb-1" onClick={() => {
+                    <button className="scheme-button logout-button form-button form-button-text mt-1 mb-1" onClick={() => {
                         //delete all products added by user
                         productData.deleteProductsByCreator(user.id);
                         //change active column in database to false

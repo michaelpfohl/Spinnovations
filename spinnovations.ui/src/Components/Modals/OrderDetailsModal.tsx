@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import React, { useEffect, useState } from 'react';
+import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { OrderProps } from '../../Helpers/Interfaces/OrderInterfaces';
 import OrderDetailsCard from '../Cards/OrderDetailsCard';
 import { Table } from "reactstrap";
@@ -8,6 +8,7 @@ const OrderDetailsModal
  = ({order}: OrderProps) : JSX.Element => {
 
   const [modal, setModal] = useState(false);
+  const [greetingColor, setGreetingColor] = useState(0);
 
   const toggle = () => setModal(!modal);
   const orderDetailsCard = (order: OrderProps): JSX.Element => {
@@ -19,13 +20,17 @@ const OrderDetailsModal
     return (<tbody>{cards}</tbody>)
   };
 
+  useEffect(() => {
+    setGreetingColor(Math.floor(Math.random() * 7) + 1);
+  })
+
   return (
     <div>
       <button className="style-button bg-scheme-yellow" onClick={toggle}>See Details</button>
-      <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Order Details</ModalHeader>
+      <Modal isOpen={modal} toggle={toggle} className={`color-border-${greetingColor}`}>
+        <ModalHeader toggle={toggle} className={`color-text-${greetingColor}`}>Order Details</ModalHeader>
         <ModalBody>
-          <Table>
+          <Table className="orders-table">
           <thead>
             <tr>
               <th scope="row"></th>
@@ -40,7 +45,7 @@ const OrderDetailsModal
             </Table>
         </ModalBody>
         <ModalFooter>
-          <Button color="secondary" onClick={toggle}>Exit</Button>
+          <button className="style-button logout-button" onClick={toggle}>Exit</button>
         </ModalFooter>
       </Modal>
     </div>

@@ -10,6 +10,8 @@
 @import 'searchInput';
 @import 'sellerShop';
 @import 'sales';
+@import 'orders';
+@import 'modal';
 
 body, html, .App {
   background-color: $BackgroundLight;
@@ -22,15 +24,16 @@ body, html, .App {
 input, select {
   border-radius: 10px !important;
   border-top-left-radius: 0 !important;
-  background-color: $BackgroundMid;
+  background-color: $BackgroundMid !important;
   width: 100%;
   border:none;
   -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
+  color: #fff;
 }
 
 input::placeholder {
-  color: #fff;
+  color: #fff !important;
 }
 
 input:focus::placeholder {
