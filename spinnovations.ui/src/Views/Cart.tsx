@@ -2,7 +2,6 @@ import React from 'react';
 import { User } from '../Helpers/Interfaces/UserInterfaces';
 import { Product } from '../Helpers/Interfaces/ProductInterfaces';
 import CartCard from "../Components/Cards/CartCard";
-import { CategoryTotals } from '../Helpers/Interfaces/ProductCategoryInterfaces';
 
 type UserProps = {
   user: User;
