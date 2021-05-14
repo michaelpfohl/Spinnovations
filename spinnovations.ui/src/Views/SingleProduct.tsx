@@ -53,7 +53,7 @@ class SingleProduct extends Component<ProductProps> {
     return (
       <div>
         <div className="d-flex justify-content-center mt-5 mb-5">
-          <div className={`single-product-view col-9 color-border-${greetingColor}`}>
+          <div className={`single-product-view col-8 color-border-${greetingColor}`}>
             <h1 className={`mt-4 mb-4 color-text-${greetingColor} underline`}>
               {product.name}
             </h1>
