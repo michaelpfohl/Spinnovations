@@ -11,11 +11,19 @@
   }
 
   .single-product-image {
+    width: 60%;
     img {
-      max-width: 400px;
+      max-width: 90%;
+      max-height: 500px;
+      object-fit: cover;
+      border-radius: 25px;
+      border-top-left-radius: 0;
+      margin: 20px 30px 25px 5px;
     }
   }
 
-  .spinnovator-link {
-
+  .product-info {
+      margin: 20px 5px 20px 0px;
+      width: 40%;
+      text-align: left;
   }

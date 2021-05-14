@@ -10,7 +10,7 @@ const UpdateProductModal = ({ user, product, onUpdate }: ProductProps): JSX.Elem
 
   return (
     <div>
-      <Button color="danger" onClick={toggle}>Update</Button>
+      <Button className="mt-4 mb-4 d-block" onClick={toggle}>Update</Button>
       <Modal isOpen={modal} toggle={toggle}>
         <ProductForm user={user} product={product} onUpdate={onUpdate}/>
       </Modal>
