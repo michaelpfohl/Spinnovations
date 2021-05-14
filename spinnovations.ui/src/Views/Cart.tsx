@@ -11,11 +11,15 @@ type UserProps = {
 type cartState = {
   products?: Product[];
   cartTotal: number;
+  greetingColor: number;
+  greet: string,
 };
 class Cart extends React.Component<UserProps, cartState> {
   state: cartState = {
     products: [],
     cartTotal: 0,
+    greetingColor: 0,
+    greet: '',
   };
 
   deleteFromCart = (product: Product, qty: number): void => {
@@ -47,7 +51,7 @@ class Cart extends React.Component<UserProps, cartState> {
         products: [],
         cartTotal: 0,
       });
-    } 
+    }
   }
 
   getTheCart = (): void => {
@@ -73,14 +77,34 @@ class Cart extends React.Component<UserProps, cartState> {
         products: [],
         cartTotal: 0,
       });
-    } 
+    }
   };
+
 
   componentDidMount(): void {
     this.getTheCart();
+    const greetings = [
+      'Find everything ok?',
+      'You look great!',
+      'We are so understaffed today.',
+      'Do you have any coupons?',
+      'Will there be anything else for you today?',
+      'Is this everything today?',
+      'Your total comes to ...',
+      'Would you like your receipt in the bag?',
+      'Wow! That\'s quite the haul!',
+      'Oh my gosh I love these things!',
+      'Oh, I bought one of those! Best decision ever!',
+      'You aren\'t gonna regret getting that!'
+    ]
+    const randomGreeting = greetings[Math.floor(Math.random() * (greetings.length))];
+    this.setState({
+      greet: randomGreeting,
+      greetingColor: Math.floor(Math.random() * 7) + 1,
+    });
   }
 
-  handleCallback = (subtotal: number): void => {    
+  handleCallback = (subtotal: number): void => {
     const grandTotal = this.state.cartTotal += subtotal;
     this.setState({
       cartTotal: grandTotal,
@@ -88,13 +112,13 @@ class Cart extends React.Component<UserProps, cartState> {
   }
 
   render(): JSX.Element {
-    const { products, cartTotal } = this.state;
+    const { products, cartTotal, greetingColor, greet } = this.state;
     const cartCards = products?.map((product) => (
-      <CartCard key={product.id} product={product} parentCallback={this.handleCallback} remove={this.deleteFromCart}/>
+      <CartCard key={product.id} product={product} parentCallback={this.handleCallback} remove={this.deleteFromCart} />
     ))
     return (
       <div id="cart_page">
-        <h1>Find everything you need?</h1>
+        <h1 className={`checkout-greeter color-text-${greetingColor}`}>{greet}</h1>
         <table className="table">
           <thead>
             <tr>
@@ -103,6 +127,7 @@ class Cart extends React.Component<UserProps, cartState> {
               <th scope="col">Price</th>
               <th scope="col">Quantity</th>
               <th scope="col">Subtotal</th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
@@ -110,7 +135,9 @@ class Cart extends React.Component<UserProps, cartState> {
           </tbody>
         </table>
         <hr></hr>
-        <h3>Total in cart: {parseFloat(cartTotal.toFixed(2))}</h3>
+        <div className='cart-container'>
+          <h3>Total in cart: {parseFloat(cartTotal.toFixed(2))}</h3>
+        </div>
       </div>
     )
   }

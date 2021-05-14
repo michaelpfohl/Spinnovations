@@ -1,6 +1,38 @@
+@import 'variables';
+
 #cart_page {
-    img {
-       width: 150px;
-       height: auto; 
+  img {
+    height: 150px;
+    width: 150px;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    -webkit-box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .checkout-greeter {
+    font-family: $MainFont;
+    background: linear-gradient(to bottom, #353839 0%, #8c92ac 100%);
+    padding-bottom: 1rem;
+  }
+
+  .cart-container {
+    h3 {
+      font-family: $MainFont;
+      color: #292929;
+      text-align: center;
     }
+  }
+
+  th {
+    border-top: none;
+    border-bottom: none;
+  }
+
+  td {
+    font-family: $MainFont;
+    border-top: 0.5px solid $SchemePink;
+  }
 }
