@@ -140,7 +140,7 @@ class Cart extends React.Component<UserProps, cartState> {
                 {cartCards}
               </table>
               <h1 className={`cart-total mt-2 mb-4 color-text-green} underline`}>
-                  Your total comes to... ${cartTotal}
+                  Your total comes to... ${cartTotal}.toFixed(2);
                 </h1>
             </div>
           </div>
