@@ -11,6 +11,7 @@ type cartState = {
   products?: Product[];
   cartTotal: number;
   greetingColor: number;
+  borderColor: number;
   greet: string,
 };
 class Cart extends React.Component<UserProps, cartState> {
@@ -18,6 +19,7 @@ class Cart extends React.Component<UserProps, cartState> {
     products: [],
     cartTotal: 0,
     greetingColor: 0,
+    borderColor: 0,
     greet: '',
   };
 
@@ -100,6 +102,7 @@ class Cart extends React.Component<UserProps, cartState> {
     this.setState({
       greet: randomGreeting,
       greetingColor: Math.floor(Math.random() * 7) + 1,
+      borderColor: Math.floor(Math.random() * 7) + 1,
     });
   }
 
@@ -111,25 +114,38 @@ class Cart extends React.Component<UserProps, cartState> {
   }
 
   render(): JSX.Element {
-    const { products, cartTotal, greetingColor, greet } = this.state;
+    const { products, cartTotal, greetingColor, borderColor, greet } = this.state;
     const cartCards = products?.map((product) => (
       <CartCard key={product.id} product={product} parentCallback={this.handleCallback} remove={this.deleteFromCart} />
     ))
     return (
-      <div id="cart_page">
-        <h1 className={`checkout-greeter color-text-${greetingColor}`}>{greet}</h1>
-        <div className="d-flex flex-column justify-content-center mt-3">
-          {cartCards}
-        </div>
-        <hr></hr>
-        <div className="d-flex justify-content-center mt-4 cart-total-container">
-          <div className={`cart-table-container col-10 color-border-${greetingColor}`}>
-            <h1 className={`mt-2 mb-2 color-text-${greetingColor} underline`}>
-              Your total comes to... ${cartTotal}
-            </h1>
+      <>
+        <div id="cart_page">
+          <div className="d-flex justify-content-center mt-5 mb-5">
+            <div
+              className={`cart-container col-10 color-border-${borderColor}`}
+            >
+              <h1 className={`mb-4 mt-4 color-text-${greetingColor}`}>{greet}</h1>
+              <table className={`cart-table mb-4 color-half-border-${borderColor}`}>
+                <thead>
+                  <tr className="table-head">
+                    <th scope="col"></th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Subtotal</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                {cartCards}
+              </table>
+              <h1 className={`cart-total mt-2 mb-4 color-text-green} underline`}>
+                  Your total comes to... ${cartTotal}
+                </h1>
+            </div>
           </div>
         </div>
-      </div>
+      </>
     )
   }
 }
