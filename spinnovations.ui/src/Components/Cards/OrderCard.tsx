@@ -10,9 +10,8 @@ export const OrderCard = ({ order, shipped, onUpdate, seller }: OrderProps): JSX
     let totalCost = 0;
     order?.order_Details.forEach(function (detail: OrderDetails) {
       totalCost += detail.unit_Price * detail.quantity;
-      console.log(detail)
     });
-    return totalCost;
+    return parseFloat(totalCost.toFixed(2));
   };
   const cleanUpDate = (order: OrderProps): string => {
     const dateSplit = order.order_Date.split("T");

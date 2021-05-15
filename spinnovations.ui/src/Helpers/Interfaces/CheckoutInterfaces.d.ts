@@ -5,6 +5,7 @@ declare module 'CheckoutTypes' {
         user: User;
         products: Array<Product>;
         payments: Array<Payment>;
+        cartTotal: number;
         location: RouteComponentProps["location"];
     }
 }

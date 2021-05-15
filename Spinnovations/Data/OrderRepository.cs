@@ -205,6 +205,14 @@ namespace Spinnovations.Data
             return db.ExecuteScalar<double>(sql, new { creatorId = creatorId });
         }
 
+        public Order GetMostRecentUserOrder(int customerId)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = $@"SELECT TOP 1 * FROM Orders o
+                          WHERE o.Customer_Id = @customerId
+                            ORDER BY o.Order_Date DESC";
+            return db.QueryFirstOrDefault<Order>(sql, new { customerId = customerId });
+        }
         public void Add(Order order)
         {
             using var db = new SqlConnection(ConnectionString);

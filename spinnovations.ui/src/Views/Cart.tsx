@@ -2,7 +2,7 @@ import React from 'react';
 import { User } from '../Helpers/Interfaces/UserInterfaces';
 import { Product } from '../Helpers/Interfaces/ProductInterfaces';
 import CartCard from "../Components/Cards/CartCard";
-import {Link} from 'react-router-dom';
+import PlaceOrderModal from '../Components/Modals/PlaceOrderModal';
 
 type UserProps = {
   user: User;
@@ -111,13 +111,12 @@ class Cart extends React.Component<UserProps, cartState> {
         </table>
         <hr></hr>
         <h3>Total in cart: {parseFloat(cartTotal.toFixed(2))}</h3>
-        <Link to={{
-              pathname:"/checkout",
-              state: {
-                user: this.props.user,
-                products: products
-              },
-              }}>Checkout</Link>
+        <PlaceOrderModal
+                user = {this.props.user}
+                products= {products}
+                cartTotal= {parseFloat(this.state.cartTotal.toFixed(2))}
+                title="Checkout"
+              >Checkout</PlaceOrderModal>
       </div>
     )
   }

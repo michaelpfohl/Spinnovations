@@ -38,6 +38,12 @@ namespace Spinnovations.Controllers
             return Ok(_repo.GetAllOrdersByUser(customerId)) ;
         }
 
+        [HttpGet("user/last/{customerId}")]
+        public IActionResult GetMostRecentUserOrder(int customerId)
+        {
+            return Ok(_repo.GetMostRecentUserOrder(customerId));
+        }
+
         [HttpGet("sales/{creatorId}")]
         public IActionResult GetOrderByCreator(int creatorId)
         {

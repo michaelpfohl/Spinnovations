@@ -5,7 +5,7 @@ import paymentData from "../Helpers/Data/PaymentData";
 import { getCardCompany } from "../Components/Cards/PaymentInfoCard";
 import { Product } from "../Helpers/Interfaces/ProductInterfaces";
 import { CheckoutProps } from "../Helpers/Interfaces/CheckoutInterfaces";
-import {Table, Button} from 'reactstrap';
+import { Table, Button } from "reactstrap";
 import orderData from "../Helpers/Data/orderData";
 
 type CheckoutState = {
@@ -13,14 +13,28 @@ type CheckoutState = {
   products: Product[];
   user: User;
   selectedPayment: Payment;
+  cartTotal: number;
+  shippingAddress: string;
+  shippingCity: string;
+  shippingState: string;
+  shippingCountry: string;
+  shippingPostalCode: string;
+  success: boolean;
 };
 
 class Checkout extends Component<CheckoutProps> {
   state: CheckoutState = {
     payments: [],
-    user: this.props.location.state.user,
+    user: this.props.user,
     selectedPayment: {},
-    products: this.props.location.state.products,
+    products: this.props.products,
+    cartTotal: this.props.cartTotal,
+    shippingAddress: "",
+    shippingCity: "",
+    shippingState: "",
+    shippingCountry: "",
+    shippingPostalCode: "",
+    success: false,
   };
   componentDidMount(): void {
     paymentData
@@ -40,31 +54,34 @@ class Checkout extends Component<CheckoutProps> {
   };
   placeOrder = () => {
     const order = {
-      Customer_Id : this.state.user.id,
+      Customer_Id: this.state.user.id,
       Payment_Info_Id: parseInt(this.state.selectedPayment),
-      Address: this.state.user.address,
-      City: this.state.user.city,
-      State: this.state.user.state,
-      Country: this.state.user.country,
-      Postal_Code: this.state.user.postal_Code
-    }
+      Address: this.state.shippingAddress,
+      City: this.state.shippingCity,
+      State: this.state.shippingState,
+      Country: this.state.shippingCountry,
+      Postal_Code: this.state.shippingPostalCode,
+    };
     orderData.placeNewOrder(order).then((response) => {
-      this.state.products.forEach((product) => {
-        console.log(response);
-        console.log(product);
-        const orderDetails = {
-          Order_Id: response.id,
-          Product_Id: product.id,
-          Unit_Price: product.unit_Price,
-          Quantity: 1,
-          Shipped: false,
-        }
-        orderData.placeNewOrderDetails(orderDetails);
-      })
-        
-      
+      orderData
+        .getMostRecentUserOrder(response.customer_Id)
+        .then((recentOrderResponse) => {
+          this.state.products.forEach((product) => {
+            const orderDetails = {
+              Order_Id: recentOrderResponse.id,
+              Product_Id: product.id,
+              Unit_Price: product.price,
+              Quantity: 1,
+              Shipped: false,
+            };
+            orderData.placeNewOrderDetails(orderDetails);
+          });
+          this.setState({
+            success: true,
+          });
+        });
     });
-  }
+  };
 
   render(): JSX.Element {
     const { payments, user } = this.state;
@@ -82,37 +99,96 @@ class Checkout extends Component<CheckoutProps> {
     const options = payments.map(paymentOptions);
     return (
       <div>
-        <Table>
-          <thead>
-            <tr>
-              <th scope="row"></th>
-              <th>Product Name</th>
-              <th>Price</th>
-              <th>Quantity</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </Table>
-        <div className="d-flex justify-content-center mt-5">
-          <div className="product-form-container p-3">
-            <h1 className="product-form-header">Select Payment Method</h1>
-            <div className="d-flex justify-content-center">
-              <form className="add-Product-form">
-                <select
-                  className="form-control form-group"
-                  name="selectedPayment"
-                  value={this.state.selectedPayment}
-                  onChange={this.handleChange}
-                  required
-                >
-                  <option value='' selected disabled hidden>Test</option>
-                  {options}
-                </select>
-              </form>
+        {this.state.success && (
+          <div>
+            <div className="product-added-container mb-5 mt-5">
+              <h1>Thank you for your order!</h1>
             </div>
           </div>
+        )}
+        <div className="d-flex flex-column align-items-center p-3">
+          <h1 className={`product-form-header`}>Checkout</h1>
+          <div className="product-form-container p-3">
+            <form className="add-Product-form">
+              <h4 className="product-form-header m-3">Select Payment Method</h4>
+              <select
+                className="form-control-lg m2 modal-input"
+                name="selectedPayment"
+                value={this.state.selectedPayment}
+                onChange={this.handleChange}
+                required
+              >
+                <option value="" selected disabled hidden>
+                  Test
+                </option>
+                {options}
+              </select>
+              <h4 className="product-form-header m-3">Set Shipping Address</h4>
+              <div>
+                <input
+                  type="text"
+                  name="shippingAddress"
+                  value={this.state.shippingAddress}
+                  onChange={this.handleChange}
+                  placeholder="Address"
+                  className={`form-control-lg m-2 modal-input`}
+                  required
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  name="shippingCity"
+                  value={this.state.shippingCity}
+                  onChange={this.handleChange}
+                  placeholder="City"
+                  className={`form-control-lg m-2 modal-input`}
+                  required
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  name="shippingState"
+                  value={this.state.shippingState}
+                  onChange={this.handleChange}
+                  placeholder="State"
+                  className={`form-control-lg m-2 modal-input`}
+                  required
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  name="shippingCountry"
+                  value={this.state.shippingCountry}
+                  onChange={this.handleChange}
+                  placeholder="Country"
+                  className={`form-control-lg m-2 modal-input`}
+                  required
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  name="shippingPostalCode"
+                  value={this.state.shippingPostalCode}
+                  onChange={this.handleChange}
+                  placeholder="Postal Code"
+                  className={`form-control-lg m-2 modal-input`}
+                  required
+                />
+              </div>
+            </form>
+          </div>
+          <h4>Total: ${this.state.cartTotal}</h4>
+          <button
+            className="style-button m-4 bg-scheme-green"
+            onClick={() => this.placeOrder()}
+          >
+            Place Order
+          </button>
         </div>
-        <Button onClick={()=> this.placeOrder()}>Place Order</Button>
       </div>
     );
   }

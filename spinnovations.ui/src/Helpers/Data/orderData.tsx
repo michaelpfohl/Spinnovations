@@ -74,13 +74,18 @@ const getTotalUserSalesLastMonth = (creatorId: number): Promise<number> => new P
 
 const placeNewOrder = (order: OrderToPlace): Promise<Order> => new Promise((resolve, reject) => {
     axios.post(`${ordersUrl}`, order).then((response) => {
-        console.log("Inside of call", response)
         resolve(response.data);
     }).catch((error) => reject(error));
 })
 
 const placeNewOrderDetails = (orderDetails: OrderDetails): Promise<OrderDetails> => new  Promise((resolve, reject) => {
     axios.post(`${orderDetailsUrl}`, orderDetails).then((response) => {
+        resolve(response.data);
+    }).catch((error) => reject(error));
+})
+
+const getMostRecentUserOrder = (customerId: number) : Promise<Order> => new  Promise((resolve, reject) => {
+    axios.get(`${ordersUrl}/user/last/${customerId}`).then((response) => {
         resolve(response.data);
     }).catch((error) => reject(error));
 })
@@ -98,7 +103,8 @@ const orderData = {
     getSalesNotYetShipped,
     markOrderAsShipped,
     placeNewOrder,
-    placeNewOrderDetails
+    placeNewOrderDetails,
+    getMostRecentUserOrder
 }
 
 export default orderData;
