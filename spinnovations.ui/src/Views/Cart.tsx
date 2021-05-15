@@ -119,24 +119,16 @@ class Cart extends React.Component<UserProps, cartState> {
     return (
       <div id="cart_page">
         <h1 className={`checkout-greeter color-text-${greetingColor}`}>{greet}</h1>
-        <table className="table">
-          <thead>
-            <tr>
-              <th scope="col"></th>
-              <th scope="col">Name</th>
-              <th scope="col">Price</th>
-              <th scope="col">Quantity</th>
-              <th scope="col">Subtotal</th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody>
-            {cartCards}
-          </tbody>
-        </table>
+        <div className="d-flex flex-column justify-content-center mt-3">
+          {cartCards}
+        </div>
         <hr></hr>
-        <div className='cart-container'>
-          <h3>Total in cart: {parseFloat(cartTotal.toFixed(2))}</h3>
+        <div className="d-flex justify-content-center mt-4 cart-total-container">
+          <div className={`cart-table-container col-10 color-border-${greetingColor}`}>
+            <h1 className={`mt-2 mb-2 color-text-${greetingColor} underline`}>
+              Your total comes to... ${cartTotal}
+            </h1>
+          </div>
         </div>
       </div>
     )

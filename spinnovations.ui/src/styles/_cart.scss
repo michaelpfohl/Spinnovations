@@ -1,6 +1,33 @@
 @import 'variables';
 
 #cart_page {
+  .cart-table-container {
+    color: #fff;
+    border-radius: 25px;
+    border-top-left-radius: 0;
+    -webkit-box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
+    background-color: $BackgroundDark;
+  }
+  
+  .checkout-greeter {
+    font-family: $MainFont;
+    background: linear-gradient(to bottom, #353839 0%, #8c92ac 100%);
+    padding-bottom: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .cart-table {
+    -webkit-box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cart-table, .checkout-total {
+      background-color: $BackgroundMid;
+      color: #fff;
+      width: 100%;
+  }
+
   img {
     height: 150px;
     width: 150px;
@@ -12,27 +39,12 @@
     box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
   }
 
-  .checkout-greeter {
-    font-family: $MainFont;
-    background: linear-gradient(to bottom, #353839 0%, #8c92ac 100%);
-    padding-bottom: 1rem;
+  hr {
+    border-top: 4px solid $SchemePink;
   }
 
-  .cart-container {
-    h3 {
-      font-family: $MainFont;
-      color: #292929;
-      text-align: center;
-    }
+  .cart-total-container {
+    padding-bottom: 3rem;
   }
 
-  th {
-    border-top: none;
-    border-bottom: none;
-  }
-
-  td {
-    font-family: $MainFont;
-    border-top: 0.5px solid $SchemePink;
-  }
 }
