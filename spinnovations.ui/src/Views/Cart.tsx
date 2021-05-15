@@ -3,19 +3,25 @@ import { User } from '../Helpers/Interfaces/UserInterfaces';
 import { Product } from '../Helpers/Interfaces/ProductInterfaces';
 import CartCard from "../Components/Cards/CartCard";
 import PlaceOrderModal from '../Components/Modals/PlaceOrderModal';
+import Products from './Products';
 
 type UserProps = {
   user: User;
 };
-
+type ProductQuantity = {
+  productId: number,
+  quantity: number
+}
 type cartState = {
   products?: Product[];
   cartTotal: number;
+  productQuantities: ProductQuantity[],
 };
 class Cart extends React.Component<UserProps, cartState> {
   state: cartState = {
     products: [],
     cartTotal: 0,
+    productQuantities: []
   };
 
   deleteFromCart = (product: Product, qty: number): void => {
@@ -62,9 +68,18 @@ class Cart extends React.Component<UserProps, cartState> {
           cost += cartItem.price;
         };
         getCartItems().then(() => {
+          const productQuantities: ProductQuantity[] = [];
+          items.forEach((item) => {
+            const productQuantity: ProductQuantity = {
+              productId: item.id,
+              quantity: 1
+            }
+            productQuantities.push(productQuantity);
+          })
           this.setState({
             products: items,
             cartTotal: cost,
+            productQuantities: productQuantities
           });
         });
       }
@@ -72,6 +87,7 @@ class Cart extends React.Component<UserProps, cartState> {
       this.setState({
         products: [],
         cartTotal: 0,
+        productQuantities: []
       });
     } 
   };
@@ -80,8 +96,15 @@ class Cart extends React.Component<UserProps, cartState> {
     this.getTheCart();
   }
 
-  handleCallback = (subtotal: number): void => {    
+  handleCallback = (subtotal: number, productQuantity: ProductQuantity): void => {    
     const grandTotal = this.state.cartTotal += subtotal;
+    this.state.productQuantities.forEach((item) => {
+      this.state.products?.forEach((product) => {
+        if (item.productId === product.id) {
+          item.quantity = productQuantity.quantity;
+        }
+      })
+    } )
     this.setState({
       cartTotal: grandTotal,
     })
