@@ -20,6 +20,7 @@ import SingleSeller from '../Views/SingleSeller';
 import { SellerProps } from '../Helpers/Interfaces/SellerInterfaces';
 import {OrderProps} from '../Helpers/Interfaces/OrderInterfaces'
 import {PaymentProps} from '../Helpers/Interfaces/PaymentInterfaces';
+import Spin from '../Views/Spin';
 
 type RouteProps = {
   user: User | null
@@ -40,6 +41,7 @@ export default function Routes({ user}: RouteProps): JSX.Element {
         <Route exact path="/seller/:id" component={(props: SellerProps) => <SingleSeller{...props}/>} />
         <Route exact path="/details" component={(props: ProductProps) => <SingleProduct{...props} user={user}/>} />
         <Route exact path="/sales" component={(props: OrderProps) => <Sales{...props}/>}/>
+        <Route exact path="/spin" component={() => <Spin/>}/>
         <Route component={NotFound} />
       </Switch>
   );
