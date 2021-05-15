@@ -29,7 +29,7 @@ const Navigation = ({ user }: NavProps): JSX.Element => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <a className="scheme-orange" href="/" data-toggle="tooltip" data-placement="bottom" title="Spin"><i className="fas fa-cog fa-lg spinning-cog"></i></a>
+              <a className="scheme-orange" href="/spin" data-toggle="tooltip" data-placement="bottom" title="Spin"><i className="fas fa-cog fa-lg spinning-cog"></i></a>
             </NavItem>
             <NavItem>
               <a className="scheme-yellow" href="/Products" data-toggle="tooltip" data-placement="bottom" title="Browse"><i className="fas fa-eye fa-lg"></i></a>
