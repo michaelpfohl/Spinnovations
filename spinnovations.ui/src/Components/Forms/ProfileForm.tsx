@@ -3,8 +3,9 @@ import { User } from "../../Helpers/Interfaces/UserInterfaces";
 import userData from "../../Helpers/Data/userData";
 
 type ProfileFormProps = {
-    user: User;
-    onUpdate?: () => void;
+  user: User;
+  color: number;
+  onUpdate?: () => void;
 };
 
 class ProfileForm extends Component<ProfileFormProps, User> {
@@ -21,7 +22,7 @@ class ProfileForm extends Component<ProfileFormProps, User> {
     state: this.props.user?.state || "",
     user_Created_Date: this.props.user.user_Created_Date,
     firebase_Uid: this.props.user.firebase_Uid,
-    email: this.props.user.email
+    email: this.props.user.email,
   };
 
   handleChange = (
@@ -35,18 +36,21 @@ class ProfileForm extends Component<ProfileFormProps, User> {
   handleSubmit = (e: React.ChangeEvent<HTMLFormElement>): void => {
     e.preventDefault();
     userData.updateUser(this.state).then(() => {
-        if (this.props.onUpdate) {
-          this.props.onUpdate();
-        }
-      });
+      if (this.props.onUpdate) {
+        this.props.onUpdate();
+      }
+    });
   };
 
   render(): JSX.Element {
+    const { color } = this.props;
     return (
-      <div>
+      <div className="p-4">
         <div className="d-flex justify-content-center">
-          <div className="product-form-container">
-            <h1 className="product-form-header">Update Profile</h1>
+          <div>
+            <h1 className={`product-form-header color-text-${color} mb-4`}>
+              Update Profile
+            </h1>
             <div className="d-flex justify-content-center">
               <form onSubmit={this.handleSubmit} className="add-Product-form">
                 <div className="form-group">
@@ -56,7 +60,7 @@ class ProfileForm extends Component<ProfileFormProps, User> {
                     value={this.state.first_Name}
                     onChange={this.handleChange}
                     placeholder="First Name"
-                    className="form-control form-control-lg m-2 modal-input"
+                    className={`form-control-lg modal-input color-half-border-${color}`}
                     maxLength={50}
                     required
                   />
@@ -68,7 +72,7 @@ class ProfileForm extends Component<ProfileFormProps, User> {
                     value={this.state.last_Name}
                     onChange={this.handleChange}
                     placeholder="Last Name"
-                    className="form-control form-control-lg m-2 modal-input"
+                    className={`form-control-lg modal-input color-half-border-${color}`}
                     maxLength={50}
                     required
                   />
@@ -80,7 +84,7 @@ class ProfileForm extends Component<ProfileFormProps, User> {
                     value={this.state.display_Name}
                     onChange={this.handleChange}
                     placeholder="Display Name"
-                    className="form-control form-control-lg m-2 modal-input"
+                    className={`form-control-lg modal-input color-half-border-${color}`}
                     maxLength={20}
                     required
                   />
@@ -92,7 +96,7 @@ class ProfileForm extends Component<ProfileFormProps, User> {
                     value={this.state.address}
                     onChange={this.handleChange}
                     placeholder="Address"
-                    className="form-control form-control-lg m-2 modal-input"
+                    className={`form-control-lg modal-input color-half-border-${color}`}
                     maxLength={100}
                     required
                   />
@@ -104,7 +108,7 @@ class ProfileForm extends Component<ProfileFormProps, User> {
                     value={this.state.city}
                     onChange={this.handleChange}
                     placeholder="City"
-                    className="form-control form-control-lg m-2 modal-input"
+                    className={`form-control-lg modal-input color-half-border-${color}`}
                     maxLength={50}
                     required
                   />
@@ -116,7 +120,7 @@ class ProfileForm extends Component<ProfileFormProps, User> {
                     value={this.state.state}
                     onChange={this.handleChange}
                     placeholder="State"
-                    className="form-control form-control-lg m-2 modal-input"
+                    className={`form-control-lg modal-input color-half-border-${color}`}
                     maxLength={30}
                     required
                   />
@@ -128,7 +132,7 @@ class ProfileForm extends Component<ProfileFormProps, User> {
                     value={this.state.country}
                     onChange={this.handleChange}
                     placeholder="Country"
-                    className="form-control form-control-lg m-2 modal-input"
+                    className={`form-control-lg modal-input color-half-border-${color}`}
                     maxLength={60}
                     required
                   />
@@ -140,7 +144,7 @@ class ProfileForm extends Component<ProfileFormProps, User> {
                     value={this.state.postal_Code}
                     onChange={this.handleChange}
                     placeholder="Postal Code"
-                    className="form-control form-control-lg m-2 modal-input"
+                    className={`form-control-lg modal-input color-half-border-${color}`}
                     maxLength={5}
                     required
                   />
@@ -152,14 +156,16 @@ class ProfileForm extends Component<ProfileFormProps, User> {
                     value={this.state.image_Url}
                     onChange={this.handleChange}
                     placeholder="Profile Picture"
-                    className="form-control form-control-lg m-2 modal-input"
+                    className={`form-control-lg modal-input color-half-border-${color}`}
                     maxLength={200}
                     required
                   />
                 </div>
-                <button className="btn btn-success form-button form-button-text mt-1 mb-1">
-                  Submit
-                </button>
+                <div className="d-flex justify-content-center">
+                  <button className="style-button bg-scheme-submit form-button form-button-text mt-1 mb-1">
+                    Submit
+                  </button>
+                </div>
               </form>
             </div>
           </div>

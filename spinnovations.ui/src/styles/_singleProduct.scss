@@ -1,0 +1,30 @@
+.single-product-view {
+    color: #fff;
+    border-radius: 25px;
+    border-top-left-radius: 0;
+    -webkit-box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
+    background-color: $BackgroundDark;
+    a:hover {
+        color: inherit;
+      }
+  }
+
+  .single-product-image {
+    margin: 20px 0px 45px 30px;
+    img {
+      width: 500px;
+      height: 400px;
+      max-width: 100%;
+      object-fit: cover;
+      border-radius: 25px;
+      border-top-left-radius: 0;
+    }
+  }
+
+  .product-info {
+      margin: 20px 20px 20px 45px;
+      width: 40%;
+      max-width: 100%;
+      text-align: left;
+  }

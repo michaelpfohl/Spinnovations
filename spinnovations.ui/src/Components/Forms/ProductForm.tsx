@@ -9,7 +9,7 @@ type ProductFormProps = {
   user: User;
   product?: Product;
   onUpdate?: () => void;
-  color?: number,
+  color?: number;
 };
 
 class ProductForm extends Component<ProductFormProps> {
@@ -57,7 +57,7 @@ class ProductForm extends Component<ProductFormProps> {
       this.setState({
         added: true,
       });
-      setTimeout(() => this.setState({added: false}), 3000);
+      setTimeout(() => this.setState({ added: false }), 3000);
     } else {
       const product = {
         id: this.state.id,
@@ -69,11 +69,11 @@ class ProductForm extends Component<ProductFormProps> {
         creator_Id: Number(this.state.creator_Id),
         quantity_In_Stock: Number(this.state.quantity_In_Stock),
       };
-      productData.updateProduct(product).then(()=> {
-        if (this.props.onUpdate){
+      productData.updateProduct(product).then(() => {
+        if (this.props.onUpdate) {
           this.props.onUpdate();
         }
-      })
+      });
     }
   };
 
@@ -89,19 +89,34 @@ class ProductForm extends Component<ProductFormProps> {
     };
     const options = product_categories.map(categoryNames);
 
-    return (
+    const header = (): JSX.Element => {
+      if (this.state.name) {
+        return (
+          <h1 className={`product-form-header color-text-${color}`}>
+            Update Product
+          </h1>
+        );
+      } else {
+        return (
+          <h1 className={`product-form-header color-text-${color}`}>
+            Add A New Product
+          </h1>
+        );
+      }
+    };
 
+    return (
       <div>
-        {added && 
-        <div>
-          <div className="product-added-container mb-5 mt-5">
-            <h1>Product Added!</h1>
+        {added && (
+          <div>
+            <div className="product-added-container mb-5 mt-5">
+              <h1>Product Added!</h1>
+            </div>
           </div>
-        </div>
-        }
+        )}
         <div className="d-flex justify-content-center">
-          <div className="product-form-content p-3">
-            <h1 className={`product-form-header color-text-${color}`}>Add A New Product</h1>
+          <div className="p-3">
+            {header()}
             <div className="d-flex justify-content-center add-product-input-container">
               <form onSubmit={this.handleSubmit} className="add-Product-form">
                 <div>
@@ -165,11 +180,16 @@ class ProductForm extends Component<ProductFormProps> {
                   name="category_Id"
                   value={this.state.category_Id}
                 >
+                  <option selected disabled hidden value="">
+                    Select a Category
+                  </option>
                   {options}
                 </select>
-                <button className="submit-new-product-button form-button form-button-text mt-1 mb-1">
-                  Submit
-                </button>
+                <div className="d-flex justify-content-center">
+                  <button className="submit-new-product-button form-button form-button-text mt-1 mb-1">
+                    Submit
+                  </button>
+                </div>
               </form>
             </div>
           </div>
