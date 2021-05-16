@@ -228,8 +228,8 @@ namespace Spinnovations.Data
                             (@Customer_Id
                             ,@Payment_Info_Id
                             ,@Address
-                            ,@State
                             ,@City
+                            ,@State
                             ,@Country
                             ,@Postal_Code)";
             var id = db.ExecuteScalar<int>(sql, order);
