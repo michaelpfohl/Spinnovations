@@ -8,5 +8,9 @@ declare module 'CheckoutTypes' {
         cartTotal: number;
         location: RouteComponentProps["location"];
     }
+    interface ProductQuantity {
+        productId: number,
+        quantity: number
+    }
 }
-export {CheckoutProps}
+export {CheckoutProps, ProductQuantity}

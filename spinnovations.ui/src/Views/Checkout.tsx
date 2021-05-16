@@ -4,13 +4,13 @@ import { User } from "../Helpers/Interfaces/UserInterfaces";
 import paymentData from "../Helpers/Data/PaymentData";
 import { getCardCompany } from "../Components/Cards/PaymentInfoCard";
 import { Product } from "../Helpers/Interfaces/ProductInterfaces";
-import { CheckoutProps } from "../Helpers/Interfaces/CheckoutInterfaces";
-import { Table, Button } from "reactstrap";
+import { CheckoutProps, ProductQuantity } from "../Helpers/Interfaces/CheckoutInterfaces";
 import orderData from "../Helpers/Data/orderData";
 
 type CheckoutState = {
   payments: Payment[];
   products: Product[];
+  productQuantities: ProductQuantity[]
   user: User;
   selectedPayment: Payment;
   cartTotal: number;
@@ -28,6 +28,7 @@ class Checkout extends Component<CheckoutProps> {
     user: this.props.user,
     selectedPayment: {},
     products: this.props.products,
+    productQuantities: this.props.productQuantities,
     cartTotal: this.props.cartTotal,
     shippingAddress: "",
     shippingCity: "",
@@ -67,15 +68,19 @@ class Checkout extends Component<CheckoutProps> {
         .getMostRecentUserOrder(response.customer_Id)
         .then((recentOrderResponse) => {
           this.state.products.forEach((product) => {
-            const orderDetails = {
-              Order_Id: recentOrderResponse.id,
-              Product_Id: product.id,
-              Unit_Price: product.price,
-              Quantity: 1,
-              Shipped: false,
-            };
-            orderData.placeNewOrderDetails(orderDetails);
-          });
+            this.state.productQuantities.forEach((qty) => {
+              if (product.id === qty.productId) {
+                const orderDetails = {
+                  Order_Id: recentOrderResponse.id,
+                  Product_Id: product.id,
+                  Unit_Price: product.price,
+                  Quantity: qty.quantity,
+                  Shipped: false,
+                };
+                orderData.placeNewOrderDetails(orderDetails);
+              }
+            });
+            })
           this.setState({
             success: true,
           });
