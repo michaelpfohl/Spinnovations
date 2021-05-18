@@ -1,8 +1,6 @@
 import React from "react";
 import { Product } from "../../Helpers/Interfaces/ProductInterfaces";
 
-// import "./index.scss";
-
 type WheelProps = {
   products: Product[];
 };
@@ -25,9 +23,6 @@ export default class Wheel extends React.Component<WheelProps, WheelState> {
       const selectedItem = Math.floor(
         Math.random() * this.props.products.length
       );
-      //   if (this.props.onSelectItem) {
-      //     this.props.onSelectItem(selectedItem);
-      //   }
       this.setState({ selectedItem });
     } else {
       this.setState({ selectedItem: null });
@@ -41,18 +36,15 @@ export default class Wheel extends React.Component<WheelProps, WheelState> {
 
     const assignColors = (products: Product[]): JSX.Element[] => {
       const wheelItems: JSX.Element[] = [];
-      let counter = 0;
       products?.forEach((product, index) => {
-        counter++;
         const style = { "--item-nb": index } as React.CSSProperties;
-        if (counter >= 8) counter = 1;
         wheelItems.push(
           <div
             className={`wheel-item`}
             key={index}
             style={style}
           >
-            <span className={`wheel-item-dot color-text-${counter}`}>•</span> {product.name} <span className={`wheel-item-dot color-text-${counter}`}>•</span>
+            {product.name}
           </div>
         );
       });

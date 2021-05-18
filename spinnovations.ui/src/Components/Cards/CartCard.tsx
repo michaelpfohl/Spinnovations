@@ -1,5 +1,6 @@
 import React from 'react';
 import { ProductProps } from "../../Helpers/Interfaces/ProductInterfaces";
+import { Link } from "react-router-dom";
 
 type cartCardState = {
   qty: number,
@@ -36,7 +37,16 @@ class CartCard extends React.Component<ProductProps> {
     return (
       <tbody>
         <tr>
-          <td scope="row"><img src={product.imageUrl} className={`profile-photo m-3 color-border-${greetingColor}`}></img>
+          <td scope="row">
+          <Link
+            to={{
+              pathname: "/details",
+              state: {
+                product: product,
+              },
+            }}
+          ><img src={product.imageUrl} className={`profile-photo m-3 color-border-${greetingColor}`}></img>
+          </Link>
           </td>
           <td>{product.name}</td>
           <td>{product.price}</td>
