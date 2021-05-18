@@ -137,7 +137,7 @@ class Cart extends React.Component<UserProps, cartState> {
   render(): JSX.Element {
     const { products, cartTotal, greetingColor, borderColor, greet } = this.state;
     const cartCards = products?.map((product) => (
-      <CartCard key={product.id} product={product} parentCallback={this.handleCallback} remove={this.deleteFromCart} history={this.props.history}/>
+      <CartCard key={product.id} product={product} parentCallback={this.handleCallback} remove={this.deleteFromCart}/>
     ))
     return (
       <>
