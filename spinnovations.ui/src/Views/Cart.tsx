@@ -4,6 +4,7 @@ import { Product } from "../Helpers/Interfaces/ProductInterfaces";
 import CartCard from "../Components/Cards/CartCard";
 import PlaceOrderModal from "../Components/Modals/PlaceOrderModal";
 import { ProductQuantity } from "../Helpers/Interfaces/CheckoutInterfaces";
+import { Link } from "react-router-dom";
 
 type UserProps = {
   user: User;
@@ -192,15 +193,22 @@ class Cart extends React.Component<UserProps, cartState> {
       );
     } else {
       return (
-        <div id="cart-page" className="cart-container">
-          <div className="cart-container d-flex justify-content-center mt-5 mb-5">
-            <div
-              className={`cart-container col-10 color-border-${borderColor}`}
-            >
-              <h1 className={`cart-container mb-4 mt-4`}>You have no products!</h1>
+        <>
+          <div id="cart_page">
+            <div className="d-flex justify-content-center mt-5 mb-5">
+              <div
+                className={`cart-container col-10 color-border-${borderColor}`}
+              >
+                <h2 className={`mb-4 mt-4 color-text-${greetingColor}`}>Your cart is empty!</h2>
+                <Link to="/Products">
+                  <button className="style-button-large mb-4 mt-4 bg-scheme-blue-green">
+                    View Products
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
+        </>
       );
     }
   }
