@@ -19,12 +19,25 @@ export default class SearchResults extends Component<SearchProps, SearchState> {
 
 
   componentDidMount(): void {
-    this.setState({ searchTerm: this.props.match.params.term })
+    this.setState({ searchTerm: this.props.match.params.term.toLowerCase() })
     // productData.getProducts().then((response) => {
     //     this.setState({
     //         results: response,
     //     })
     //   });
+
+  }
+
+  // performSearch = (): void => {
+  //   const searchTerm = this.props.match.params.term;
+  //   const filteredResults = this.state.results?.filter(p => p.name.toLowerCase().includes(searchTerm.toLowerCase()));
+  //   this.setState({
+  //     filteredResults,
+  //     searchTerm,
+  //   });
+  // };
+
+  getProductsFromSearch = (): void => {
     productData.search(this.state.searchTerm).then((response) => {
       this.setState({
         results: response,
@@ -32,18 +45,9 @@ export default class SearchResults extends Component<SearchProps, SearchState> {
     })
   }
 
-  performSearch = (): void => {
-    const searchTerm = this.props.match.params.term;
-    const filteredResults = this.state.results?.filter(p => p.name.toLowerCase().includes(searchTerm.toLowerCase()));
-    this.setState({
-      filteredResults,
-      searchTerm,
-    });
-  };
-
-  componentDidUpdate(): void {
-    if (this.state.searchTerm !== this.props.match.params.term) {
-      this.performSearch();
+  componentDidUpdate(prevState: SearchState): void {
+    if (prevState.searchTerm !== this.state.searchTerm) {
+      this.getProductsFromSearch();
     }
   }
 
