@@ -41,6 +41,12 @@ const deleteProductsByCreator = (creatorId: number): Promise<void> => axios.put(
 
 const updateProduct = (product: Product): Promise<void> => axios.put(`${productsURL}/${product.id}`, product);
 
+const search = (term: string) : Promise<Product> => new Promise((resolve, reject) => {
+    axios.get(`${productsURL}/search/${term}`).then((response) => {
+        resolve(response.data)
+    }).catch((error) => reject(error));
+})
+
 const productData = {
     getProducts,
     getProductsByUserId,
@@ -50,6 +56,7 @@ const productData = {
     deleteProduct,
     updateProduct,
     deleteProductsByCreator,
+    search
 }
 
 export default productData;

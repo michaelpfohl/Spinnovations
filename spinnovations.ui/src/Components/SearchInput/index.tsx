@@ -13,7 +13,8 @@ class SearchInput extends Component<SearchProps> {
   }
 
   handleSubmit = () => {
-    this.props.history.push(`/search/${this.state.text}`);
+    //this.props.history.push(`/search/${this.state.text}`);
+    
   };
 
   handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
