@@ -7,7 +7,6 @@ import {ProductQuantity} from '../Helpers/Interfaces/CheckoutInterfaces';
 
 type UserProps = {
   user: User;
-  history: History;
 };
 
 type cartState = {
