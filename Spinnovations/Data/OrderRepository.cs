@@ -110,7 +110,8 @@ namespace Spinnovations.Data
                         JOIN Products p
                             ON p.id = od.Product_Id
                         WHERE p.Creator_Id = @creatorId
-                            AND od.Shipped = 1";
+                            AND od.Shipped = 1
+                            ORDER BY Order_Date DESC";
             var orders = new Dictionary<int, Order>();
             var userOrders = db.Query<Order, Order_Details, Product, Order>(sql, (order, order_details, product) =>
             {
@@ -144,7 +145,8 @@ namespace Spinnovations.Data
                         JOIN Products p
                             ON p.id = od.Product_Id
                         WHERE p.Creator_Id = @creatorId
-                            AND od.Shipped = 0";
+                            AND od.Shipped = 0
+                        ORDER BY Order_Date DESC";
             var orders = new Dictionary<int, Order>();
             var userOrders = db.Query<Order, Order_Details, Product, Order>(sql, (order, order_details, product) =>
             {
