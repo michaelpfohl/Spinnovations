@@ -24,7 +24,7 @@ class CartCard extends React.Component<ProductProps> {
       qty: quantityDesired,
       itemSubTotal: cleanSubtotal,
     })
-    this.props.parentCallback(change);
+    this.props.parentCallback(change, {productId : this.props.product.id, quantity: parseInt(e.target.value)});
   }
 
   componentDidMount(): void {

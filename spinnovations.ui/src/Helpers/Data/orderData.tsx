@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {BaseURL} from '../config.json';
-import {Order, OrderDetails} from '../Interfaces/OrderInterfaces'
+import {Order, OrderDetails, OrderToPlace} from '../Interfaces/OrderInterfaces'
 
 const ordersUrl = `${BaseURL}/order`;
 const orderDetailsUrl = `${BaseURL}/Order_Details`;
@@ -72,6 +72,24 @@ const getTotalUserSalesLastMonth = (creatorId: number): Promise<number> => new P
     }).catch((error) => reject(error));
 })
 
+const placeNewOrder = (order: OrderToPlace): Promise<Order> => new Promise((resolve, reject) => {
+    axios.post(`${ordersUrl}`, order).then((response) => {
+        resolve(response.data);
+    }).catch((error) => reject(error));
+})
+
+const placeNewOrderDetails = (orderDetails: OrderDetails): Promise<OrderDetails> => new  Promise((resolve, reject) => {
+    axios.post(`${orderDetailsUrl}`, orderDetails).then((response) => {
+        resolve(response.data);
+    }).catch((error) => reject(error));
+})
+
+const getMostRecentUserOrder = (customerId: number) : Promise<Order> => new  Promise((resolve, reject) => {
+    axios.get(`${ordersUrl}/user/last/${customerId}`).then((response) => {
+        resolve(response.data);
+    }).catch((error) => reject(error));
+})
+
 const orderData = {
     getAllOrders,
     getOrderById,
@@ -84,6 +102,9 @@ const orderData = {
     getSalesShipped,
     getSalesNotYetShipped,
     markOrderAsShipped,
+    placeNewOrder,
+    placeNewOrderDetails,
+    getMostRecentUserOrder
 }
 
 export default orderData;

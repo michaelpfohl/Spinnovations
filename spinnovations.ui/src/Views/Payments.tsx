@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PaymentInfoCard from '../Components/Cards/PaymentInfoCard';
+import {PaymentInfoCard} from '../Components/Cards/PaymentInfoCard';
 import paymentData from '../Helpers/Data/PaymentData';
 import {PaymentProps, Payment} from '../Helpers/Interfaces/PaymentInterfaces';
 import {User} from '../Helpers/Interfaces/UserInterfaces';

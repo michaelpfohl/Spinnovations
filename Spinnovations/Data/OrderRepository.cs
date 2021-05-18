@@ -39,7 +39,8 @@ namespace Spinnovations.Data
                                 ON od.Order_Id = o.id
                             JOIN Products p
                                 ON p.id = od.Product_Id
-                            WHERE o.Customer_Id = @customerId";
+                            WHERE o.Customer_Id = @customerId
+                            ORDER BY Order_Date DESC";
 
             var orders = new Dictionary<int, Order>();
 
@@ -109,7 +110,8 @@ namespace Spinnovations.Data
                         JOIN Products p
                             ON p.id = od.Product_Id
                         WHERE p.Creator_Id = @creatorId
-                            AND od.Shipped = 1";
+                            AND od.Shipped = 1
+                            ORDER BY Order_Date DESC";
             var orders = new Dictionary<int, Order>();
             var userOrders = db.Query<Order, Order_Details, Product, Order>(sql, (order, order_details, product) =>
             {
@@ -143,7 +145,8 @@ namespace Spinnovations.Data
                         JOIN Products p
                             ON p.id = od.Product_Id
                         WHERE p.Creator_Id = @creatorId
-                            AND od.Shipped = 0";
+                            AND od.Shipped = 0
+                        ORDER BY Order_Date DESC";
             var orders = new Dictionary<int, Order>();
             var userOrders = db.Query<Order, Order_Details, Product, Order>(sql, (order, order_details, product) =>
             {
@@ -200,24 +203,36 @@ namespace Spinnovations.Data
                             ON od.Order_Id = o.id
                         JOIN Products p
                             ON p.id = od.Product_Id
-                        WHERE p.Creator_Id = 7
+                        WHERE p.Creator_Id = @creatorId
                         AND DATEDIFF(day, o.Order_Date, GETDATE()) < 30;";
             return db.ExecuteScalar<double>(sql, new { creatorId = creatorId });
         }
 
+        public Order GetMostRecentUserOrder(int customerId)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = $@"SELECT TOP 1 * FROM Orders o
+                          WHERE o.Customer_Id = @customerId
+                            ORDER BY o.Order_Date DESC";
+            return db.QueryFirstOrDefault<Order>(sql, new { customerId = customerId });
+        }
         public void Add(Order order)
         {
             using var db = new SqlConnection(ConnectionString);
             var sql = $@"INSERT INTO [dbo].[Orders]
                             ([Customer_Id]
+                            ,[Payment_Info_Id]
                             ,[Address]
                             ,[City]
+                            ,[State]
                             ,[Country]
                             ,[Postal_Code])
                         VALUES
                             (@Customer_Id
+                            ,@Payment_Info_Id
                             ,@Address
                             ,@City
+                            ,@State
                             ,@Country
                             ,@Postal_Code)";
             var id = db.ExecuteScalar<int>(sql, order);
