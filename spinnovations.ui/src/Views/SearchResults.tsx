@@ -8,6 +8,7 @@ type SearchState = {
     results? : Product[];
     searchTerm: string;
     filteredResults?: Product[];
+    greetingColor: number;
 }
   
 export default class SearchResults extends Component<SearchProps, SearchState> {
@@ -15,53 +16,60 @@ export default class SearchResults extends Component<SearchProps, SearchState> {
     results: [],
     searchTerm: '',
     filteredResults: [],
+    greetingColor: 0
   };
 
 
   componentDidMount(): void {
-    productData.getProducts().then((response) => {
-        this.setState({
-            results: response,
-        })
-      });
+    this.setState({ 
+      searchTerm: this.props.match.params.term,
+      greetingColor: Math.floor(Math.random() * 7) + 1
+     })
   }
 
-  performSearch = (): void => {
-    const searchTerm = this.props.match.params.term;
-    const filteredResults = this.state.results?.filter(p => p.name.toLowerCase().includes(searchTerm.toLowerCase()));
-    this.setState({
-      filteredResults,
-      searchTerm,
-    });
-  };
+  getProductsFromSearch = (): void => {
+    productData.search(this.state.searchTerm).then((response) => {
+      this.setState({
+        results: response,
+      })
+    })
+  }
 
-  componentDidUpdate(): void {
-    if (this.state.searchTerm !== this.props.match.params.term) {
-      this.performSearch();
+  componentDidUpdate(prevState: SearchState): void {
+    if (prevState.searchTerm !== this.state.searchTerm) {
+      this.getProductsFromSearch();
     }
   }
 
   render(): JSX.Element {
-    const { filteredResults } = this.state;
-    
-    const showResults = () => {
-      if (filteredResults?.length){
-      return filteredResults?.map((result) => (
-          <ProductCard product = {result} key = {result.id} />
-      ))}
-      else {
-          return (
-              <div>
-                  <h1>No Matching Products</h1>
-              </div>
-          )
-      }
-    };
-        
+    const { results, greetingColor } = this.state;
+    const productCard = (product: Product, color: number): JSX.Element => {
+      return (<ProductCard key={product.id} product={product} color={color}/>)
+    }
+    const assignColors = (products: Product[]) => {
+      const cards: Product[] = [];
+      let counter = 0;
+      products?.forEach((product) => {
+          counter++;
+          if (counter >= 8) counter = 1;
+          cards.push(productCard(product, counter));
+      })
+      return cards;
+    }
+    let cards: Product[] = []
+    if (results?.length){
+      cards = assignColors(results);
+    } else {
+      cards = [<div className={`col-10 mt-4 color-border-${greetingColor} orders-dashboard`}>
+                <h1 className="mt-4 mb-4">No matching products</h1>
+              </div>]
+    }
+   
     return (
-      <div>
-        <h2>Search Results</h2>
-        <div className="d-flex flex wrap container">{showResults()}</div>
+      <div className="mt-4">
+        <div className="container-fluid d-flex flex-wrap justify-content-around">
+          {cards}
+        </div>
       </div>
     )
   }
