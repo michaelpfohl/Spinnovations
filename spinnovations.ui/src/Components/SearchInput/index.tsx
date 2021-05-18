@@ -18,7 +18,6 @@ class SearchInput extends Component<SearchProps> {
 
   handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({
-      //[e.target.name]: e.target.value,
       text: e.target.value
     });
   };
