@@ -88,5 +88,12 @@ namespace Spinnovations.Controllers
             return Ok();
         }
 
+        [HttpGet("search/{term}")]
+        public IActionResult Search(string term)
+        {
+            var results = _repo.Search(term);
+            return Ok(results);
+        }
+
     }
 }

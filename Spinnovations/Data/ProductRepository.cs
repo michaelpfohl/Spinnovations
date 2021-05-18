@@ -110,5 +110,20 @@ namespace Spinnovations.Data
             db.Execute(sql, new { creatorId = creatorId });
         }
 
+        public List<Product> Search(string term)
+        {
+            var sql = @"SELECT *
+                        FROM Products
+                        WHERE Name like '%' + @searchTerm + '%'
+	                          OR
+	                          Description like '%' + @searchTerm + '%'
+                              AND
+                              Active = 1";
+
+            using var db = new SqlConnection(ConnectionString);
+
+            return db.Query<Product>(sql, new { searchTerm = term }).ToList();
+        }
+
     }
 }
