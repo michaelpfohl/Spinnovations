@@ -24,10 +24,19 @@ export default class Wheel extends React.Component<WheelProps, WheelState> {
         Math.random() * this.props.products.length
       );
       this.setState({ selectedItem });
+      this.placeOrder(selectedItem);
     } else {
       this.setState({ selectedItem: null });
       setTimeout(this.selectItem, 500);
     }
+  }
+
+  placeOrder = (selectedItem: number): void => {
+    const { products } = this.props;
+    console.log(products[selectedItem]);
+    products[selectedItem].price = 0;
+    products[selectedItem].quantity = 2;
+    localStorage.setItem(products[selectedItem].name, JSON.stringify(products[selectedItem]))
   }
 
   render(): JSX.Element {
