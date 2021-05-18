@@ -1,6 +1,65 @@
+@import 'variables';
+
 #cart_page {
-    img {
-       width: 150px;
-       height: auto; 
+  .checkout-greeter {
+    font-family: $MainFont;
+    background: linear-gradient(to bottom, #353839 0%, #8c92ac 100%);
+    padding-bottom: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .cart-container {
+    color: #fff;
+    border-radius: 25px;
+    border-top-left-radius: 0;
+    -webkit-box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
+    background-color: $BackgroundDark;
+  }
+
+  .cart-table {
+    -webkit-box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
+    width: 99%;
+  }
+
+  .cart-table th,
+  td {
+    background-color: $BackgroundMid;
+    color: #fff;
+  }
+
+  img {
+    height: 100px;
+    width: 100px;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    -webkit-box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  #quantity {
+    background-color: $SchemeYellow !important;
+    color: purple;
+  }
+
+  hr {
+    border-top: 4px solid $SchemePink;
+  }
+
+  .table-head {
+    border-bottom: 2px solid #fff;
+    th {
+      padding: 10px;
     }
+  }
+  tr {
+    border-top: 1px solid #fff;
+  }
+
+  .cart-total {
+    color: $AddGreen;
+  }
 }
