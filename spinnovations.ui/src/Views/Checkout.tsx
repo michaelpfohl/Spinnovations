@@ -10,7 +10,6 @@ import {
 } from "../Helpers/Interfaces/CheckoutInterfaces";
 import orderData from "../Helpers/Data/orderData";
 import { withRouter } from "react-router-dom";
-import { parse } from "node:url";
 
 type CheckoutState = {
   payments: Payment[];
