@@ -5,6 +5,7 @@ type cartCardState = {
   qty: number;
   itemSubTotal: number;
   greetingColor: number;
+  spinQty: number,
 };
 
 class CartCard extends React.Component<ProductProps> {
@@ -12,6 +13,7 @@ class CartCard extends React.Component<ProductProps> {
     qty: 1,
     itemSubTotal: this.props.product.price,
     greetingColor: 0,
+    spinQty: 1,
   };
 
   handleInputChange = (
@@ -63,7 +65,7 @@ class CartCard extends React.Component<ProductProps> {
               />
             )}
             {itemSubTotal === 0 && (
-              <p>{this.state.qty}</p>
+              <p className="mb-0">{this.state.qty}</p>
             )}
           </td>
           <td>${itemSubTotal}</td>
