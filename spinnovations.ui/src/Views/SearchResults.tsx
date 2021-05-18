@@ -19,15 +19,17 @@ export default class SearchResults extends Component<SearchProps, SearchState> {
 
 
   componentDidMount(): void {
-    this.setState {
-      (searchTerm: this.props.match.params.term)
-    }
+    this.setState({ searchTerm: this.props.match.params.term })
     // productData.getProducts().then((response) => {
     //     this.setState({
     //         results: response,
     //     })
     //   });
-    productData.search(term: )
+    productData.search(this.state.searchTerm).then((response) => {
+      this.setState({
+        results: response,
+      })
+    })
   }
 
   performSearch = (): void => {
