@@ -11,7 +11,7 @@ export const OrderCard = ({ order, shipped, onUpdate, seller }: OrderProps): JSX
     order?.order_Details.forEach(function (detail: OrderDetails) {
       totalCost += detail.unit_Price * detail.quantity;
     });
-    return totalCost;
+    return parseFloat(totalCost.toFixed(2));
   };
   const cleanUpDate = (order: OrderProps): string => {
     const dateSplit = order.order_Date.split("T");
@@ -31,7 +31,7 @@ export const OrderCard = ({ order, shipped, onUpdate, seller }: OrderProps): JSX
         <th scope="row"></th>
         <td>{cleanUpDate(order)}</td>
         <td>
-          {order.address}, {order.city} {order.country} {order.postal_code}
+          {order.address}, {order.city}, {order.state} {order.country} {order.postal_code}
         </td>
         <td>${calcOrderTotal(order)}</td>
         <td>

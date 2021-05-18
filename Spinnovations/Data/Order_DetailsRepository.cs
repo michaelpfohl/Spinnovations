@@ -36,12 +36,14 @@ namespace Spinnovations.Data
                         ([Order_Id]
                         ,[Product_Id]
                         ,[Unit_Price]
-                        ,[Quantity])
+                        ,[Quantity]
+                        ,[Shipped])
                     VALUES
                         (@Order_Id
                         ,@Product_Id
                         ,@Unit_Price
-                        ,@Quantity)";
+                        ,@Quantity
+                        ,@Shipped)";
             var id = db.ExecuteScalar<int>(sql, orderDetails);
             orderDetails.Id = id;
         }

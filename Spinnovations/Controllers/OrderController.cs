@@ -38,6 +38,12 @@ namespace Spinnovations.Controllers
             return Ok(_repo.GetAllOrdersByUser(customerId)) ;
         }
 
+        [HttpGet("user/last/{customerId}")]
+        public IActionResult GetMostRecentUserOrder(int customerId)
+        {
+            return Ok(_repo.GetMostRecentUserOrder(customerId));
+        }
+
         [HttpGet("sales/{creatorId}")]
         public IActionResult GetOrderByCreator(int creatorId)
         {
@@ -76,10 +82,10 @@ namespace Spinnovations.Controllers
 
 
         [HttpPost]
-        public IActionResult AddOrder_Details(Order order)
+        public IActionResult AddOrder(Order order)
         {
             _repo.Add(order);
-            return Created($"/api/order_details/{order.Id}", order);
+            return Created($"/api/orders/{order.Id}", order);
         }
         [HttpDelete("{id}")]
         public IActionResult DeleteOrder(int id)

@@ -9,21 +9,21 @@ import { PaymentInfoFormProps, PaymentProps } from "../../Helpers/Interfaces/Pay
 import PaymentInfoModal from "../../Components/Modals/PaymentInfoModal";
 import paymentData from '../../Helpers/Data/PaymentData';
 
-const PaymentInfoCard = ({ payment, onUpdate, user }: PaymentInfoFormProps): JSX.Element => {
-  const getCardCompany = (payment: PaymentProps) : string => {
-    switch (payment.card_Company) {
-      case "1":
-        return "American Express";
-      case "2":
-        return "Discover";
-      case "3":
-        return "Mastercard";
-      case "4":
-        return "Visa";
-      default: 
-      return "Credit Card";
-    }
+const getCardCompany = (payment: PaymentProps) : string => {
+  switch (payment.card_Company) {
+    case "1":
+      return "American Express";
+    case "2":
+      return "Discover";
+    case "3":
+      return "Mastercard";
+    case "4":
+      return "Visa";
+    default: 
+    return "Credit Card";
   }
+}
+const PaymentInfoCard = ({ payment, onUpdate, user }: PaymentInfoFormProps): JSX.Element => {
   return (
     <div className="p-5" key={payment.id}>
       <Card style={{ width: "25em" }} className="d-flex align-items-center">
@@ -53,4 +53,4 @@ const PaymentInfoCard = ({ payment, onUpdate, user }: PaymentInfoFormProps): JSX
   );
 };
 
-export default PaymentInfoCard;
+export {PaymentInfoCard, getCardCompany};
