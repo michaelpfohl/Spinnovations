@@ -10,6 +10,13 @@ declare module 'OrderTypes' {
         order_Details: Array<OrderDetails>;
         products: Array<Products>;
     }
+    interface OrderToPlace {
+        customer_Id: number;
+        address: string;
+        city: string;
+        country: string;
+        postal_Code: string;
+    }
     interface OrderDetails {
         id: number;
         order_Id: number;
@@ -27,4 +34,4 @@ declare module 'OrderTypes' {
     }
 }
 
-export { Order, OrderProps, OrderDetails, OrderDetailsProps }
+export { Order, OrderProps, OrderDetails, OrderDetailsProps, OrderToPlace }
