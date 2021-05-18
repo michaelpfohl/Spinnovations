@@ -39,7 +39,8 @@ namespace Spinnovations.Data
                                 ON od.Order_Id = o.id
                             JOIN Products p
                                 ON p.id = od.Product_Id
-                            WHERE o.Customer_Id = @customerId";
+                            WHERE o.Customer_Id = @customerId
+                            ORDER BY Order_Date DESC";
 
             var orders = new Dictionary<int, Order>();
 
