@@ -200,7 +200,7 @@ namespace Spinnovations.Data
                             ON od.Order_Id = o.id
                         JOIN Products p
                             ON p.id = od.Product_Id
-                        WHERE p.Creator_Id = 7
+                        WHERE p.Creator_Id = @creatorId
                         AND DATEDIFF(day, o.Order_Date, GETDATE()) < 30;";
             return db.ExecuteScalar<double>(sql, new { creatorId = creatorId });
         }

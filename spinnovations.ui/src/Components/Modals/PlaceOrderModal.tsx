@@ -14,7 +14,7 @@ const PlaceOrderModal = ({user, products, cartTotal, payments, title, productQua
     <div>
       <button className="style-button mb-4 bg-scheme-green" onClick={toggle}>{title}</button>
       <Modal isOpen={modal} toggle={toggle} className={`color-border-${greetingColor}`}>
-        <Checkout user={user} payments={payments} cartTotal={cartTotal} products={products} productQuantities={productQuantities}/>
+        <Checkout user={user} payments={payments} cartTotal={cartTotal} products={products} productQuantities={productQuantities} history={history}/>
       </Modal>
     </div>
   );

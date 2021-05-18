@@ -6,6 +6,7 @@ import { getCardCompany } from "../Components/Cards/PaymentInfoCard";
 import { Product } from "../Helpers/Interfaces/ProductInterfaces";
 import { CheckoutProps, ProductQuantity } from "../Helpers/Interfaces/CheckoutInterfaces";
 import orderData from "../Helpers/Data/orderData";
+import {withRouter} from "react-router-dom"
 
 type CheckoutState = {
   payments: Payment[];
@@ -20,6 +21,7 @@ type CheckoutState = {
   shippingCountry: string;
   shippingPostalCode: string;
   success: boolean;
+  error: boolean;
 };
 
 class Checkout extends Component<CheckoutProps> {
@@ -36,6 +38,7 @@ class Checkout extends Component<CheckoutProps> {
     shippingCountry: "",
     shippingPostalCode: "",
     success: false,
+    error: false,
   };
   componentDidMount(): void {
     paymentData
@@ -51,6 +54,7 @@ class Checkout extends Component<CheckoutProps> {
   ): void => {
     this.setState({
       [e.target.name]: e.target.value,
+      error: false
     });
   };
   placeOrder = () => {
@@ -63,8 +67,13 @@ class Checkout extends Component<CheckoutProps> {
       Country: this.state.shippingCountry,
       Postal_Code: this.state.shippingPostalCode,
     };
-    orderData.placeNewOrder(order).then((response) => {
-      orderData
+    if (isNaN(order.Payment_Info_Id)) {
+      this.setState({
+        error: true
+      })
+    } else {
+      orderData.placeNewOrder(order).then((response) => {
+        orderData
         .getMostRecentUserOrder(response.customer_Id)
         .then((recentOrderResponse) => {
           this.state.products.forEach((product) => {
@@ -80,16 +89,22 @@ class Checkout extends Component<CheckoutProps> {
                 orderData.placeNewOrderDetails(orderDetails);
               }
             });
-            })
+          })
           this.setState({
             success: true,
           });
         });
-    });
+      });
+      localStorage.clear();
+      setTimeout(() => {
+        
+        this.props.history.push('/orders', {user:this.state.user})
+      }, 2000);
+    }
   };
 
   render(): JSX.Element {
-    const { payments, user } = this.state;
+    const { payments } = this.state;
     const paymentOptions = (payment: Payment): JSX.Element => {
       const last4 = payment.card_Number.substring(
         payment.card_Number.length - 4,
@@ -111,11 +126,19 @@ class Checkout extends Component<CheckoutProps> {
             </div>
           </div>
         )}
+        {this.state.error && (
+          <div>
+            <div className="product-added-container mb-5 mt-5">
+              <p>Please select a payment method!</p>
+            </div>
+          </div>
+        )}
         <div className="d-flex flex-column align-items-center p-3">
           <h1 className={`product-form-header`}>Checkout</h1>
           <div className="product-form-container p-3">
             <form className="add-Product-form">
               <h4 className="product-form-header m-3">Select Payment Method</h4>
+              <div className="form-group">
               <select
                 className="form-control-lg m2 modal-input"
                 name="selectedPayment"
@@ -123,11 +146,12 @@ class Checkout extends Component<CheckoutProps> {
                 onChange={this.handleChange}
                 required
               >
-                <option value="" selected disabled hidden>
-                  Test
+                <option key={0} value="" selected>
+                  Select A Card
                 </option>
                 {options}
               </select>
+              </div>
               <h4 className="product-form-header m-3">Set Shipping Address</h4>
               <div>
                 <input
@@ -198,4 +222,4 @@ class Checkout extends Component<CheckoutProps> {
     );
   }
 }
-export default Checkout;
+export default withRouter(Checkout);
