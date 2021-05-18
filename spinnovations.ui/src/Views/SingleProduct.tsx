@@ -29,7 +29,6 @@ class SingleProduct extends Component<ProductProps> {
     this.setState({ greetingColor: Math.floor(Math.random() * 7) + 1 });
   }
 
-
   addToCart = (): void => {
     const { product } = this.state;
     localStorage.setItem(product.name, JSON.stringify(product));

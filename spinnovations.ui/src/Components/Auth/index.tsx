@@ -25,6 +25,7 @@ class Auth extends Component<AuthProps> {
           email: user.user?.email,
         }
         userData.AddNewUser(userInfo);
+        window.location.href = '/';
       }
     });
   };
