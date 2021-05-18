@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Modal } from 'reactstrap';
 import Checkout from '../../Views/Checkout';
 import {CheckoutProps} from '../../Helpers/Interfaces/CheckoutInterfaces';
 
