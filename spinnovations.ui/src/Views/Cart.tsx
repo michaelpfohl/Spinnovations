@@ -2,6 +2,8 @@ import React from 'react';
 import { User } from '../Helpers/Interfaces/UserInterfaces';
 import { Product } from '../Helpers/Interfaces/ProductInterfaces';
 import CartCard from "../Components/Cards/CartCard";
+import PlaceOrderModal from '../Components/Modals/PlaceOrderModal';
+import {ProductQuantity} from '../Helpers/Interfaces/CheckoutInterfaces';
 
 type UserProps = {
   user: User;
@@ -13,6 +15,8 @@ type cartState = {
   greetingColor: number;
   borderColor: number;
   greet: string,
+  productQuantities: ProductQuantity[]
+  
 };
 class Cart extends React.Component<UserProps, cartState> {
   state: cartState = {
@@ -21,6 +25,7 @@ class Cart extends React.Component<UserProps, cartState> {
     greetingColor: 0,
     borderColor: 0,
     greet: '',
+    productQuantities: []
   };
 
   deleteFromCart = (product: Product, qty: number): void => {
@@ -67,9 +72,18 @@ class Cart extends React.Component<UserProps, cartState> {
           cost += cartItem.price;
         };
         getCartItems().then(() => {
+          const productQuantities: ProductQuantity[] = [];
+          items.forEach((product) => {
+            const productQuantity: ProductQuantity = {
+              productId: product.id,
+              quantity: 1
+            }
+            productQuantities.push(productQuantity);
+          })
           this.setState({
             products: items,
             cartTotal: cost,
+            productQuantities: productQuantities
           });
         });
       }
@@ -83,7 +97,7 @@ class Cart extends React.Component<UserProps, cartState> {
 
 
   componentDidMount(): void {
-    this.getTheCart();
+    this.getTheCart()
     const greetings = [
       'Find everything ok?',
       'You look great!',
@@ -106,8 +120,14 @@ class Cart extends React.Component<UserProps, cartState> {
     });
   }
 
-  handleCallback = (subtotal: number): void => {
+  handleCallback = (subtotal: number, quantityObject: ProductQuantity): void => {
     const grandTotal = this.state.cartTotal += subtotal;
+    this.state.productQuantities.forEach((qty) => {
+      if (quantityObject.productId === qty.productId) {
+        qty.quantity = quantityObject.quantity;
+      }
+
+    })
     this.setState({
       cartTotal: grandTotal,
     })
@@ -116,7 +136,7 @@ class Cart extends React.Component<UserProps, cartState> {
   render(): JSX.Element {
     const { products, cartTotal, greetingColor, borderColor, greet } = this.state;
     const cartCards = products?.map((product) => (
-      <CartCard key={product.id} product={product} parentCallback={this.handleCallback} remove={this.deleteFromCart} />
+      <CartCard key={product.id} product={product} parentCallback={this.handleCallback} remove={this.deleteFromCart}/>
     ))
     return (
       <>
@@ -142,6 +162,13 @@ class Cart extends React.Component<UserProps, cartState> {
               <h1 className={`cart-total mt-2 mb-4 color-text-green} underline`}>
                   Your total comes to... ${cartTotal.toFixed(2)}
                 </h1>
+                <PlaceOrderModal
+                user = {this.props.user}
+                products= {products}
+                cartTotal= {parseFloat(this.state.cartTotal.toFixed(2))}
+                title="Checkout"
+                productQuantities={this.state.productQuantities}
+              >Checkout</PlaceOrderModal>
             </div>
           </div>
         </div>
