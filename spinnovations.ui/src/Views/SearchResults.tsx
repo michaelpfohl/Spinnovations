@@ -19,23 +19,8 @@ export default class SearchResults extends Component<SearchProps, SearchState> {
 
 
   componentDidMount(): void {
-    this.setState({ searchTerm: this.props.match.params.term.toLowerCase() })
-    // productData.getProducts().then((response) => {
-    //     this.setState({
-    //         results: response,
-    //     })
-    //   });
-
+    this.setState({ searchTerm: this.props.match.params.term })
   }
-
-  // performSearch = (): void => {
-  //   const searchTerm = this.props.match.params.term;
-  //   const filteredResults = this.state.results?.filter(p => p.name.toLowerCase().includes(searchTerm.toLowerCase()));
-  //   this.setState({
-  //     filteredResults,
-  //     searchTerm,
-  //   });
-  // };
 
   getProductsFromSearch = (): void => {
     productData.search(this.state.searchTerm).then((response) => {
@@ -52,11 +37,11 @@ export default class SearchResults extends Component<SearchProps, SearchState> {
   }
 
   render(): JSX.Element {
-    const { filteredResults } = this.state;
+    const { results } = this.state;
     
     const showResults = () => {
-      if (filteredResults?.length){
-      return filteredResults?.map((result) => (
+      if (results?.length){
+      return results?.map((result) => (
           <ProductCard product = {result} key = {result.id} />
       ))}
       else {
