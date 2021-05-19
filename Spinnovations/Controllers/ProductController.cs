@@ -95,10 +95,10 @@ namespace Spinnovations.Controllers
             return Ok(results);
         }
 
-        [HttpPut("decrementQuantity/{productId}/{quantity}")]
-        public IActionResult DecrementQuantity(int productId, int quantity)
+        [HttpPut("decrementQuantity")]
+        public IActionResult DecrementQuantity(Order_Details orderDetails)
         {
-            _repo.DecrementQuantity(productId, quantity);
+            _repo.DecrementQuantity(orderDetails);
             return Ok();
         }
 
