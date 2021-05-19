@@ -58,7 +58,6 @@ class Checkout extends Component<CheckoutProps> {
             (parseInt(payment.expiration_Year) === currentYear &&
               parseInt(payment.expiration_Month) >= currentMonth)
           ) {
-            console.log(payment);
             activePayments.push(payment);
           }
         });
