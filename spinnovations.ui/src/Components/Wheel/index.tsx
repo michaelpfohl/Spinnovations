@@ -7,6 +7,7 @@ type WheelProps = {
 
 type WheelState = {
   selectedItem: Product | null;
+  spun: boolean;
 };
 
 export default class Wheel extends React.Component<WheelProps, WheelState> {
@@ -14,11 +15,13 @@ export default class Wheel extends React.Component<WheelProps, WheelState> {
     super(props);
     this.state = {
       selectedItem: null,
+      spun: false,
     };
     this.selectItem = this.selectItem.bind(this);
   }
 
   selectItem(): void {
+    this.setState({ spun: false })
     if (this.state.selectedItem === null) {
       const selectedItem = Math.floor(
         Math.random() * this.props.products.length
@@ -35,12 +38,17 @@ export default class Wheel extends React.Component<WheelProps, WheelState> {
     const { products } = this.props;
     console.log(products[selectedItem]);
     products[selectedItem].price = 0;
-    products[selectedItem].quantity = 2;
-    localStorage.setItem(products[selectedItem].name, JSON.stringify(products[selectedItem]))
+    if (products[selectedItem].quantity == null){
+      products[selectedItem].quantity = 1;
+    } else {
+      products[selectedItem].quantity++;
+    }
+    localStorage.setItem(`${products[selectedItem].name} (spin)`, JSON.stringify(products[selectedItem]))
+    setTimeout(() => this.setState({ spun: true }), 4500)
   }
 
   render(): JSX.Element {
-    const { selectedItem } = this.state;
+    const { selectedItem, spun } = this.state;
     const { products } = this.props;
 
     const assignColors = (products: Product[]): JSX.Element[] => {
@@ -68,7 +76,13 @@ export default class Wheel extends React.Component<WheelProps, WheelState> {
     const spinning = selectedItem !== null ? "spinning" : "";
 
     return (
-      <div className="wheel-container">
+      <div>
+        { spun && (
+          <div>
+            <h4>You won {products[selectedItem].name}! Please visit the cart to provide shipping information.</h4>
+          </div>
+        )}
+      <div className="wheel-container mt-5">
         <div
           className={`wheel ${spinning}`}
           style={wheelVars}
@@ -76,6 +90,7 @@ export default class Wheel extends React.Component<WheelProps, WheelState> {
         >
           {assignColors(products)}
         </div>
+      </div>
       </div>
     );
   }

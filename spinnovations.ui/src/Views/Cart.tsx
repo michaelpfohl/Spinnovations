@@ -76,7 +76,7 @@ class Cart extends React.Component<UserProps, cartState> {
           items.forEach((product) => {
             const productQuantity: ProductQuantity = {
               productId: product.id,
-              quantity: 1,
+              quantity: product.quantity | 1,
             };
             productQuantities.push(productQuantity);
           });
