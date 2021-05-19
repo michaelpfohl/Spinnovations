@@ -58,8 +58,8 @@ class Checkout extends Component<CheckoutProps> {
             (parseInt(payment.expiration_Year) === currentYear &&
               parseInt(payment.expiration_Month) >= currentMonth)
           ) {
-            console.log(payment)
-            activePayments.push(payment)
+            console.log(payment);
+            activePayments.push(payment);
           }
         });
         this.setState({
@@ -95,18 +95,31 @@ class Checkout extends Component<CheckoutProps> {
           .getMostRecentUserOrder(response.customer_Id)
           .then((recentOrderResponse) => {
             this.state.products.forEach((product) => {
-              this.state.productQuantities.forEach((qty) => {
-                if (product.id === qty.productId) {
-                  const orderDetails = {
-                    Order_Id: recentOrderResponse.id,
-                    Product_Id: product.id,
-                    Unit_Price: product.price,
-                    Quantity: qty.quantity,
-                    Shipped: false,
-                  };
-                  orderData.placeNewOrderDetails(orderDetails);
+              if (product.quantity) {
+                const orderDetails = {
+                  Order_Id: recentOrderResponse.id,
+                  Product_Id: product.id,
+                  Unit_Price: 0,
+                  Quantity: product.quantity,
+                  Shipped: false,
+                };
+                orderData.placeNewOrderDetails(orderDetails);
+              } else {
+                const { productQuantities } = this.state;
+                for (let i = 0; i < productQuantities.length; i++) {
+                  if (product.id === productQuantities[i].productId) {
+                    const orderDetails = {
+                      Order_Id: recentOrderResponse.id,
+                      Product_Id: product.id,
+                      Unit_Price: product.price,
+                      Quantity: productQuantities[i].quantity,
+                      Shipped: false,
+                    };
+                    orderData.placeNewOrderDetails(orderDetails);
+                    break;
+                  }
                 }
-              });
+              }
             });
             this.setState({
               success: true,
