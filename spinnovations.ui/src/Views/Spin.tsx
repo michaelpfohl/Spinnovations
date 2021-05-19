@@ -70,7 +70,7 @@ class Spin extends React.Component<UserProps> {
             <>
                 {isAllowed === true ? (
                     <>
-                        <Wheel products={filteredProducts} />
+                        <Wheel products={filteredProducts} callback={this.handleCallback} />
                     </>
                 ) : (
                     <>

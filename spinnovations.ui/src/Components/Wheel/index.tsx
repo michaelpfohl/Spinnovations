@@ -3,6 +3,7 @@ import { Product } from "../../Helpers/Interfaces/ProductInterfaces";
 
 type WheelProps = {
   products: Product[];
+  callback: () => void;
 };
 
 type WheelState = {
@@ -44,7 +45,8 @@ export default class Wheel extends React.Component<WheelProps, WheelState> {
       products[selectedItem].quantity++;
     }
     localStorage.setItem(`${products[selectedItem].name} (spin)`, JSON.stringify(products[selectedItem]))
-    setTimeout(() => this.setState({ spun: true }), 4500)
+    setTimeout(() => this.setState({ spun: true }), 4500);
+    setTimeout(() => this.props.callback(), 8000);
   }
 
   render(): JSX.Element {

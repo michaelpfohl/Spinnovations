@@ -5,7 +5,6 @@ import paymentData from "../Helpers/Data/PaymentData";
 import { getCardCompany } from "../Components/Cards/PaymentInfoCard";
 import { CheckoutProps } from "../Helpers/Interfaces/CheckoutInterfaces";
 import { withRouter } from "react-router-dom";
-import { callbackify } from "util";
 
 type CheckoutState = {
     payments: Payment[];
@@ -70,10 +69,10 @@ class Checkout extends Component<CheckoutProps> {
             this.setState({
                 success: true,
             })
+            setTimeout(() => {
+                this.props.callback();
+              }, 1000);
         }
-        setTimeout(() => {
-            this.props.callback();
-          }, 2000);
     }
 
     render(): JSX.Element {
