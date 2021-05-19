@@ -52,6 +52,18 @@ class Spin extends React.Component<UserProps> {
         }
     }
 
+    handleCallback = (): void => {
+        if (this.state.isAllowed === false) {
+            this.setState({
+                isAllowed: true,
+            })
+        } else {
+            this.setState({
+                isAllowed: false,
+            })
+        }
+    }
+
     render(): JSX.Element {
         const { categories, filteredProducts, isAllowed } = this.state;
         return (
@@ -64,6 +76,7 @@ class Spin extends React.Component<UserProps> {
                     <>
                         <ProductCategoryBar categories={categories} filter={this.filterByCategory} all={this.filterAll} />
                         <BuySpinModal
+                            callback={this.handleCallback}
                             user={this.props.user}
                             products={filteredProducts}
                             title="Buy A Spin"
