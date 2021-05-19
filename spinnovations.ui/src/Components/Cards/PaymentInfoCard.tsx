@@ -25,30 +25,28 @@ const getCardCompany = (payment: PaymentProps) : string => {
 }
 const PaymentInfoCard = ({ payment, onUpdate, user }: PaymentInfoFormProps): JSX.Element => {
   return (
-    <div className="p-5" key={payment.id}>
-      <Card style={{ width: "25em" }} className="d-flex align-items-center">
-        <CardBody>
-          <CardTitle tag="h2">{payment.card_Number}</CardTitle>
-          <div className="justify-content-space-between p-2">
-            <CardText>
+    <div className="col-lg-3 mb-4" key={payment.id}>
+      <div className={`product-card`}>
+          <div className="product-name">{payment.card_Number}</div>
+          <div className="d-flex justify-content-center justify-content-space-between p-2">
+            <div className="mr-2">
               EXP: {payment.expiration_Month}/{payment.expiration_Year}
-            </CardText>
-            <CardText>CVV: {payment.cvv}</CardText>
+            </div>
+            <div className="ml-2">CVV: {payment.cvv}</div>
           </div>
-          <CardText tag="h3">{getCardCompany(payment)}</CardText>
+          <div className="product-name">{getCardCompany(payment)}</div>
           <div className="justify-content-space-between p-2">
           <PaymentInfoModal user={user} payment={payment} onUpdate={onUpdate} title={"Edit Card"}/>
-          <Button className="btn-danger" onClick={() => {
+          <button className={`cart-button payment-delete-button p-2 m-2`} onClick={() => {
                 paymentData.deletePaymentInfo(payment.id).then(() => {
                   onUpdate();
                 });
               }
             }>
             Remove Card
-          </Button>
+          </button>
           </div>
-        </CardBody>
-      </Card>
+        </div>
     </div>
   );
 };

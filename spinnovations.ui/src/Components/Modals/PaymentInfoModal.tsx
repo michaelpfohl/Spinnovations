@@ -16,7 +16,7 @@ const UpdatePaymentModal = ({ user, payment, onUpdate, title}: PaymentInfoFormPr
 
   return (
     <div>
-      <Button color="success" onClick={toggle}>{title}</Button>
+      <button className="cart-button p-2 color-cart-4 text-white" onClick={toggle}>{title}</button>
       <Modal isOpen={modal} toggle={toggle} className={`color-border-${greetingColor}`}>
         <PaymentInfoForm user={user} payment={payment} onUpdate={onUpdate} color={greetingColor}/>
       </Modal>
