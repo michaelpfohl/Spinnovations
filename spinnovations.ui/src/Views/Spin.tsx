@@ -1,17 +1,25 @@
 import React from 'react';
+import { User } from "../Helpers/Interfaces/UserInterfaces";
 import { ProductCategoryBar } from '../Components/ProductCategoryBar';
 import productCategoryData from '../Helpers/Data/ProductCategoryData';
 import productData from '../Helpers/Data/ProductData';
 import { Product } from '../Helpers/Interfaces/ProductInterfaces';
 import { ProductCategory } from '../Helpers/Interfaces/ProductCategoryInterfaces';
+import BuySpinModal from '../Components/Modals/BuySpinModal';
 import Wheel from '../Components/Wheel';
 
-class Spin extends React.Component {
+type UserProps = {
+    user: User;
+  };
+
+class Spin extends React.Component<UserProps> {
 
     state = {
         products: [],
         filteredProducts: [],
-        categories: []
+        categories: [],
+        spinTotal: 0.99,
+        isAllowed: false,
     };
 
     componentDidMount(): void {
@@ -38,18 +46,31 @@ class Spin extends React.Component {
     filterAll = (e: React.ChangeEvent<HTMLInputElement>): void => {
         let { filteredProducts } = this.state;
         const { products } = this.state;
-        if (e.target.id == "all-products"){
+        if (e.target.id == "all-products") {
             filteredProducts = products;
             this.setState({ filteredProducts });
         }
     }
 
     render(): JSX.Element {
-        const { categories, filteredProducts } = this.state;
+        const { categories, filteredProducts, isAllowed } = this.state;
         return (
             <>
-            <ProductCategoryBar categories={categories} filter={this.filterByCategory} all={this.filterAll}/>
-            <Wheel products={filteredProducts}/>
+                {isAllowed === true ? (
+                    <>
+                        <Wheel products={filteredProducts} />
+                    </>
+                ) : (
+                    <>
+                        <ProductCategoryBar categories={categories} filter={this.filterByCategory} all={this.filterAll} />
+                        <BuySpinModal
+                            user={this.props.user}
+                            products={filteredProducts}
+                            title="Buy A Spin"
+                            spinTotal={this.state.spinTotal}
+                        ></BuySpinModal>
+                    </>
+                )}
             </>
         )
     }
