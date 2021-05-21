@@ -3,11 +3,13 @@ import { Product } from "../../Helpers/Interfaces/ProductInterfaces";
 
 type WheelProps = {
   products: Product[];
+  callback: (item: string) => void;
 };
 
 type WheelState = {
   selectedItem: Product | null;
   spun: boolean;
+  categoryPrice: number;
 };
 
 export default class Wheel extends React.Component<WheelProps, WheelState> {
@@ -16,6 +18,7 @@ export default class Wheel extends React.Component<WheelProps, WheelState> {
     this.state = {
       selectedItem: null,
       spun: false,
+      categoryPrice: 0,
     };
     this.selectItem = this.selectItem.bind(this);
   }
@@ -47,7 +50,10 @@ export default class Wheel extends React.Component<WheelProps, WheelState> {
       products[selectedItem].quantity++;
     }
     localStorage.setItem(`${products[selectedItem].name} (spin)`, JSON.stringify(products[selectedItem]))
-    setTimeout(() => this.setState({ spun: true }), 4500)
+    setTimeout(() => {
+      this.setState({ spun: true })
+      this.props.callback(products[selectedItem].name)
+    } , 4500);
   }
 
   render(): JSX.Element {
@@ -80,20 +86,15 @@ export default class Wheel extends React.Component<WheelProps, WheelState> {
 
     return (
       <div>
-        { spun && (
-          <div>
-            <h4>You won {products[selectedItem].name}! Please visit the cart to provide shipping information.</h4>
+        <div className="wheel-container mt-5">
+          <div
+            className={`wheel ${spinning}`}
+            style={wheelVars}
+            onClick={this.selectItem}
+          >
+            {assignColors(products)}
           </div>
-        )}
-      <div className="wheel-container mt-5">
-        <div
-          className={`wheel ${spinning}`}
-          style={wheelVars}
-          onClick={this.selectItem}
-        >
-          {assignColors(products)}
         </div>
-      </div>
       </div>
     );
   }

@@ -1,17 +1,26 @@
 import React from 'react';
+import { User } from "../Helpers/Interfaces/UserInterfaces";
 import { ProductCategoryBar } from '../Components/ProductCategoryBar';
 import productCategoryData from '../Helpers/Data/ProductCategoryData';
 import productData from '../Helpers/Data/ProductData';
 import { Product } from '../Helpers/Interfaces/ProductInterfaces';
 import { ProductCategory } from '../Helpers/Interfaces/ProductCategoryInterfaces';
+import BuySpinModal from '../Components/Modals/BuySpinModal';
 import Wheel from '../Components/Wheel';
 
-class Spin extends React.Component {
+type UserProps = {
+    user: User;
+  };
+
+class Spin extends React.Component<UserProps> {
 
     state = {
         products: [],
         filteredProducts: [],
-        categories: []
+        categories: [],
+        spinTotal: 0.99,
+        isAllowed: false,
+        selectedItem: '',
     };
 
     componentDidMount(): void {
@@ -38,18 +47,62 @@ class Spin extends React.Component {
     filterAll = (e: React.ChangeEvent<HTMLInputElement>): void => {
         let { filteredProducts } = this.state;
         const { products } = this.state;
-        if (e.target.id == "all-products"){
+        if (e.target.id == "all-products") {
             filteredProducts = products;
             this.setState({ filteredProducts });
         }
     }
 
+    handleCallback = (itemName: string): void => {
+        if (this.state.isAllowed === false) {
+            this.setState({
+                isAllowed: true,
+            })
+        } else {
+            this.setState({
+                isAllowed: false,
+                selectedItem: itemName,
+            })
+        }
+    }
+
     render(): JSX.Element {
-        const { categories, filteredProducts } = this.state;
+        const { categories, filteredProducts, isAllowed, selectedItem } = this.state;
         return (
             <>
-            <ProductCategoryBar categories={categories} filter={this.filterByCategory} all={this.filterAll}/>
-            <Wheel products={filteredProducts}/>
+                {isAllowed === true ? (
+                    <>
+                        <Wheel products={filteredProducts} callback={this.handleCallback} />
+                    </>
+                ) : (
+                    <>
+                        <ProductCategoryBar categories={categories} filter={this.filterByCategory} all={this.filterAll} />
+                        {selectedItem.length > 0 && (
+                            <div
+                            className="alert alert-success alert-dismissible fade show mb-5"
+                            role="alert"
+                          >
+                            <strong>{selectedItem} added to cart!</strong> Visit the cart page to check out!
+                            <button
+                              type="button"
+                              className="close"
+                              data-dismiss="alert"
+                              aria-label="Close"
+                              onClick={() => this.setState({ selectedItem: '' })}
+                            >
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                        )}
+                        <BuySpinModal
+                            callback={this.handleCallback}
+                            user={this.props.user}
+                            products={filteredProducts}
+                            title="Buy A Spin"
+                            spinTotal={this.state.spinTotal}
+                        ></BuySpinModal>
+                    </>
+                )}
             </>
         )
     }
