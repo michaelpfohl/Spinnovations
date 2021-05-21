@@ -15,7 +15,7 @@ class Spin extends React.Component {
     };
 
     componentDidMount(): void {
-        productCategoryData.getProductCategories().then((response: ProductCategory[]) => {
+        productCategoryData.getAllProductCategoriesWithProducts().then((response: ProductCategory[]) => {
             this.setState({
                 categories: response
             })

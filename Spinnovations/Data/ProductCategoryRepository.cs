@@ -25,6 +25,14 @@ namespace Spinnovations.Data
             return db.Query<ProductCategory>(sql).ToList();
         }
 
+        public IEnumerable<ProductCategory> GetAllCategoriesWithProducts()
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = @"SELECT DISTINCT pc.* FROM Product_Category AS pc
+                        JOIN Products AS p ON p.Category_Id = pc.id";
+            return db.Query<ProductCategory>(sql).ToList();
+        }
+
         public ProductCategory Get(int id)
         {
             using var db = new SqlConnection(ConnectionString);

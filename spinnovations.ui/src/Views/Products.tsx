@@ -26,7 +26,7 @@ class Products extends React.Component<ProductsState> {
 
   componentDidMount(): void {
     productCategoryData
-      .getProductCategories()
+      .getAllProductCategoriesWithProducts()
       .then((response: ProductCategory[]) => {
         this.setState({
           categories: response,
