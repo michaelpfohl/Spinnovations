@@ -26,6 +26,12 @@ namespace Spinnovations.Controllers
             return Ok(_repo.GetAll());
         }
 
+        [HttpGet("With_Products")]
+        public IActionResult GetAllCategoriesWithProducts()
+        {
+            return Ok(_repo.GetAllCategoriesWithProducts());
+        }
+
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {

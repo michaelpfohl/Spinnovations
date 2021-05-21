@@ -15,6 +15,7 @@ declare module 'ProductTypes' {
         user: User,
         onUpdate?: () => void,
         deleteFromCart?: () => void,
+        cartAlert?: () => void,
      }
 }
 
