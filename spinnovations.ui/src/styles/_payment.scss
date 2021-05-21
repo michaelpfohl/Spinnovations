@@ -21,6 +21,13 @@
   font-size: 32px;
   font-weight: 600;
 }
+.expired {
+  border: 5px solid $SchemeDarkRed;
+  opacity: .5;
+}
+.expired:hover {
+  transform: scale(1);
+}
 
 .Visa {
   color: $SchemeBlue
