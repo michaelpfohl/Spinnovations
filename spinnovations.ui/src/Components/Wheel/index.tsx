@@ -39,9 +39,12 @@ export default class Wheel extends React.Component<WheelProps, WheelState> {
 
   placeOrder = (selectedItem: number): void => {
     const { products } = this.props;
-    console.log(products[selectedItem]);
     products[selectedItem].price = 0;
-    if (products[selectedItem].quantity == null) {
+    if (localStorage.getItem(`${products[selectedItem].name} (spin)`)) {
+      const storageItem = JSON.parse(localStorage.getItem(`${products[selectedItem].name} (spin)`) || "");
+      products[selectedItem].quantity = storageItem?.quantity;
+    }
+    if (products[selectedItem].quantity == null){
       products[selectedItem].quantity = 1;
     } else {
       products[selectedItem].quantity++;
