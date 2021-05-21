@@ -1,0 +1,46 @@
+.payment-delete-button {
+  background-color: $SchemeRed;
+  color: white;
+}
+
+.payment-delete-button:hover {
+    background-color: $SchemeDarkRed;
+}
+
+.text-white {
+  color: white;
+}
+
+.card-number {
+  color: silver;
+  font-size: 28px;
+  text-shadow: 0px -1px 0px rgba(255,255,255,.5);
+}
+
+.card-company {
+  font-size: 32px;
+  font-weight: 600;
+}
+.expired {
+  border: 5px solid $SchemeDarkRed;
+  opacity: .5;
+}
+.expired:hover {
+  transform: scale(1);
+}
+
+.Visa {
+  color: $SchemeBlue
+}
+
+.AmericanExpress {
+  color: $SchemePurple
+}
+
+.Discover {
+  color: $SchemeOrange
+}
+
+.Mastercard {
+  color: $SchemeOrange-Red
+}
