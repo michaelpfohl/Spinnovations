@@ -5,7 +5,7 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 
-export const ProductCard = ({ product, color }: ProductProps): JSX.Element => (
+export const ProductCard = ({ product, color, cartAlert }: ProductProps): JSX.Element => (
   <div className="col-lg-3 mb-4" key={product.id}>
     <div className={`product-card color-border-${color} color-text-${color}`}>
       <div className={`product-name color-bottom-border-${color}`}>{product.name}</div>
@@ -33,7 +33,10 @@ export const ProductCard = ({ product, color }: ProductProps): JSX.Element => (
         <i className="fas fa-ellipsis-v"></i>
         <CardSubtitle>{`$${product.price}`}</CardSubtitle>
         <i className="fas fa-ellipsis-v"></i>
-        <button className={`cart-button color-cart-${color}`} onClick={() => localStorage.setItem(product.name, JSON.stringify(product))}><i className="fas fa-cart-plus"></i></button>
+        <button className={`cart-button color-cart-${color}`} onClick={() => {
+          localStorage.setItem(product.name, JSON.stringify(product))
+          cartAlert(product.name)
+        }}><i className="fas fa-cart-plus"></i></button>
         </div>
       </div>
     </div>
