@@ -6,9 +6,15 @@ import { Product } from '../Helpers/Interfaces/ProductInterfaces';
 import { ProductCategory } from '../Helpers/Interfaces/ProductCategoryInterfaces';
 import Wheel from '../Components/Wheel';
 
+type SpinState = {
+    products: Product[],
+    filteredProducts: Product[],
+    categories: ProductCategory[]
+}
+
 class Spin extends React.Component {
 
-    state = {
+    state: SpinState = {
         products: [],
         filteredProducts: [],
         categories: []
@@ -26,18 +32,13 @@ class Spin extends React.Component {
                 filteredProducts: response,
             })
         });
-
-        // this.state.products.forEach(product => {
-        //     if (product.quantity == product.Quantity_In_Stock)
-        // })
     }
 
-    removeProductsWithLowQuantity(): void {
+    componentDidUpdate(): void {
         const { products } = this.state;
-        console.log("products", products);
-        products?.forEach(product => {
-            if (product.quantity == product.Quantity_In_Stock)
-        })
+        console.log("products before filter", products);
+        products?.filter((product: Product) => product?.Quantity_In_Stock > product?.quantity);
+        console.log("products after filter", products);
     }
 
     filterByCategory = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -58,7 +59,6 @@ class Spin extends React.Component {
 
     render(): JSX.Element {
         const { categories, filteredProducts } = this.state;
-        this.removeProductsWithLowQuantity();
         return (
             <>
             <ProductCategoryBar categories={categories} filter={this.filterByCategory} all={this.filterAll}/>
