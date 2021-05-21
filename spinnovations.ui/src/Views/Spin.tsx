@@ -20,6 +20,7 @@ class Spin extends React.Component<UserProps> {
         categories: [],
         spinTotal: 0.99,
         isAllowed: false,
+        selectedItem: '',
     };
 
     componentDidMount(): void {
@@ -52,7 +53,7 @@ class Spin extends React.Component<UserProps> {
         }
     }
 
-    handleCallback = (): void => {
+    handleCallback = (itemName: string): void => {
         if (this.state.isAllowed === false) {
             this.setState({
                 isAllowed: true,
@@ -60,12 +61,13 @@ class Spin extends React.Component<UserProps> {
         } else {
             this.setState({
                 isAllowed: false,
+                selectedItem: itemName,
             })
         }
     }
 
     render(): JSX.Element {
-        const { categories, filteredProducts, isAllowed } = this.state;
+        const { categories, filteredProducts, isAllowed, selectedItem } = this.state;
         return (
             <>
                 {isAllowed === true ? (
@@ -75,6 +77,23 @@ class Spin extends React.Component<UserProps> {
                 ) : (
                     <>
                         <ProductCategoryBar categories={categories} filter={this.filterByCategory} all={this.filterAll} />
+                        {selectedItem.length > 0 && (
+                            <div
+                            className="alert alert-success alert-dismissible fade show mb-5"
+                            role="alert"
+                          >
+                            <strong>{selectedItem} added to cart!</strong> Visit the cart page to check out!
+                            <button
+                              type="button"
+                              className="close"
+                              data-dismiss="alert"
+                              aria-label="Close"
+                              onClick={() => this.setState({ selectedItem: '' })}
+                            >
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                        )}
                         <BuySpinModal
                             callback={this.handleCallback}
                             user={this.props.user}

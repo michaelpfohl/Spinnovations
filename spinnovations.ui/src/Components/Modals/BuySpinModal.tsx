@@ -3,7 +3,7 @@ import { Modal } from 'reactstrap';
 import SpinCheckout from '../../Views/SpinCheckout';
 import {CheckoutProps} from '../../Helpers/Interfaces/CheckoutInterfaces';
 
-const BuySpinModal = ({user, spinTotal, payments, title, callback}: CheckoutProps): JSX.Element => {
+const BuySpinModal = ({user, spinTotal, payments, title, products, callback}: CheckoutProps): JSX.Element => {
 
   const [modal, setModal] = useState(false);
   const [greetingColor, setGreetingColor] = useState(0);
