@@ -10,3 +10,30 @@
 .text-white {
   color: white;
 }
+
+.card-number {
+  color: silver;
+  font-size: 28px;
+  text-shadow: 0px -1px 0px rgba(255,255,255,.5);
+}
+
+.card-company {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.Visa {
+  color: $SchemeBlue
+}
+
+.AmericanExpress {
+  color: $SchemePurple
+}
+
+.Discover {
+  color: $SchemeOrange
+}
+
+.Mastercard {
+  color: $SchemeOrange-Red
+}

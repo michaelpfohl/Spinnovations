@@ -36,8 +36,7 @@ class Payments extends Component<PaymentProps> {
 
         const cards = payments.map(paymentCard)
         return (
-            <div className="d-flex flex-column justify-content-center">
-                <h1 className="mb-4">Payment Info</h1>
+            <div className="d-flex flex-column justify-content-center mt-4">
                 <PaymentInfoModal user={user} onUpdate={this.onUpdate} title={"Add New Card"}/>
                 <div className="d-flex mt-4 flex-wrap justify-content-center">
                 {cards}
