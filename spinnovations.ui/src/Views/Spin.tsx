@@ -36,9 +36,10 @@ class Spin extends React.Component {
 
     componentDidUpdate(): void {
         const { products } = this.state;
-        console.log("products before filter", products);
-        products?.filter((product: Product) => product?.Quantity_In_Stock > product?.quantity);
-        console.log("products after filter", products);
+        console.log("products before filter", this.state.filteredProducts);
+        const filteredProducts = products?.filter((product: Product) => product?.Quantity_In_Stock > product?.quantity);
+        console.log("products after filter", filteredProducts);
+        this.setState({ filteredProducts });
     }
 
     filterByCategory = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -61,7 +62,7 @@ class Spin extends React.Component {
         const { categories, filteredProducts } = this.state;
         return (
             <>
-            <ProductCategoryBar categories={categories} filter={this.filterByCategory} all={this.filterAll}/>
+            <ProductCategoryBar categories={categories} filter={this.filterByCategory} all={this.filterAll} updateForQuantity={}/>
             <Wheel products={filteredProducts}/>
             </>
         )
