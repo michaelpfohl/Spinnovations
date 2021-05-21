@@ -10,7 +10,7 @@ import Wheel from '../Components/Wheel';
 
 type UserProps = {
     user: User;
-  };
+};
 
 class Spin extends React.Component<UserProps> {
 
@@ -18,9 +18,10 @@ class Spin extends React.Component<UserProps> {
         products: [],
         filteredProducts: [],
         categories: [],
-        spinTotal: 0.99,
+        spinTotal: 31.99,
         isAllowed: false,
         selectedItem: '',
+        selectedCategory: '' || 'all products',
     };
 
     componentDidMount(): void {
@@ -39,17 +40,35 @@ class Spin extends React.Component<UserProps> {
 
     filterByCategory = (e: React.ChangeEvent<HTMLInputElement>): void => {
         const category = e.target.id;
-        const { products } = this.state;
-        const filteredProducts = products?.filter((product: Product) => product.category_Id == category);
-        this.setState({ filteredProducts });
+        const { products, categories } = this.state;
+        const filteredProducts: Product[] = products?.filter((product: Product) => product.category_Id == category);
+        const selectedCategory: ProductCategory[] = categories?.filter((p: ProductCategory) => p.id == category)
+        let total = 1;
+        
+        console.warn(filteredProducts);
+        for (let i = 0; i < filteredProducts.length; i++) {
+            total += filteredProducts[i].price;
+          }
+          const spinTotal = ((total + (total * 0.1)) / filteredProducts.length);
+          console.warn(spinTotal);
+        this.setState({
+            filteredProducts,
+            selectedCategory: selectedCategory[0].category_Name,
+            spinTotal: spinTotal,
+        });
     }
+
 
     filterAll = (e: React.ChangeEvent<HTMLInputElement>): void => {
         let { filteredProducts } = this.state;
         const { products } = this.state;
         if (e.target.id == "all-products") {
             filteredProducts = products;
-            this.setState({ filteredProducts });
+            this.setState({
+                filteredProducts,
+                selectedCategory: 'all products',
+                spinTotal: 31.99,
+            });
         }
     }
 
@@ -79,20 +98,20 @@ class Spin extends React.Component<UserProps> {
                         <ProductCategoryBar categories={categories} filter={this.filterByCategory} all={this.filterAll} />
                         {selectedItem.length > 0 && (
                             <div
-                            className="alert alert-success alert-dismissible fade show mb-5"
-                            role="alert"
-                          >
-                            <strong>{selectedItem} added to cart!</strong> Visit the cart page to check out!
-                            <button
-                              type="button"
-                              className="close"
-                              data-dismiss="alert"
-                              aria-label="Close"
-                              onClick={() => this.setState({ selectedItem: '' })}
+                                className="alert alert-success alert-dismissible fade show mb-5"
+                                role="alert"
                             >
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
+                                <strong>{selectedItem} added to cart!</strong> Visit the cart page to check out!
+                                <button
+                                    type="button"
+                                    className="close"
+                                    data-dismiss="alert"
+                                    aria-label="Close"
+                                    onClick={() => this.setState({ selectedItem: '' })}
+                                >
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
                         )}
                         <BuySpinModal
                             callback={this.handleCallback}
@@ -100,6 +119,7 @@ class Spin extends React.Component<UserProps> {
                             products={filteredProducts}
                             title="Buy A Spin"
                             spinTotal={this.state.spinTotal}
+                            category={this.state.selectedCategory}
                         ></BuySpinModal>
                     </>
                 )}

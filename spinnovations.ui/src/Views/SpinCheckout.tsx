@@ -127,7 +127,7 @@ class Checkout extends Component<CheckoutProps> {
 
                         </form>
                     </div>
-                    <h4>Total: ${this.state.spinTotal}</h4>
+                    <h4>Total: ${this.state.spinTotal.toFixed(2)}</h4>
                     <button
                         className="style-button m-4 bg-scheme-green"
                         onClick={() => this.placeOrder()}
