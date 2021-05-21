@@ -10,12 +10,18 @@ const getProductCategories = (): Promise<ProductCategory[]> => new Promise((reso
     }).catch((error) => reject(error));
 });
 
+const getAllProductCategoriesWithProducts = (): Promise<ProductCategory[]> => new Promise((resolve, reject) => {
+    axios.get(`${ProductCategoryURL}/With_Products`).then((response) => {
+        resolve(response.data)
+    }).catch((error) => reject(error));
+});
+
 const getQuantityByCategory = (creatorId: number): Promise<CategoryTotals[]> => new Promise((resolve, reject) => {
     axios.get(`${ProductCategoryURL}/totals/${creatorId}`).then((response) => {
         resolve(response.data)
     }).catch((error) => reject(error));
-})
+});
 
-const productCategoryData = { getProductCategories, getQuantityByCategory };
+const productCategoryData = { getProductCategories, getAllProductCategoriesWithProducts, getQuantityByCategory };
 
 export default productCategoryData;

@@ -44,7 +44,7 @@ export default function Routes({ user}: RouteProps): JSX.Element {
         <Route exact path="/details" component={(props: ProductProps) => <SingleProduct{...props} user={user}/>} />
         <Route exact path="/checkout" component={(props: CheckoutProps) => <Checkout{...props} user={user}/>} />
         <Route exact path="/sales" component={(props: OrderProps) => <Sales{...props}/>}/>
-        <Route exact path="/spin" component={() => <Spin/>}/>
+        <Route exact path="/spin" component={() => <Spin user={user}/>}/>
         <Route component={NotFound} />
       </Switch>
   );

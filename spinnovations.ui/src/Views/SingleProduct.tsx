@@ -10,6 +10,7 @@ type SingleProductState = {
   product: Product;
   user: User;
   greetingColor: number;
+  added: boolean;
 }
 
 class SingleProduct extends Component<ProductProps> {
@@ -18,6 +19,7 @@ class SingleProduct extends Component<ProductProps> {
     product: this.props.location.state.product,
     user: null,
     greetingColor: 0,
+    added: false,
   }
 
   componentDidMount = () : void => {
@@ -32,6 +34,8 @@ class SingleProduct extends Component<ProductProps> {
   addToCart = (): void => {
     const { product } = this.state;
     localStorage.setItem(product.name, JSON.stringify(product));
+    this.setState({ added: true });
+    setTimeout(() => this.setState({added: false}), 3000)
   }
 
   deleteProduct = (): void => {
@@ -47,10 +51,27 @@ class SingleProduct extends Component<ProductProps> {
   }
 
   render(): JSX.Element {
-    const { product, user, greetingColor } = this.state;
+    const { product, user, greetingColor, added } = this.state;
     const url = `/seller/:${product.creator_Id}/`;
     return (
       <div>
+        {added && (
+          <div
+            className="alert alert-success alert-dismissible fade show mb-5"
+            role="alert"
+          >
+            <strong>{product.name} added to cart!</strong> Visit the cart page to check out!
+            <button
+              type="button"
+              className="close"
+              data-dismiss="alert"
+              aria-label="Close"
+              onClick={() => this.setState({ added: false })}
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        )}
         <div className="d-flex justify-content-center mt-5 mb-5">
           <div className={`single-product-view col-8 color-border-${greetingColor}`}>
             <h1 className={`mt-4 mb-4 color-text-${greetingColor} underline`}>
