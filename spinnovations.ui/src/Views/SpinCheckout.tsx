@@ -107,7 +107,7 @@ class Checkout extends Component<CheckoutProps> {
                 )}
                 <div className="d-flex flex-column align-items-center p-3">
                     <h1 className={`product-form-header`}>Checkout</h1>
-                    <div className="product-form-container p-3">
+                    <div className="p-3">
                         <form className="add-Product-form">
                             <h4 className="product-form-header m-3">Select Payment Method</h4>
                             <div className="form-group">

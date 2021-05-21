@@ -79,7 +79,7 @@ class Spin extends React.Component<UserProps> {
                         <ProductCategoryBar categories={categories} filter={this.filterByCategory} all={this.filterAll} />
                         {selectedItem.length > 0 && (
                             <div
-                            className="alert alert-success alert-dismissible fade show mb-5"
+                            className="alert alert-success alert-dismissible fade show"
                             role="alert"
                           >
                             <strong>{selectedItem} added to cart!</strong> Visit the cart page to check out!
