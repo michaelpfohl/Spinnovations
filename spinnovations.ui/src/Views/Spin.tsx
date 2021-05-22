@@ -70,21 +70,23 @@ class Spin extends React.Component<UserProps> {
     }
 
     const quantityCheck = products?.filter((product: Product) => {
+      let returnValue = false;
+      if (product.quantity == null) returnValue = true;
       if (productsInCart.length) {
         productsInCart.forEach((productInCart) => {
           if (productInCart.id == product.id) {
-            console.log("product", product)
-            console.log("quantity", productInCart.quantity);
-            console.log("quantity in stock", product.quantity_In_Stock);
-            if (productInCart.quantity < product.quantity_In_Stock) {
-              return true;
+            if (productInCart.quantity >= product.quantity_In_Stock) {
+                console.log("product", product)
+                console.log("product in cart", productInCart);
+                console.log("quantity", productInCart.quantity);
+                console.log("quantity in stock", product.quantity_In_Stock);
+                returnValue = false;
             }
           }
         });
-      }
-      if (product.quantity == null) return true;
+    return returnValue;      }
     });
-
+    console.log(quantityCheck);
     const filteredProducts = quantityCheck?.filter(
       (product: Product) => product.category_Id == category
     );
