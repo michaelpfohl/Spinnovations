@@ -49,7 +49,6 @@ class Spin extends React.Component<UserProps> {
             total += filteredProducts[i].price;
         }
         const spinTotal = ((total + (total * 0.1)) / filteredProducts.length);
-        console.warn(spinTotal);
         this.setState({
             filteredProducts,
             selectedCategory: selectedCategory[0].category_Name,
