@@ -105,7 +105,7 @@ class Spin extends React.Component<UserProps> {
                             className="alert alert-success alert-dismissible fade show"
                             role="alert"
                           >
-                            <strong>{selectedItem} added to cart!</strong> Visit the cart page to check out!
+                            <strong>You won: {selectedItem}!</strong> Visit the cart page to check out!
                             <button
                               type="button"
                               className="close"
