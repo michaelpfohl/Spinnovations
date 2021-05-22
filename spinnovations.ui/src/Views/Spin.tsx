@@ -25,7 +25,7 @@ class Spin extends React.Component<UserProps> {
     };
 
     componentDidMount(): void {
-        productCategoryData.getProductCategories().then((response: ProductCategory[]) => {
+        productCategoryData.getAllProductCategoriesWithProducts().then((response: ProductCategory[]) => {
             this.setState({
                 categories: response
             })
@@ -98,8 +98,16 @@ class Spin extends React.Component<UserProps> {
                         <ProductCategoryBar categories={categories} filter={this.filterByCategory} all={this.filterAll} />
                         {selectedItem.length > 0 && (
                             <div
-                                className="alert alert-success alert-dismissible fade show mb-5"
-                                role="alert"
+                            className="alert alert-success alert-dismissible fade show"
+                            role="alert"
+                          >
+                            <strong>{selectedItem} added to cart!</strong> Visit the cart page to check out!
+                            <button
+                              type="button"
+                              className="close"
+                              data-dismiss="alert"
+                              aria-label="Close"
+                              onClick={() => this.setState({ selectedItem: '' })}
                             >
                                 <strong>{selectedItem} added to cart!</strong> Visit the cart page to check out!
                                 <button

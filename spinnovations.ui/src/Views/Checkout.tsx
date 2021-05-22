@@ -25,6 +25,7 @@ type CheckoutState = {
   shippingPostalCode: string;
   success: boolean;
   error: boolean;
+  greetingColor: number;
 };
 
 class Checkout extends Component<CheckoutProps> {
@@ -42,6 +43,7 @@ class Checkout extends Component<CheckoutProps> {
     shippingPostalCode: "",
     success: false,
     error: false,
+    greetingColor: 0,
   };
 
   componentDidMount(): void {
@@ -66,7 +68,9 @@ class Checkout extends Component<CheckoutProps> {
           payments: activePayments,
         });
       });
+      this.setState({ greetingColor: Math.floor(Math.random() * 7) + 1})
   }
+
   handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ): void => {
@@ -75,6 +79,7 @@ class Checkout extends Component<CheckoutProps> {
       error: false,
     });
   };
+
   placeOrder = () => {
     const order = {
       Customer_Id: this.state.user.id,
@@ -134,7 +139,7 @@ class Checkout extends Component<CheckoutProps> {
   };
 
   render(): JSX.Element {
-    const { payments } = this.state;
+    const { payments, greetingColor } = this.state;
     const paymentOptions = (payment: Payment): JSX.Element => {
       const last4 = payment.card_Number.substring(
         payment.card_Number.length - 4,
@@ -148,7 +153,7 @@ class Checkout extends Component<CheckoutProps> {
     };
     const options = payments.map(paymentOptions);
     return (
-      <div>
+      <div className={`color-border-${greetingColor} checkout-modal-container`}>
         {this.state.success && (
           <div>
             <div className="product-added-container mb-5 mt-5">
@@ -163,9 +168,9 @@ class Checkout extends Component<CheckoutProps> {
             </div>
           </div>
         )}
-        <div className="d-flex flex-column align-items-center p-3">
+        <div className={`d-flex flex-column align-items-center p-3`}>
           <h1 className={`product-form-header`}>Checkout</h1>
-          <div className="product-form-container p-3">
+          <div className="p-3">
             <form className="add-Product-form">
               <h4 className="product-form-header m-3">Select Payment Method</h4>
               <div className="form-group">
