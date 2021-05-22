@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Modal } from 'reactstrap';
+import { Modal } from 'reactstrap';
 import PaymentInfoForm from '../Forms/PaymentInfoForm';
 import { PaymentInfoFormProps } from '../../Helpers/Interfaces/PaymentInterfaces';
 

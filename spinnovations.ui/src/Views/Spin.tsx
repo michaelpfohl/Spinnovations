@@ -57,6 +57,9 @@ class Spin extends React.Component<UserProps> {
   }
 
   filterByCategory = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const category = e.target.id;
+    const { products, categories } = this.state;
+
     const keys = Object.keys(localStorage);
     const productsInCart: Product[] = [];
     if (localStorage.length) {
@@ -65,13 +68,15 @@ class Spin extends React.Component<UserProps> {
         productsInCart.push(cartItem);
       }
     }
-    const category = e.target.id;
-    const { products } = this.state;
+
     const quantityCheck = products?.filter((product: Product) => {
       if (productsInCart.length) {
         productsInCart.forEach((productInCart) => {
           if (productInCart.id == product.id) {
-            if (productInCart.quantity < product.Quantity_In_Stock) {
+            console.log("product", product)
+            console.log("quantity", productInCart.quantity);
+            console.log("quantity in stock", product.quantity_In_Stock);
+            if (productInCart.quantity < product.quantity_In_Stock) {
               return true;
             }
           }
@@ -79,26 +84,58 @@ class Spin extends React.Component<UserProps> {
       }
       if (product.quantity == null) return true;
     });
+
     const filteredProducts = quantityCheck?.filter(
       (product: Product) => product.category_Id == category
     );
-    this.setState({ filteredProducts });
+
+    const selectedCategory: ProductCategory[] = categories?.filter(
+      (p: ProductCategory) => p.id == category
+    );
+
+    let total = 0;
+    for (let i = 0; i < filteredProducts.length; i++) {
+      total += filteredProducts[i].price;
+    }
+    const spinTotal = (total + total * 0.1) / filteredProducts.length;
+
+    this.setState({
+      filteredProducts,
+      selectedCategory: selectedCategory[0].category_Name,
+      spinTotal: spinTotal,
+    });
   };
 
   filterAll = (e: React.ChangeEvent<HTMLInputElement>): void => {
     let { filteredProducts } = this.state;
     const { products } = this.state;
+    const keys = Object.keys(localStorage);
+    const productsInCart: Product[] = [];
+    if (localStorage.length) {
+      for (const key of keys) {
+        const cartItem = JSON.parse(localStorage.getItem(key) || "");
+        productsInCart.push(cartItem);
+      }
+    }
+
     if (e.target.id == "all-products") {
       let total = 0;
       products.forEach((product: Product) => {
         total += product.price;
       });
       const spinTotal = (total + total * 0.1) / products.length;
-      const quantityCheck = products?.filter(
-        (product: Product) =>
-          product.quantity < product.Quantity_In_Stock ||
-          product.quantity == null
-      );
+      const quantityCheck = products?.filter((product: Product) => {
+        if (productsInCart.length) {
+          productsInCart.forEach((productInCart) => {
+            if (productInCart.id == product.id) {
+              if (productInCart.quantity < product.quantity_In_Stock) {
+                return true;
+              }
+            }
+          });
+        }
+        if (product.quantity == null) return true;
+      });
       filteredProducts = quantityCheck;
       this.setState({
         filteredProducts,
