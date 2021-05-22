@@ -34,8 +34,8 @@ class Spin extends React.Component<UserProps> {
             let total = 0;
             response.forEach((product) => {
                 total += product.price;
-        }) 
-        const spinTotal = ((total + (total * 0.1)) / response.length);
+            })
+            const spinTotal = ((total + (total * 0.1)) / response.length);
             this.setState({
                 products: response,
                 filteredProducts: response,
@@ -50,7 +50,7 @@ class Spin extends React.Component<UserProps> {
         const filteredProducts: Product[] = products?.filter((product: Product) => product.category_Id == category);
         const selectedCategory: ProductCategory[] = categories?.filter((p: ProductCategory) => p.id == category)
 
-        let total = 1;
+        let total = 0;
         for (let i = 0; i < filteredProducts.length; i++) {
             total += filteredProducts[i].price;
         }
@@ -67,7 +67,7 @@ class Spin extends React.Component<UserProps> {
         let { filteredProducts } = this.state;
         const { products } = this.state;
         if (e.target.id == "all-products") {
-            let total = 1;
+            let total = 0;
             products.forEach((product: Product) => {
                 total += product.price;
             })
@@ -107,20 +107,20 @@ class Spin extends React.Component<UserProps> {
                         <ProductCategoryBar categories={categories} filter={this.filterByCategory} all={this.filterAll} />
                         {selectedItem.length > 0 && (
                             <div
-                            className="alert alert-success alert-dismissible fade show"
-                            role="alert"
-                          >
-                            <strong>You won: {selectedItem}!</strong> Visit the cart page to check out!
-                            <button
-                              type="button"
-                              className="close"
-                              data-dismiss="alert"
-                              aria-label="Close"
-                              onClick={() => this.setState({ selectedItem: '' })}
+                                className="alert alert-success alert-dismissible fade show"
+                                role="alert"
                             >
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
+                                <strong>You won: {selectedItem}!</strong> Visit the cart page to check out!
+                                <button
+                                    type="button"
+                                    className="close"
+                                    data-dismiss="alert"
+                                    aria-label="Close"
+                                    onClick={() => this.setState({ selectedItem: '' })}
+                                >
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
                         )}
                         <BuySpinModal
                             callback={this.handleCallback}
