@@ -43,14 +43,13 @@ class Spin extends React.Component<UserProps> {
         const { products, categories } = this.state;
         const filteredProducts: Product[] = products?.filter((product: Product) => product.category_Id == category);
         const selectedCategory: ProductCategory[] = categories?.filter((p: ProductCategory) => p.id == category)
+
         let total = 1;
-        
-        console.warn(filteredProducts);
         for (let i = 0; i < filteredProducts.length; i++) {
             total += filteredProducts[i].price;
-          }
-          const spinTotal = ((total + (total * 0.1)) / filteredProducts.length);
-          console.warn(spinTotal);
+        }
+        const spinTotal = ((total + (total * 0.1)) / filteredProducts.length);
+        console.warn(spinTotal);
         this.setState({
             filteredProducts,
             selectedCategory: selectedCategory[0].category_Name,
@@ -63,11 +62,16 @@ class Spin extends React.Component<UserProps> {
         let { filteredProducts } = this.state;
         const { products } = this.state;
         if (e.target.id == "all-products") {
+            let total = 1;
+            products.forEach((product: Product) => {
+                total += product.price;
+            })
+            const spinTotal = ((total + (total * 0.1)) / products.length);
             filteredProducts = products;
             this.setState({
                 filteredProducts,
                 selectedCategory: 'all products',
-                spinTotal: 31.99,
+                spinTotal: spinTotal,
             });
         }
     }
