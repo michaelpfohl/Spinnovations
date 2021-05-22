@@ -6,7 +6,7 @@ import {CheckoutProps} from '../../Helpers/Interfaces/CheckoutInterfaces';
 const PlaceOrderModal = ({user, products, cartTotal, payments, title, productQuantities}: CheckoutProps): JSX.Element => {
 
   const [modal, setModal] = useState(false);
-  const [greetingColor, setGreetingColor] = useState(0);
+  const [greetingColor] = useState(0);
 
   const toggle = () => setModal(!modal);
 

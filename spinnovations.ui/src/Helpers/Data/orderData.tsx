@@ -4,6 +4,7 @@ import {Order, OrderDetails, OrderToPlace} from '../Interfaces/OrderInterfaces'
 
 const ordersUrl = `${BaseURL}/order`;
 const orderDetailsUrl = `${BaseURL}/Order_Details`;
+const productsUrl = `${BaseURL}/Products`;
 
 const getAllOrders = (): Promise<Order[]> => new Promise((resolve, reject) => {
     axios.get(`${ordersUrl}`).then((response) => {
@@ -79,9 +80,13 @@ const placeNewOrder = (order: OrderToPlace): Promise<Order> => new Promise((reso
 })
 
 const placeNewOrderDetails = (orderDetails: OrderDetails): Promise<OrderDetails> => new  Promise((resolve, reject) => {
-    axios.post(`${orderDetailsUrl}`, orderDetails).then((response) => {
-        resolve(response.data);
-    }).catch((error) => reject(error));
+    const placeNewOrder = axios.post(`${orderDetailsUrl}`, orderDetails);
+    const decrementProduct = axios.put(`${productsUrl}/decrementQuantity`, orderDetails); 
+
+    axios.all([placeNewOrder, decrementProduct]).then(axios.spread((...responses) => {
+        resolve(responses[0].data);
+        resolve(responses[1].data);
+    })).catch((errors) => reject(errors));
 })
 
 const getMostRecentUserOrder = (customerId: number) : Promise<Order> => new  Promise((resolve, reject) => {

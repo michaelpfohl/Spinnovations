@@ -17,7 +17,7 @@ export const ProductCategoryBar = ({categories, filter, all}: ProductCategoryPro
     return (
       <button key={category.id} id={category.id} className={`product-category-circle bg-scheme-${category.color}`} 
       onClick={filter}>
-        <p className="product-category-circle-text" id={category.id} onClick={filter}>{category.category_Name}</p>
+        <p className="product-category-circle-text" id={category.id}>{category.category_Name}</p>
       </button>
     );
   };

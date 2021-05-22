@@ -95,5 +95,12 @@ namespace Spinnovations.Controllers
             return Ok(results);
         }
 
+        [HttpPut("decrementQuantity")]
+        public IActionResult DecrementQuantity(Order_Details orderDetails)
+        {
+            _repo.DecrementQuantity(orderDetails);
+            return Ok();
+        }
+
     }
 }

@@ -125,5 +125,24 @@ namespace Spinnovations.Data
             return db.Query<Product>(sql, new { searchTerm = term }).ToList();
         }
 
+        public void DecrementQuantity(Order_Details orderDetails)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var quantity = orderDetails.Quantity;
+            var id = orderDetails.Product_Id;
+            var sql = @"UPDATE Products
+                        SET Quantity_In_Stock -= @quantity
+                        WHERE Id = @id
+
+                        UPDATE Products
+                        SET Active = CASE
+				                        WHEN Quantity_In_Stock > 0 THEN 1
+				                        ELSE 0
+			                         END
+                        WHERE Id = @id";
+
+            db.Execute(sql, new { quantity = quantity, id = id });
+        }
+
     }
 }
