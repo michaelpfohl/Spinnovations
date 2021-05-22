@@ -113,17 +113,9 @@ class Spin extends React.Component<UserProps> {
                               aria-label="Close"
                               onClick={() => this.setState({ selectedItem: '' })}
                             >
-                                <strong>{selectedItem} added to cart!</strong> Visit the cart page to check out!
-                                <button
-                                    type="button"
-                                    className="close"
-                                    data-dismiss="alert"
-                                    aria-label="Close"
-                                    onClick={() => this.setState({ selectedItem: '' })}
-                                ></button>
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
                         )}
                         <BuySpinModal
                             callback={this.handleCallback}
@@ -131,7 +123,6 @@ class Spin extends React.Component<UserProps> {
                             products={filteredProducts}
                             title="Buy A Spin"
                             spinTotal={this.state.spinTotal}
-                            category={this.state.selectedCategory}
                         ></BuySpinModal>
                     </>
                 )}
