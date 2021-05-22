@@ -37,7 +37,7 @@ export default class OrderDetailsCard extends React.Component<OrderDetailsCardPr
         <tr>
           <th scope="row"></th>
           <td>
-            <img className={`order-image color-border-${greetingColor}`} src={product.imageUrl} alt={product.name}></img>
+            <img className={`order-image color-half-border-${greetingColor}`} src={product.imageUrl} alt={product.name}></img>
           </td>
           <td>{product.name}</td>
           <td>{sellerInfo?.display_Name}</td>
