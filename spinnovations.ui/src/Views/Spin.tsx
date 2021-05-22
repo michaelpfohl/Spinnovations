@@ -18,7 +18,7 @@ class Spin extends React.Component<UserProps> {
         products: [],
         filteredProducts: [],
         categories: [],
-        spinTotal: 31.99,
+        spinTotal: 80.56,
         isAllowed: false,
         selectedItem: '',
         selectedCategory: '' || 'all products',
@@ -123,6 +123,7 @@ class Spin extends React.Component<UserProps> {
                             products={filteredProducts}
                             title="Buy A Spin"
                             spinTotal={this.state.spinTotal}
+                            category={this.state.selectedCategory}
                         ></BuySpinModal>
                     </>
                 )}
