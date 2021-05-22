@@ -76,15 +76,12 @@ class Spin extends React.Component<UserProps> {
         productsInCart.forEach((productInCart) => {
           if (productInCart.id == product.id) {
             if (productInCart.quantity >= product.quantity_In_Stock) {
-                console.log("product", product)
-                console.log("product in cart", productInCart);
-                console.log("quantity", productInCart.quantity);
-                console.log("quantity in stock", product.quantity_In_Stock);
                 returnValue = false;
             }
           }
         });
-    return returnValue;      }
+      }
+      return returnValue;
     });
     console.log(quantityCheck);
     const filteredProducts = quantityCheck?.filter(
