@@ -120,7 +120,7 @@ class Spin extends React.Component<UserProps> {
                                     data-dismiss="alert"
                                     aria-label="Close"
                                     onClick={() => this.setState({ selectedItem: '' })}
-                                >
+                                ></button>
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
