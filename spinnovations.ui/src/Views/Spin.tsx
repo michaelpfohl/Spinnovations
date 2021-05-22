@@ -18,10 +18,10 @@ class Spin extends React.Component<UserProps> {
         products: [],
         filteredProducts: [],
         categories: [],
-        spinTotal: 80.56,
+        spinTotal: 0,
         isAllowed: false,
         selectedItem: '',
-        selectedCategory: '' || 'all products',
+        selectedCategory: '' || 'All Products',
     };
 
     componentDidMount(): void {
@@ -31,9 +31,15 @@ class Spin extends React.Component<UserProps> {
             })
         });
         productData.getProducts().then((response: Product[]) => {
+            let total = 0;
+            response.forEach((product) => {
+                total += product.price;
+        }) 
+        const spinTotal = ((total + (total * 0.1)) / response.length);
             this.setState({
                 products: response,
                 filteredProducts: response,
+                spinTotal,
             })
         });
     }
@@ -69,7 +75,7 @@ class Spin extends React.Component<UserProps> {
             filteredProducts = products;
             this.setState({
                 filteredProducts,
-                selectedCategory: 'all products',
+                selectedCategory: 'All Products',
                 spinTotal: spinTotal,
             });
         }
