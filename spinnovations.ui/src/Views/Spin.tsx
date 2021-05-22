@@ -46,18 +46,19 @@ class Spin extends React.Component<UserProps> {
         });
     }
 
-    updateQuantity(): void {
-        const { products } = this.state;
-        console.log("products before filter", this.state.filteredProducts);
-        const filteredProducts = products?.filter((product: Product) => product?.Quantity_In_Stock > product?.quantity);
-        console.log("products after filter", filteredProducts);
-        this.setState({ filteredProducts });
-    }
-
     filterByCategory = (e: React.ChangeEvent<HTMLInputElement>): void => {
+        const keys = Object.keys(localStorage);
+        const productsInCart : Product[] = [];
+        if (localStorage.length) {
+            for (const key of keys) {
+                const cartItem = JSON.parse(localStorage.getItem(key) || "");
+                productsInCart.push(cartItem);
+            }
+        }
         const category = e.target.id;
         const { products } = this.state;
-        const filteredProducts = products?.filter((product: Product) => product.category_Id == category);
+        const quantityCheck = products?.filter((product: Product) => product.quantity < product.Quantity_In_Stock || product.quantity == null);
+        const filteredProducts = quantityCheck?.filter((product: Product) => product.category_Id == category);
         this.setState({ filteredProducts });
     }
 
@@ -65,7 +66,8 @@ class Spin extends React.Component<UserProps> {
         let { filteredProducts } = this.state;
         const { products } = this.state;
         if (e.target.id == "all-products") {
-            filteredProducts = products;
+            const quantityCheck = products?.filter((product: Product) => product.quantity < product.Quantity_In_Stock || product.quantity == null);
+            filteredProducts = quantityCheck;
             this.setState({ filteredProducts });
         }
     }
@@ -93,7 +95,7 @@ class Spin extends React.Component<UserProps> {
                     </>
                 ) : (
                     <>
-                        <ProductCategoryBar categories={categories} filter={this.filterByCategory} all={this.filterAll} updateQuantity={this.updateQuantity}/>
+                        <ProductCategoryBar categories={categories} filter={this.filterByCategory} all={this.filterAll} />
                         {selectedItem.length > 0 && (
                             <div
                             className="alert alert-success alert-dismissible fade show"
