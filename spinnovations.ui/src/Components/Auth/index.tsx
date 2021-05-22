@@ -57,8 +57,8 @@ class Auth extends Component<AuthProps> {
         <div className="d-flex justify-content-center">
           <div className="auth-container d-flex align-items-center">
             <p className={`m-auto greeting-text color-text-${greetingColor}`}>Hello, {user?.display_Name}!</p>
-            <button className="google-logo ml-4 logout-button" onClick={this.logoutClickEvent}>
-              <i className="fas fa-sign-out-alt signout-icon"></i> Log Out
+            <button className="google-logo ml-4 logout-button" data-toggle="tooltip" data-placement="bottom" title="Log Out" onClick={this.logoutClickEvent}>
+              <i className="fas fa-sign-out-alt signout-icon"></i>
             </button>
           </div>
         </div>
