@@ -5,8 +5,17 @@ import {
 
 export const ProductCategoryBar = ({categories, filter, all}: ProductCategoryProps): JSX.Element => {
   const categoryCircle = (category: ProductCategory): JSX.Element => {
+    const assignColors = (): void => {
+      let counter = 0;
+      categories.forEach((category : ProductCategory) => {
+        counter++;
+        if (counter >= 8) counter = 1;
+        category.color = counter
+      })
+    }
+    assignColors();
     return (
-      <button key={category.id} id={category.id} className="product-category-circle" 
+      <button key={category.id} id={category.id} className={`product-category-circle bg-scheme-${category.color}`} 
       onClick={filter}>
         <p className="product-category-circle-text" id={category.id} onClick={filter}>{category.category_Name}</p>
       </button>

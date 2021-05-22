@@ -11,26 +11,33 @@ type OrderDetailsCardProps = {
 
 type OrderDetailsCardState = {
   sellerInfo: User,
+  greetingColor: number
 }
 
 export default class OrderDetailsCard extends React.Component<OrderDetailsCardProps> {
   state: OrderDetailsCardState = {
-    sellerInfo: null
+    sellerInfo: null,
+    greetingColor: 0
   }
   componentDidMount(): void {
+    
     userData.getUserById(this.props.product.creator_Id).then((response: User) => {
-        this.setState({sellerInfo: response})
+        this.setState(
+          {
+            sellerInfo: response,
+            greetingColor: Math.floor(Math.random() * 7) + 1
+        })
     })
   }
   render(): JSX.Element {
     const {product, order_Details} = this.props;
-    const {sellerInfo} = this.state;
+    const {sellerInfo, greetingColor} = this.state;
     return (
       <>
         <tr>
           <th scope="row"></th>
           <td>
-            <img src={product.imageUrl} alt={product.name} height='50'></img>
+            <img className={`order-image color-half-border-${greetingColor}`} src={product.imageUrl} alt={product.name}></img>
           </td>
           <td>{product.name}</td>
           <td>{sellerInfo?.display_Name}</td>
