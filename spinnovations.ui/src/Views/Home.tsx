@@ -6,11 +6,15 @@ import { Product } from "../Helpers/Interfaces/ProductInterfaces";
 
 type HomeState = {
   products?: Product[];
+  added: boolean;
+  productName: string;
 };
 
 class Home extends Component {
   state: HomeState = {
     products: [],
+    added: false,
+    productName: "",
   };
 
   componentDidMount(): void {
@@ -21,10 +25,15 @@ class Home extends Component {
     });
   }
 
+  cartAlert = (productName: string): void => {
+    this.setState({ added: true, productName: productName });
+    setTimeout(() => this.setState({ added: false }), 3000);
+  };
+
   render(): JSX.Element {
-    const { products } = this.state;
+    const { products, added, productName } = this.state;
     const productCard = (product: Product, color: number): JSX.Element => {
-      return <ProductCard key={product.id} product={product} color={color} />;
+      return <ProductCard key={product.id} product={product} color={color} cartAlert={this.cartAlert}/>;
     };
     const assignColors = (products: Product[]) => {
       const cards: Product[] = [];
@@ -42,6 +51,24 @@ class Home extends Component {
     }
     return (
       <div>
+        {added && (
+          <div
+            className="alert alert-success alert-dismissible fade show mb-0"
+            role="alert"
+          >
+            <strong>{productName} added to cart!</strong> Visit the cart page to
+            check out!
+            <button
+              type="button"
+              className="close"
+              data-dismiss="alert"
+              aria-label="Close"
+              onClick={() => this.setState({ added: false })}
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        )}
         <HomeCarousel />
         <div className="d-flex flex-wrap">{cards}</div>
       </div>
