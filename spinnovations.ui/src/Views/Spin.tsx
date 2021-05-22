@@ -57,7 +57,18 @@ class Spin extends React.Component<UserProps> {
         }
         const category = e.target.id;
         const { products } = this.state;
-        const quantityCheck = products?.filter((product: Product) => product.quantity < product.Quantity_In_Stock || product.quantity == null);
+        const quantityCheck = products?.filter((product: Product) => {
+            if (productsInCart.length){
+                productsInCart.forEach(productInCart => {
+                    if (productInCart.id == product.id){
+                        if (productInCart.quantity < product.Quantity_In_Stock){
+                            return true;
+                        } 
+                    }
+                })
+            }
+            if (product.quantity == null) return true;
+        });
         const filteredProducts = quantityCheck?.filter((product: Product) => product.category_Id == category);
         this.setState({ filteredProducts });
     }
