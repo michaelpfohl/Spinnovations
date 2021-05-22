@@ -1,6 +1,7 @@
 declare module 'ProductCategoryTypes' {
     interface ProductCategory {
         name: string;
+        color: number;
     }
 
     type CategoryTotals = {
