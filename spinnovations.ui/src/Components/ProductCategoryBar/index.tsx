@@ -5,8 +5,9 @@ import {
 
 export const ProductCategoryBar = ({categories, filter, all}: ProductCategoryProps): JSX.Element => {
   const categoryCircle = (category: ProductCategory): JSX.Element => {
+    const getRandomColor = () =>  Math.floor(Math.random() * 7) + 1;
     return (
-      <button key={category.id} id={category.id} className="product-category-circle" 
+      <button key={category.id} id={category.id} className={`product-category-circle bg-scheme-${getRandomColor()}`} 
       onClick={filter}>
         <p className="product-category-circle-text" id={category.id} onClick={filter}>{category.category_Name}</p>
       </button>
