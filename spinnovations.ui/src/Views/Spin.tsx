@@ -133,7 +133,7 @@ class Spin extends React.Component<UserProps> {
             }
           });
         }
-        if (product.quantity == null) return true;
+        return (product.quantity == null ? true : false);
       });
       filteredProducts = quantityCheck;
       this.setState({
