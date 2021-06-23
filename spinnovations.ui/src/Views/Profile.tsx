@@ -34,7 +34,7 @@ class Profile extends React.Component<UserProps> {
         {user != null && (
           <div className={`profile-container mt-5 col-9 color-border-${greetingColor}`}>
             <div className="d-flex mt-4">
-              <img src={user.image_Url} className={`profile-photo m-4 color-border-${greetingColor}`} />
+              <img src={user.image_Url} className={`profile-photo m-4 color-border-${greetingColor}`} alt="profile"/>
               <div className="col-8">
                 <div className="row d-flex justify-content-between mt-3">
                   <h3 className={`profile-display-name color-text-${greetingColor}`}>{user.display_Name}</h3>

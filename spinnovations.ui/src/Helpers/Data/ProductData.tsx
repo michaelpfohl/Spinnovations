@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { BaseURL } from '../config.json';
+import config from '../config';
 import { Product } from '../Interfaces/ProductInterfaces';
 
-const productsURL = `${BaseURL}/Products`;
+const productsURL = `${config.BaseURL}/Products`;
 
 const getProducts = (): Promise<Product[]> => new Promise((resolve, reject) => {
     axios.get(`${productsURL}`).then((response) => {

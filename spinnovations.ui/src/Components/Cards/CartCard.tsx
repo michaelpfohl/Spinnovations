@@ -42,10 +42,11 @@ class CartCard extends React.Component<ProductProps> {
     return (
       <tbody>
         <tr>
-          <td scope="row">
+          <td>
               <img
                 src={product.imageUrl}
                 className={`profile-photo m-3 color-border-${greetingColor}`}
+                alt="product"
               ></img>
           </td>
           <td>{product.name}</td>

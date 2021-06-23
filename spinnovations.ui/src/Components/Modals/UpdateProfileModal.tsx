@@ -11,7 +11,7 @@ const UpdateProfileModal = ({ user, onUpdate }: UpdateProfileProps): JSX.Element
 
   useEffect(() => {
     setGreetingColor(Math.floor(Math.random() * 7) + 1);
-  })
+  }, [])
 
   return (
     <div>

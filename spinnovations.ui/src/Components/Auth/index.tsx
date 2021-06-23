@@ -44,7 +44,7 @@ class Auth extends Component<AuthProps> {
   logInOrOut = (): JSX.Element => {
     const { user } = this.props;
     const { greetingColor } = this.state;
-    if (user == false){
+    if (user === false){
       return (
         <div className="d-flex justify-content-center">
             <button className="signin-button google-logo" onClick={this.loginClickEvent}>

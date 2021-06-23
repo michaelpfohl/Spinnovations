@@ -1,8 +1,8 @@
-import { BaseURL } from '../config.json';
+import config from '../config';
 import { ProductCategory, CategoryTotals } from '../Interfaces/ProductCategoryInterfaces';
 import axios from 'axios';
 
-const ProductCategoryURL = `${BaseURL}/Product_Category`
+const ProductCategoryURL = `${config.BaseURL}/Product_Category`
 
 const getProductCategories = (): Promise<ProductCategory[]> => new Promise((resolve, reject) => {
     axios.get(`${ProductCategoryURL}`).then((response) => {

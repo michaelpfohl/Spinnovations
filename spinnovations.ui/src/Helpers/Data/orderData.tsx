@@ -1,10 +1,10 @@
 import axios from 'axios';
-import {BaseURL} from '../config.json';
+import config from '../config';
 import {Order, OrderDetails, OrderToPlace} from '../Interfaces/OrderInterfaces'
 
-const ordersUrl = `${BaseURL}/order`;
-const orderDetailsUrl = `${BaseURL}/Order_Details`;
-const productsUrl = `${BaseURL}/Products`;
+const ordersUrl = `${config.BaseURL}/order`;
+const orderDetailsUrl = `${config.BaseURL}/Order_Details`;
+const productsUrl = `${config.BaseURL}/Products`;
 
 const getAllOrders = (): Promise<Order[]> => new Promise((resolve, reject) => {
     axios.get(`${ordersUrl}`).then((response) => {

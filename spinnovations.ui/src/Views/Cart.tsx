@@ -1,3 +1,4 @@
+/* eslint-disable no-loop-func */
 import React from "react";
 import { User } from "../Helpers/Interfaces/UserInterfaces";
 import { Product } from "../Helpers/Interfaces/ProductInterfaces";
@@ -124,7 +125,8 @@ class Cart extends React.Component<UserProps, cartState> {
     subtotal: number,
     quantityObject: ProductQuantity
   ): void => {
-    const grandTotal = (this.state.cartTotal += subtotal);
+    let { cartTotal } = this.state;
+    const grandTotal = cartTotal += subtotal;
     this.state.productQuantities.forEach((qty) => {
       if (quantityObject.productId === qty.productId) {
         qty.quantity = quantityObject.quantity;

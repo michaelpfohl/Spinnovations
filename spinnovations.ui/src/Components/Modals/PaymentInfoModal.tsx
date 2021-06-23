@@ -12,7 +12,7 @@ const UpdatePaymentModal = ({ user, payment, onUpdate, title}: PaymentInfoFormPr
     
   useEffect(() => {
     setGreetingColor(Math.floor(Math.random() * 7) + 1);
-  })
+  }, [])
 
   return (
     <div>

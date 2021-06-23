@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { BaseURL } from '../config.json';
+import config from '../config';
 import {Payment} from '../Interfaces/PaymentInterfaces'
 
-const paymentsURL = `${BaseURL}/PaymentInformation`;
+const paymentsURL = `${config.BaseURL}/PaymentInformation`;
 
 const getPayments = (): Promise<Payment[]> => new Promise((resolve, reject) => {
     axios.get(`${paymentsURL}`).then((response) => {

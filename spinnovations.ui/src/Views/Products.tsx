@@ -44,7 +44,7 @@ class Products extends React.Component<ProductsState> {
     const category = e.target.id;
     const { products } = this.state;
     const filteredProducts = products?.filter(
-      (product) => product.category_Id == category
+      (product) => product.category_Id === category
     );
     this.setState({ filteredProducts });
   };
@@ -52,7 +52,7 @@ class Products extends React.Component<ProductsState> {
   filterAll = (e: React.ChangeEvent<HTMLInputElement>): void => {
     let { filteredProducts } = this.state;
     const { products } = this.state;
-    if (e.target.id == "all-products") {
+    if (e.target.id === "all-products") {
       filteredProducts = products;
       this.setState({ filteredProducts });
     }

@@ -12,7 +12,7 @@ const UpdateProductModal = ({ user, product, onUpdate }: ProductProps): JSX.Elem
   
   useEffect(() => {
     setGreetingColor(Math.floor(Math.random() * 7) + 1);
-  })
+  }, [])
 
   return (
     <div>

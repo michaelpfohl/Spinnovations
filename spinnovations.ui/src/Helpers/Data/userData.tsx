@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { BaseURL } from '../config.json';
+import config from '../config';
 import { User } from '../Interfaces/UserInterfaces';
 
-const usersUrl = `${BaseURL}/users`;
+const usersUrl = `${config.BaseURL}/users`;
 
 const getAllUsers = (): Promise<User[]> => new Promise((resolve, reject) => {
     axios.get(usersUrl).then((response) => {

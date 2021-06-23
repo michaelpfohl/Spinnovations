@@ -24,7 +24,7 @@ const Navigation = ({ user }: NavProps): JSX.Element => {
   return (
     <div>
       <Navbar expand="md">
-        <NavbarBrand href="/" className="scheme-pink"><img className="nav-logo" src={logo}/>Spinnovations</NavbarBrand>
+        <NavbarBrand href="/" className="scheme-pink"><img className="nav-logo" alt="logo" src={logo}/>Spinnovations</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>

@@ -74,7 +74,7 @@ class Spin extends React.Component<UserProps> {
       if (product.quantity == null) returnValue = true;
       if (productsInCart.length) {
         productsInCart.forEach((productInCart) => {
-          if (productInCart.id == product.id) {
+          if (productInCart.id === product.id) {
             if (productInCart.quantity >= product.quantity_In_Stock) {
                 returnValue = false;
             }
@@ -85,11 +85,11 @@ class Spin extends React.Component<UserProps> {
     });
     console.log(quantityCheck);
     const filteredProducts = quantityCheck?.filter(
-      (product: Product) => product.category_Id == category
+      (product: Product) => product.category_Id === category
     );
 
     const selectedCategory: ProductCategory[] = categories?.filter(
-      (p: ProductCategory) => p.id == category
+      (p: ProductCategory) => p.id === category
     );
 
     let total = 0;
@@ -117,7 +117,7 @@ class Spin extends React.Component<UserProps> {
       }
     }
 
-    if (e.target.id == "all-products") {
+    if (e.target.id === "all-products") {
       let total = 0;
       products.forEach((product: Product) => {
         total += product.price;
@@ -126,7 +126,7 @@ class Spin extends React.Component<UserProps> {
       const quantityCheck = products?.filter((product: Product) => {
         if (productsInCart.length) {
           productsInCart.forEach((productInCart) => {
-            if (productInCart.id == product.id) {
+            if (productInCart.id === product.id) {
               if (productInCart.quantity < product.quantity_In_Stock) {
                 return true;
               }

@@ -12,7 +12,7 @@ const BuySpinModal = ({user, spinTotal, payments, title, category, callback}: Ch
 
   useEffect(() => {
     setGreetingColor(Math.floor(Math.random() * 7) + 1);
-  })
+  }, [])
 
   return (
     <div>
