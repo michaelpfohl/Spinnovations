@@ -83,13 +83,12 @@ class Spin extends React.Component<UserProps> {
       }
       return returnValue;
     });
-    console.log(quantityCheck);
     const filteredProducts = quantityCheck?.filter(
-      (product: Product) => product.category_Id === category
+      (product: Product) => String(product.category_Id) === category
     );
 
     const selectedCategory: ProductCategory[] = categories?.filter(
-      (p: ProductCategory) => p.id === category
+      (p: ProductCategory) => String(p.id) === category
     );
 
     let total = 0;

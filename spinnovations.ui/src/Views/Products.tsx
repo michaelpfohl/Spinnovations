@@ -42,9 +42,10 @@ class Products extends React.Component<ProductsState> {
 
   filterByCategory = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const category = e.target.id;
+    console.log(e.target.id);
     const { products } = this.state;
     const filteredProducts = products?.filter(
-      (product) => product.category_Id === category
+      (product) => String(product.category_Id) === category
     );
     this.setState({ filteredProducts });
   };
